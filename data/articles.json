@@ -1,0 +1,22 @@
+[
+  {
+    "id": "oud-langage-dakar", "kicker": "Matières", "title": "L'oud, ce langage que Dakar comprend",
+    "date": "2026-08-12", "reading": 6, "image": "img/Tom Ford Oud Wood.jpg",
+    "excerpt": "De la résine d'agar aux flacons contemporains : comment le bois le plus précieux du monde dialogue avec une clientèle sénégalaise qui le connaît de longue date."
+  },
+  {
+    "id": "construire-garde-robe", "kicker": "Le Rituel", "title": "Construire sa garde-robe olfactive",
+    "date": "2026-07-28", "reading": 5, "image": "img/197b69741386991b2074e00f7b2794cc.jpg",
+    "excerpt": "Un parfum de jour, un parfum de nuit, une signature. Trois flacons suffisent — encore faut-il choisir les bons. Notre méthode en trois gestes."
+  },
+  {
+    "id": "sillage-chaleur", "kicker": "Conseils", "title": "Tenir le sillage sous la chaleur",
+    "date": "2026-07-05", "reading": 4, "image": "img/Lattafa Asad Luxury Fragrance _ woody Arabic notes.jpg",
+    "excerpt": "Concentrations, points d'application, conservation : porter un extrait sous le climat de Dakar demande quelques gestes précis. Voici lesquels."
+  },
+  {
+    "id": "rose-mille-visages", "kicker": "Matières", "title": "La rose et ses mille visages",
+    "date": "2026-06-18", "reading": 7, "image": "img/placeholder-flacon.svg",
+    "excerpt": "Confiturée, poivrée, métallique ou orientale : la rose n'est jamais une seule fleur. Petit atlas d'une matière caméléon."
+  }
+]

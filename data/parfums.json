@@ -1,0 +1,272 @@
+[
+  {
+    "id": "mfk-baccarat-rouge-540", "name": "Baccarat Rouge 540", "maison": "Maison Francis Kurkdjian",
+    "year": 2015, "perfumer": "Francis Kurkdjian", "gender": "unisex", "family": "Ambré Floral",
+    "concentration": "Extrait de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Safran", "Jasmin"], "heart": ["Bois d'ambre", "Ambre gris"], "base": ["Résine de sapin", "Cèdre"] },
+    "sizes": [ { "ml": 70, "price_xof": 197000 }, { "ml": 200, "price_xof": 472500 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Une alchimie poétique. Une signature ambrée radieuse qui laisse un sillage incandescent. À porter comme on porte un souvenir — précieux, singulier, inoubliable."
+  },
+  {
+    "id": "mfk-grand-soir", "name": "Grand Soir", "maison": "Maison Francis Kurkdjian",
+    "year": 2016, "perfumer": "Francis Kurkdjian", "gender": "unisex", "family": "Ambré",
+    "concentration": "Eau de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Lavande", "Cannelle"], "heart": ["Benjoin", "Vanille"], "base": ["Ambre", "Fève tonka"] },
+    "sizes": [ { "ml": 70, "price_xof": 152000 }, { "ml": 200, "price_xof": 355000 } ],
+    "sillage": 4, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "L'ambre au crépuscule. Une chaleur dorée de benjoin et de vanille qui enveloppe la peau comme la lumière d'un dernier soir."
+  },
+  {
+    "id": "mfk-oud-satin-mood", "name": "Oud Satin Mood", "maison": "Maison Francis Kurkdjian",
+    "year": 2015, "perfumer": "Francis Kurkdjian", "gender": "unisex", "family": "Oriental Floral",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Rose de Bulgarie", "Violette"], "heart": ["Oud", "Ambre"], "base": ["Vanille", "Benjoin"] },
+    "sizes": [ { "ml": 70, "price_xof": 210000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Le satin d'un oud voilé de rose et de vanille. Une opulence retenue, pensée pour la nuit et les épaules nues."
+  },
+  {
+    "id": "amouage-interlude-man", "name": "Interlude Man", "maison": "Amouage",
+    "year": 2012, "perfumer": "Pierre Négrin", "gender": "homme", "family": "Boisé Épicé",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Bergamote", "Origan", "Poivre"], "heart": ["Encens", "Ambre", "Cuir"], "base": ["Oud", "Patchouli", "Musc"] },
+    "sizes": [ { "ml": 100, "price_xof": 236000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Un chaos maîtrisé d'encens et d'épices. La fumée d'un rituel ancien qui ne s'éteint jamais tout à fait."
+  },
+  {
+    "id": "amouage-reflection-man", "name": "Reflection Man", "maison": "Amouage",
+    "year": 2007, "perfumer": "Lucas Sieuzac", "gender": "homme", "family": "Floral Boisé",
+    "concentration": "Eau de Parfum", "collection": "fleurs-blanches",
+    "notes": { "top": ["Romarin", "Poivre rose"], "heart": ["Néroli", "Jasmin", "Iris"], "base": ["Bois de santal", "Vétiver", "Musc"] },
+    "sizes": [ { "ml": 100, "price_xof": 210000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Un reflet net et lumineux. Le jasmin et l'iris sur une eau claire — l'élégance qui n'a rien à prouver."
+  },
+  {
+    "id": "amouage-jubilation-xxv", "name": "Jubilation XXV", "maison": "Amouage",
+    "year": 2007, "perfumer": "Bertrand Duchaufour", "gender": "homme", "family": "Boisé Chypré",
+    "concentration": "Eau de Parfum", "collection": "chypres-modernes",
+    "notes": { "top": ["Baie de genièvre", "Orange", "Coriandre"], "heart": ["Encens", "Miel", "Rose"], "base": ["Oud", "Mousse", "Patchouli"] },
+    "sizes": [ { "ml": 100, "price_xof": 249000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": false, "featured": false,
+    "description": "Une célébration boisée, miellée, résineuse. Le chypre porté à son faîte, riche comme une étoffe brodée d'or."
+  },
+  {
+    "id": "xerjoff-naxos", "name": "Naxos", "maison": "Xerjoff",
+    "year": 2015, "perfumer": "Chris Maurice", "gender": "unisex", "family": "Aromatique Fougère",
+    "concentration": "Eau de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Bergamote", "Lavande"], "heart": ["Miel", "Tabac", "Cannelle"], "base": ["Vanille", "Fève tonka", "Miel"] },
+    "sizes": [ { "ml": 100, "price_xof": 210000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Le tabac et le miel dans la lumière méditerranéenne. Une gourmandise virile, chaude, addictive."
+  },
+  {
+    "id": "xerjoff-erba-pura", "name": "Erba Pura", "maison": "Xerjoff",
+    "year": 2015, "perfumer": "Xerjoff", "gender": "unisex", "family": "Fruité Ambré",
+    "concentration": "Eau de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Orange", "Bergamote", "Fruits"], "heart": ["Jasmin", "Fleur d'oranger"], "base": ["Ambre", "Musc blanc", "Vanille"] },
+    "sizes": [ { "ml": 100, "price_xof": 197000 } ],
+    "sillage": 5, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Une explosion solaire de fruits mûrs et d'ambre. La joie pure, mise en flacon."
+  },
+  {
+    "id": "roja-elysium", "name": "Elysium Pour Homme", "maison": "Roja Parfums",
+    "year": 2017, "perfumer": "Roja Dove", "gender": "homme", "family": "Aromatique Boisé",
+    "concentration": "Parfum Cologne", "collection": "aquatiques-iodes",
+    "notes": { "top": ["Pamplemousse", "Citron", "Poivre rose"], "heart": ["Cassis", "Cyprès", "Genévrier"], "base": ["Ambre gris", "Musc", "Vétiver"] },
+    "sizes": [ { "ml": 100, "price_xof": 315000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Une fraîcheur cristalline sur un fond d'ambre gris. Le luxe d'une eau vive, taillée comme un diamant."
+  },
+  {
+    "id": "pdm-layton", "name": "Layton", "maison": "Parfums de Marly",
+    "year": 2016, "perfumer": "Hamid Merati-Kashani", "gender": "unisex", "family": "Oriental Floral",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Pomme", "Bergamote", "Lavande"], "heart": ["Géranium", "Violette", "Jasmin"], "base": ["Vanille", "Fève tonka", "Bois de santal"] },
+    "sizes": [ { "ml": 125, "price_xof": 177000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "La pomme et la vanille sur un galop de bois. Un classique moderne, chaleureux et universel."
+  },
+  {
+    "id": "pdm-delina", "name": "Delina", "maison": "Parfums de Marly",
+    "year": 2017, "perfumer": "Quentin Bisch", "gender": "femme", "family": "Floral Fruité",
+    "concentration": "Eau de Parfum", "collection": "fleurs-blanches",
+    "notes": { "top": ["Litchi", "Rhubarbe", "Bergamote"], "heart": ["Rose turque", "Pivoine", "Muguet"], "base": ["Vanille", "Musc", "Bois de cachemire"] },
+    "sizes": [ { "ml": 75, "price_xof": 164000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Une rose de rosée et de litchi, poudrée de musc. La féminité en dentelle, délicate et tenace."
+  },
+  {
+    "id": "pdm-herod", "name": "Herod", "maison": "Parfums de Marly",
+    "year": 2012, "perfumer": "Egon Oelkers", "gender": "homme", "family": "Boisé Épicé",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Cannelle", "Poivre", "Osmanthus"], "heart": ["Tabac", "Labdanum"], "base": ["Vanille", "Cèdre", "Vétiver"] },
+    "sizes": [ { "ml": 125, "price_xof": 177000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Le tabac blond et la vanille dans un écrin de bois. Une chaleur d'hiver, ronde et enveloppante."
+  },
+  {
+    "id": "nishane-hacivat", "name": "Hacivat", "maison": "Nishane",
+    "year": 2017, "perfumer": "Cécile Zarokian", "gender": "unisex", "family": "Chypré Fruité",
+    "concentration": "Extrait de Parfum", "collection": "chypres-modernes",
+    "notes": { "top": ["Ananas", "Bergamote", "Pamplemousse"], "heart": ["Cèdre", "Jasmin", "Iris"], "base": ["Patchouli", "Mousse de chêne", "Musc"] },
+    "sizes": [ { "ml": 100, "price_xof": 210000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "L'ananas et le cèdre dans un chypre lumineux. Une fraîcheur boisée devenue culte à Istanbul comme ailleurs."
+  },
+  {
+    "id": "initio-oud-for-greatness", "name": "Oud for Greatness", "maison": "Initio",
+    "year": 2018, "perfumer": "Initio", "gender": "unisex", "family": "Boisé Épicé",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Safran", "Noix de muscade", "Lavande"], "heart": ["Oud", "Marmelade"], "base": ["Musc", "Patchouli"] },
+    "sizes": [ { "ml": 90, "price_xof": 249000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Un oud puissant, adouci de safran et de lavande. La grandeur assumée, sans une once de timidité."
+  },
+  {
+    "id": "byredo-bal-dafrique", "name": "Bal d'Afrique", "maison": "Byredo",
+    "year": 2009, "perfumer": "Jérôme Epinette", "gender": "unisex", "family": "Floral Boisé",
+    "concentration": "Eau de Parfum", "collection": "chypres-modernes",
+    "notes": { "top": ["Bergamote", "Néroli", "Safran"], "heart": ["Violette", "Jasmin", "Cyclamen"], "base": ["Musc", "Vétiver", "Cèdre", "Ambre noir"] },
+    "sizes": [ { "ml": 100, "price_xof": 177000 } ],
+    "sillage": 3, "longevity": 3, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Un hommage au Paris des années folles et à l'Afrique de l'Ouest. Une chaleur florale, libre et vibrante."
+  },
+  {
+    "id": "byredo-gypsy-water", "name": "Gypsy Water", "maison": "Byredo",
+    "year": 2008, "perfumer": "Jérôme Epinette", "gender": "unisex", "family": "Boisé Aromatique",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Bergamote", "Citron", "Poivre", "Genièvre"], "heart": ["Encens", "Pin", "Fleur d'oranger"], "base": ["Ambre", "Bois de santal", "Vanille"] },
+    "sizes": [ { "ml": 100, "price_xof": 177000 } ],
+    "sillage": 3, "longevity": 3, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Un feu de camp et une eau claire. Le voyage nomade réduit à sa plus belle épure boisée."
+  },
+  {
+    "id": "lelabo-santal-33", "name": "Santal 33", "maison": "Le Labo",
+    "year": 2011, "perfumer": "Frank Voelkl", "gender": "unisex", "family": "Boisé Cuir",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Cardamome", "Iris", "Violette"], "heart": ["Bois de santal", "Papyrus"], "base": ["Cuir", "Cèdre", "Musc ambré"] },
+    "sizes": [ { "ml": 100, "price_xof": 210000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Le santal crémeux et le cuir dans une brume de violette. Le boisé devenu langage, reconnaissable entre mille."
+  },
+  {
+    "id": "lelabo-rose-31", "name": "Rose 31", "maison": "Le Labo",
+    "year": 2006, "perfumer": "Daphné Bugey", "gender": "unisex", "family": "Boisé Épicé",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Rose", "Cumin", "Poivre"], "heart": ["Bois de gaïac", "Vétiver", "Cèdre"], "base": ["Oud", "Ambre", "Musc"] },
+    "sizes": [ { "ml": 100, "price_xof": 210000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Une rose déshabillée de sa douceur, portée par le bois et les épices. La rose comme on ne l'attend pas."
+  },
+  {
+    "id": "diptyque-philosykos", "name": "Philosykos", "maison": "Diptyque",
+    "year": 1996, "perfumer": "Olivia Giacobetti", "gender": "unisex", "family": "Boisé",
+    "concentration": "Eau de Parfum", "collection": "fleurs-blanches",
+    "notes": { "top": ["Feuille de figuier", "Note verte"], "heart": ["Figue", "Lait de figue"], "base": ["Bois de figuier", "Cèdre", "Noix de coco"] },
+    "sizes": [ { "ml": 75, "price_xof": 118000 } ],
+    "sillage": 3, "longevity": 3, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Le figuier tout entier — la feuille, le fruit, le bois. Un été grec capturé, vert et laiteux."
+  },
+  {
+    "id": "malle-portrait-of-a-lady", "name": "Portrait of a Lady", "maison": "Frédéric Malle",
+    "year": 2010, "perfumer": "Dominique Ropion", "gender": "femme", "family": "Rose Oriental",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Rose", "Cassis", "Framboise"], "heart": ["Cannelle", "Clou de girofle", "Patchouli"], "base": ["Oud", "Encens", "Ambre", "Musc"] },
+    "sizes": [ { "ml": 100, "price_xof": 275000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "Une rose royale, sombre, drapée de patchouli et d'encens. Le portrait d'une femme qui ne s'excuse jamais."
+  },
+  {
+    "id": "dior-sauvage-edp", "name": "Sauvage", "maison": "Dior",
+    "year": 2018, "perfumer": "François Demachy", "gender": "homme", "family": "Aromatique Fougère",
+    "concentration": "Eau de Parfum", "collection": "aquatiques-iodes",
+    "notes": { "top": ["Bergamote de Calabre", "Poivre de Sichuan"], "heart": ["Lavande", "Poivre rose", "Géranium"], "base": ["Ambroxan", "Cèdre", "Labdanum"] },
+    "sizes": [ { "ml": 60, "price_xof": 82000 }, { "ml": 100, "price_xof": 108000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "L'ambroxan et la bergamote comme un vent du désert. Le best-seller devenu réflexe, net et magnétique."
+  },
+  {
+    "id": "chanel-bleu-edp", "name": "Bleu de Chanel", "maison": "Chanel",
+    "year": 2014, "perfumer": "Jacques Polge", "gender": "homme", "family": "Boisé Aromatique",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Pamplemousse", "Citron", "Menthe"], "heart": ["Gingembre", "Muscade", "Jasmin"], "base": ["Encens", "Bois de santal", "Cèdre"] },
+    "sizes": [ { "ml": 100, "price_xof": 105000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Un boisé frais et minéral, d'une élégance sans faille. La liberté en bleu, portée jour et nuit."
+  },
+  {
+    "id": "guerlain-shalimar", "name": "Shalimar", "maison": "Guerlain",
+    "year": 1925, "perfumer": "Jacques Guerlain", "gender": "femme", "family": "Oriental Ambré",
+    "concentration": "Eau de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Bergamote", "Citron"], "heart": ["Iris", "Jasmin", "Rose"], "base": ["Vanille", "Fève tonka", "Encens", "Cuir"] },
+    "sizes": [ { "ml": 90, "price_xof": 105000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Le premier oriental de l'histoire. Une vanille fumée, sensuelle, qui traverse un siècle sans une ride."
+  },
+  {
+    "id": "tomford-oud-wood", "name": "Oud Wood", "maison": "Tom Ford",
+    "year": 2007, "perfumer": "Richard Herpin", "gender": "unisex", "family": "Boisé Oriental",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Oud", "Palissandre", "Cardamome"], "heart": ["Bois de santal", "Vétiver", "Poivre"], "base": ["Fève tonka", "Vanille", "Ambre"] },
+    "sizes": [ { "ml": 50, "price_xof": 190000 }, { "ml": 100, "price_xof": 262500 } ],
+    "sillage": 4, "longevity": 4, "image": "img/Tom Ford Oud Wood.jpg", "stock": true, "featured": true,
+    "description": "L'oud apprivoisé, crémeux et poivré. Le bois précieux rendu portable, chic, universellement désirable."
+  },
+  {
+    "id": "tomford-tobacco-vanille", "name": "Tobacco Vanille", "maison": "Tom Ford",
+    "year": 2007, "perfumer": "Olivier Gillotin", "gender": "unisex", "family": "Oriental Épicé",
+    "concentration": "Eau de Parfum", "collection": "ambres-sensuels",
+    "notes": { "top": ["Feuille de tabac", "Épices"], "heart": ["Vanille", "Fleur de tabac", "Fève tonka"], "base": ["Fruits secs", "Bois", "Cacao"] },
+    "sizes": [ { "ml": 50, "price_xof": 190000 }, { "ml": 100, "price_xof": 262500 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Le tabac blond et la vanille au coin du feu. Une gourmandise d'hiver, opulente et réconfortante."
+  },
+  {
+    "id": "creed-aventus", "name": "Aventus", "maison": "Creed",
+    "year": 2010, "perfumer": "Olivier Creed", "gender": "homme", "family": "Chypré Fruité",
+    "concentration": "Eau de Parfum", "collection": "chypres-modernes",
+    "notes": { "top": ["Ananas", "Bergamote", "Cassis", "Pomme"], "heart": ["Bouleau", "Patchouli", "Jasmin"], "base": ["Musc de chêne", "Ambre gris", "Vanille"] },
+    "sizes": [ { "ml": 100, "price_xof": 289000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": true,
+    "description": "L'ananas fumé et le bouleau : le parfum de la réussite. Un chypre fruité devenu une légende contemporaine."
+  },
+  {
+    "id": "ysl-libre", "name": "Libre", "maison": "Yves Saint Laurent",
+    "year": 2019, "perfumer": "Anne Flipo", "gender": "femme", "family": "Floral Aromatique",
+    "concentration": "Eau de Parfum", "collection": "fleurs-blanches",
+    "notes": { "top": ["Lavande", "Mandarine", "Cassis"], "heart": ["Lavande", "Fleur d'oranger", "Jasmin"], "base": ["Vanille", "Musc", "Cèdre", "Ambre"] },
+    "sizes": [ { "ml": 90, "price_xof": 98000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "La lavande et la fleur d'oranger dans une tension nouvelle. La liberté, ni tout à fait masculine, ni tout à fait féminine."
+  },
+  {
+    "id": "lattafa-asad", "name": "Asad", "maison": "Lattafa",
+    "year": 2022, "perfumer": "Lattafa", "gender": "homme", "family": "Boisé Épicé",
+    "concentration": "Eau de Parfum", "collection": "bois-rares",
+    "notes": { "top": ["Poivre noir", "Ananas", "Bergamote"], "heart": ["Ambroxan", "Café", "Lavande"], "base": ["Vanille", "Cèdre", "Bois de santal"] },
+    "sizes": [ { "ml": 100, "price_xof": 32000 } ],
+    "sillage": 4, "longevity": 4, "image": "img/Lattafa Asad Luxury Fragrance _ woody Arabic notes.jpg", "stock": true, "featured": true,
+    "description": "Le café et l'ambroxan avec une audace lionne. La puissance orientale à un prix qui ouvre grand les portes du sillage."
+  },
+  {
+    "id": "alharamain-amber-oud", "name": "Amber Oud", "maison": "Al Haramain",
+    "year": 2017, "perfumer": "Al Haramain", "gender": "unisex", "family": "Ambré Boisé",
+    "concentration": "Eau de Parfum", "collection": "orientaux-precieux",
+    "notes": { "top": ["Notes fruitées", "Épices"], "heart": ["Oud", "Ambre"], "base": ["Musc", "Bois"] },
+    "sizes": [ { "ml": 60, "price_xof": 46000 } ],
+    "sillage": 5, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "L'ambre et l'oud en majesté, à l'orientale. Une opulence chaleureuse, généreuse en sillage."
+  },
+  {
+    "id": "rasasi-hawas", "name": "Hawas", "maison": "Rasasi",
+    "year": 2015, "perfumer": "Pierre Montale", "gender": "homme", "family": "Aquatique Fruité",
+    "concentration": "Eau de Parfum", "collection": "aquatiques-iodes",
+    "notes": { "top": ["Pomme", "Bergamote", "Cannelle"], "heart": ["Notes marines", "Ambre gris", "Jasmin"], "base": ["Musc", "Bois de santal", "Vanille"] },
+    "sizes": [ { "ml": 100, "price_xof": 52000 } ],
+    "sillage": 4, "longevity": 5, "image": "img/placeholder-flacon.svg", "stock": true, "featured": false,
+    "description": "Une fraîcheur marine et fruitée, taillée pour la chaleur. Le compliment-getter par excellence, sous le soleil de Dakar."
+  }
+]

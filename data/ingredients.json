@@ -1,0 +1,32 @@
+{
+  "top": {
+    "label": "Notes de tête",
+    "desc": "La première impression, vive et fugace. Elle s'évapore en quelques minutes.",
+    "items": [
+      { "name": "Bergamote", "note": "Agrume pétillant, facette solaire et légèrement amère." },
+      { "name": "Citron", "note": "Fraîcheur nette, éclatante, immédiate." },
+      { "name": "Poivre rose", "note": "Épice rosée, piquante et fruitée à la fois." },
+      { "name": "Safran", "note": "Épice cuirée, chaude, à la fois précieuse et sombre." }
+    ]
+  },
+  "heart": {
+    "label": "Notes de cœur",
+    "desc": "L'âme du parfum. Elle se déploie une fois la tête envolée et dure plusieurs heures.",
+    "items": [
+      { "name": "Rose", "note": "Reine des fleurs, du confituré au poivré selon la variété." },
+      { "name": "Jasmin", "note": "Fleur blanche opulente, solaire et charnelle." },
+      { "name": "Iris", "note": "Poudré, racineux, d'une élégance froide et précieuse." },
+      { "name": "Oud", "note": "Bois résineux, fumé, animal — le cœur de l'Orient." }
+    ]
+  },
+  "base": {
+    "label": "Notes de fond",
+    "desc": "La mémoire du parfum. Elle fixe l'ensemble et signe le sillage, parfois des jours durant.",
+    "items": [
+      { "name": "Ambre", "note": "Chaleur balsamique, douce et enveloppante." },
+      { "name": "Musc", "note": "Peau, douceur cotonneuse, sensualité feutrée." },
+      { "name": "Vétiver", "note": "Racine boisée, fumée, terreuse et fraîche." },
+      { "name": "Bois de santal", "note": "Crémeux, lacté, d'une douceur boisée addictive." }
+    ]
+  }
+}

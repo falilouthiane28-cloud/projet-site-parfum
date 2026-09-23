@@ -1,0 +1,102 @@
+/* =========================================================================
+   home.css — Sections de la page d'accueil (monochrome).
+   ========================================================================= */
+@layer components {
+
+  .sec-head { display: flex; flex-direction: column; gap: var(--sp-3); }
+  .sec-head h2 { font-size: clamp(2.5rem, 5vw, 5rem); text-transform: uppercase; }
+  .sec-head--row { flex-direction: row; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--sp-4); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative; min-height: 100svh; display: flex; align-items: flex-end;
+    background: var(--ink); color: var(--paper); overflow: hidden;
+    padding: var(--pad); padding-bottom: clamp(64px, 12vh, 140px);
+  }
+  .hero__inner { position: relative; z-index: 3; width: 100%; max-width: min(92vw, 820px); }
+  .hero .eyebrow { display: block; margin-bottom: var(--sp-4); color: var(--gray-30); }
+  .hero .display { color: var(--paper); }
+  .hero__foot { display: flex; gap: var(--sp-5); margin-top: var(--sp-5); flex-wrap: wrap; }
+  .hero__foot .link-u { color: var(--paper); }
+  .scroll-cue span { color: var(--gray-30); }
+  .hero .scroll-cue .line { background: var(--paper); }
+  .hero .scroll-cue { left: auto; right: var(--pad); transform: none; }
+
+  /* ---------- THÈSE ---------- */
+  .thesis { padding-block: clamp(96px, 20vh, 240px); }
+  .thesis__line { font-family: var(--font-display); font-weight: 500; font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.15; letter-spacing: -0.02em; max-width: 22ch; }
+
+  /* ---------- SÉLECTION (bento) ---------- */
+  .featured { border-top: var(--stroke) solid var(--text); }
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: var(--gutter); }
+  .bento .p-card:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .bento .p-card:nth-child(1) .p-card__name { font-size: clamp(28px, 3vw, 40px); }
+  @media (max-width: 1023px) { .bento { grid-template-columns: repeat(2, 1fr); } .bento .p-card:nth-child(1) { grid-column: span 2; grid-row: span 1; } }
+  @media (max-width: 560px)  { .bento { grid-template-columns: 1fr; } .bento .p-card:nth-child(1) { grid-column: 1; } }
+
+  /* ---------- PYRAMIDE TYPOGRAPHIQUE ---------- */
+  .pyramide { border-top: var(--stroke) solid var(--text); }
+  .pyramide .grid12 { align-items: center; }
+  .pyr-type { grid-column: 1 / 7; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .pyramide__info { grid-column: 8 / 13; }
+  @media (max-width: 1023px) { .pyr-type { grid-column: 1 / 7; } .pyramide__info { grid-column: 1 / 7; margin-top: var(--sp-5); } }
+  @media (max-width: 640px)  { .pyr-type, .pyramide__info { grid-column: 1; } }
+
+  /* trois lignes : espacement = vitesse d'évaporation (tête = aérée, fond = dense) */
+  .pyr-line {
+    font-family: var(--font-display); font-weight: 500; text-transform: uppercase; line-height: 0.98;
+    color: var(--gray-60); text-align: left; transition: color var(--dur-micro) var(--ease-main);
+  }
+  .pyr-line[data-layer="top"]   { font-size: clamp(3rem, 8vw, 7rem); letter-spacing: 0.12em; }
+  .pyr-line[data-layer="heart"] { font-size: clamp(2.4rem, 6vw, 5.5rem); letter-spacing: 0.02em; }
+  .pyr-line[data-layer="base"]  { font-size: clamp(1.9rem, 4.5vw, 4.2rem); letter-spacing: -0.04em; }
+  .pyr-line:hover { color: var(--gray-30); }
+  .pyr-line[aria-selected="true"] { color: var(--paper); text-decoration: underline; text-underline-offset: 0.12em; text-decoration-thickness: var(--stroke); }
+  .pyr-title { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; font-size: 24px; margin-top: var(--sp-3); }
+  .pyr-desc { color: var(--text-muted); margin-top: var(--sp-2); }
+  .pyr-ings { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); margin-top: var(--sp-4); }
+  .pyr-ing { border-top: var(--stroke) solid var(--hairline); padding-top: var(--sp-2); }
+  .pyr-ing strong { font-family: var(--font-display); font-weight: 500; font-size: 17px; display: block; }
+  .pyr-ing span { color: var(--text-muted); font-size: 13px; }
+
+  /* ---------- MUR DES MAISONS ---------- */
+  .maisons-wall { border-top: var(--stroke) solid var(--text); }
+  .wall { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; font-size: clamp(1.8rem, 4.4vw, 4rem); line-height: 1.12; letter-spacing: -0.01em; margin-top: var(--sp-4); }
+  .wall .wall-name { color: var(--gray-30); transition: color var(--dur-micro) var(--ease-main); }
+  .wall .wall-name:hover { color: var(--text); }
+  .wall .wall-gap { display: inline-block; width: 0.5ch; }
+
+  /* ---------- NOTE SUR LE CHOIX ---------- */
+  .note { border-top: var(--stroke) solid var(--text); }
+  .note__col { max-width: 560px; }
+  .note__col p { font-size: 19px; line-height: 1.65; }
+
+  /* ---------- RITUEL ---------- */
+  .ritual { border-top: var(--stroke) solid #333; }
+  .ritual__line { font-family: var(--font-display); font-weight: 500; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 18ch; }
+  .ritual .link-u { color: var(--paper); display: inline-block; }
+
+  /* ---------- JOURNAL ---------- */
+  .journal { border-top: var(--stroke) solid var(--text); }
+  .journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+  @media (max-width: 900px) { .journal-grid { grid-template-columns: 1fr; } }
+  .j-card__media { aspect-ratio: 3/2; overflow: hidden; border: var(--stroke) solid var(--hairline); }
+  .j-card__media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.02); transition: transform var(--dur-cine) var(--ease-out); }
+  .j-card:hover .j-card__media img { transform: scale(1.04); }
+  .j-card__kicker { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 11px; color: var(--text-muted); margin-top: var(--sp-3); }
+  .j-card h3 { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; font-size: 22px; margin-top: 6px; letter-spacing: -0.01em; }
+  .j-card__meta { font-family: var(--font-mono); color: var(--text-muted); font-size: 11px; margin-top: 6px; }
+
+  /* ---------- BOUTIQUE PHYSIQUE ---------- */
+  .store { position: relative; min-height: 88svh; display: flex; align-items: flex-end; color: var(--paper); overflow: hidden; }
+  .store__bg { position: absolute; inset: 0; z-index: 0; }
+  .store__bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(0.5) contrast(1.05); }
+  .store__overlay { position: relative; z-index: 2; padding: var(--sp-6) var(--pad); }
+  .store__overlay h2 { font-family: var(--font-display); font-weight: 500; text-transform: uppercase; font-size: clamp(2.5rem, 7vw, 6rem); line-height: 0.92; letter-spacing: -0.02em; }
+  .store__meta { margin-top: var(--sp-3); color: var(--gray-30); font-family: var(--font-mono); font-size: 13px; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter { border-top: var(--stroke) solid var(--text); text-align: center; }
+  .newsletter .lead { max-width: 24ch; margin-inline: auto; }
+  .nl-success { display: none; margin-top: var(--sp-4); font-family: var(--font-display); text-transform: uppercase; }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Boutique — Teranga · Dakar</title>
+<meta name="description" content="Le catalogue Teranga : parfums de niche et de prestige, filtrez par famille olfactive, maison et genre. Prix en FCFA, livraison CEDEAO." />
+<meta name="theme-color" content="#0A0A0A" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'" />
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" /></noscript>
+<link rel="stylesheet" href="assets/css/app.css" />
+<link rel="stylesheet" href="assets/css/pages.css" />
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script defer src="assets/js/shell.js"></script>
+<script defer src="assets/js/motion.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<main id="main">
+  <section class="page-hero" data-theme="dark">
+    <div class="wrap">
+      <span class="eyebrow">La Boutique</span>
+      <h1>Le catalogue</h1>
+      <p id="shopIntro">Parfums de niche et de prestige, choisis un à un. Filtrez par famille, maison ou genre.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="filters" role="region" aria-label="Filtres">
+      <div class="filter-group" id="familyFilters" aria-label="Familles olfactives"></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <span class="result-count" id="resultCount">—</span>
+        <label class="visually-hidden" for="sortSelect">Trier</label>
+        <select class="sort-select" id="sortSelect">
+          <option value="featured">En vedette</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+          <option value="name">Nom A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:16px" id="secondaryFilters">
+      <div class="filter-group" id="maisonFilters" aria-label="Maisons"></div>
+    </div>
+
+    <section aria-label="Résultats">
+      <div class="catalog" id="catalog"></div>
+    </section>
+    <div style="height:96px"></div>
+  </div>
+</main>
+<script type="module" src="assets/js/pages/boutique.js"></script>
+</body>
+</html>

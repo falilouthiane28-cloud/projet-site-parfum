@@ -1,0 +1,22 @@
+[
+  { "name": "Maison Francis Kurkdjian", "pays": "France", "phrase": "L'absolu, sobrement.", "annee": 2009 },
+  { "name": "Amouage", "pays": "Oman", "phrase": "Le luxe d'Orient, sans compromis.", "annee": 1983 },
+  { "name": "Xerjoff", "pays": "Italie", "phrase": "L'orfèvrerie olfactive de Turin.", "annee": 2007 },
+  { "name": "Roja Parfums", "pays": "Royaume-Uni", "phrase": "L'extrême du raffinement britannique.", "annee": 2011 },
+  { "name": "Parfums de Marly", "pays": "France", "phrase": "L'élégance équestre de Versailles.", "annee": 2009 },
+  { "name": "Nishane", "pays": "Turquie", "phrase": "L'artisanat d'Istanbul.", "annee": 2012 },
+  { "name": "Initio", "pays": "France", "phrase": "La parfumerie des sens.", "annee": 2015 },
+  { "name": "Byredo", "pays": "Suède", "phrase": "L'épure scandinave et ses souvenirs.", "annee": 2006 },
+  { "name": "Le Labo", "pays": "États-Unis", "phrase": "Le laboratoire, à la main.", "annee": 2006 },
+  { "name": "Diptyque", "pays": "France", "phrase": "Le récit d'artisan, depuis 1961.", "annee": 1961 },
+  { "name": "Frédéric Malle", "pays": "France", "phrase": "L'éditeur de parfums.", "annee": 2000 },
+  { "name": "Dior", "pays": "France", "phrase": "La couture faite parfum.", "annee": 1947 },
+  { "name": "Chanel", "pays": "France", "phrase": "L'intemporel, toujours.", "annee": 1921 },
+  { "name": "Guerlain", "pays": "France", "phrase": "Deux siècles de savoir-faire.", "annee": 1828 },
+  { "name": "Tom Ford", "pays": "États-Unis", "phrase": "Le glamour sans détour.", "annee": 2006 },
+  { "name": "Yves Saint Laurent", "pays": "France", "phrase": "L'audace en flacon.", "annee": 1961 },
+  { "name": "Creed", "pays": "Royaume-Uni", "phrase": "La maison des rois.", "annee": 1760 },
+  { "name": "Lattafa", "pays": "Émirats arabes unis", "phrase": "L'Orient accessible.", "annee": 1980 },
+  { "name": "Al Haramain", "pays": "Émirats arabes unis", "phrase": "L'ambre et l'oud, depuis 1970.", "annee": 1970 },
+  { "name": "Rasasi", "pays": "Émirats arabes unis", "phrase": "Le sillage du Golfe.", "annee": 1979 }
+]

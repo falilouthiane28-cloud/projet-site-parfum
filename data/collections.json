@@ -1,0 +1,8 @@
+[
+  { "id": "orientaux-precieux", "name": "Orientaux Précieux", "tagline": "Oud, rose, encens", "desc": "Les matières nobles de l'Orient, entre oud, rose et résines. L'opulence pour les épaules du soir." },
+  { "id": "bois-rares", "name": "Bois Rares", "tagline": "Santal, cèdre, vétiver", "desc": "Le cœur des forêts précieuses. Santal crémeux, cèdre sec, vétiver fumé — la structure et la tenue." },
+  { "id": "fleurs-blanches", "name": "Fleurs Blanches", "tagline": "Jasmin, tiaré, néroli", "desc": "La lumière florale. Jasmin, fleur d'oranger et tiaré, portés comme une étoffe légère sur la peau." },
+  { "id": "chypres-modernes", "name": "Chypres Modernes", "tagline": "Bergamote, mousse, patchouli", "desc": "L'architecture du chypre revisitée. Fraîcheur, mousse et patchouli — l'élégance intemporelle." },
+  { "id": "ambres-sensuels", "name": "Ambres Sensuels", "tagline": "Ambre, vanille, tabac", "desc": "La chaleur qui enveloppe. Ambre, vanille et tabac pour un sillage tenace et intime." },
+  { "id": "aquatiques-iodes", "name": "Aquatiques Iodés", "tagline": "Sel, agrumes, ambre gris", "desc": "L'air marin et les agrumes. La fraîcheur vive, pensée pour la chaleur et le grand jour." }
+]

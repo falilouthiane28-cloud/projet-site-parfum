@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Flacon Teranga">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFE9DD"/>
+      <stop offset="1" stop-color="#E8E0D2"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9BFAE" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#B8925A" stop-opacity=".28"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#g)"/>
+  <g transform="translate(200 250)">
+    <rect x="-58" y="-150" width="116" height="34" rx="2" fill="#6B4E2E" opacity=".85"/>
+    <rect x="-22" y="-116" width="20" height="26" fill="#6B4E2E" opacity=".7"/>
+    <rect x="4"  y="-116" width="20" height="26" fill="#6B4E2E" opacity=".7"/>
+    <rect x="-90" y="-90" width="180" height="230" rx="4" fill="url(#glass)" stroke="#B8925A" stroke-width="2"/>
+    <path d="M-58 -50 H58 M-58 -10 H30 V40 M-14 40 H58 V90 H-58" fill="none" stroke="#B8925A" stroke-width="5" opacity=".9"/>
+  </g>
+</svg>
