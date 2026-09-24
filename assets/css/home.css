@@ -5,7 +5,10 @@
 
   /* ---------- 4.1 Hero : séquence d'images pilotée au scroll ---------- */
   .hs { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: var(--ink); color: var(--paper); }
-  .hs__slide { position: absolute; inset: 0; }
+  /* Fond opaque : en portrait, la photo des temps « flacon centré » n'occupe
+     que le haut de la slide et se fond vers le transparent — sans ce fond,
+     la slide précédente transparaissait sous la légende (Eros sous Club de Nuit). */
+  .hs__slide { position: absolute; inset: 0; background: var(--ink); }
   .hs__slide + .hs__slide { clip-path: inset(0% 0% 0% 100%); } /* sans JS : seule la 1re est visible */
   .hs__slide img { width: 100%; height: 100%; object-fit: cover; object-position: center; will-change: transform; }
   /* Deux voiles : un bas (légende + compteur) et un gauche (la légende passe
