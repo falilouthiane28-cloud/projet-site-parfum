@@ -171,6 +171,27 @@ Format prix : `T.fmt(n)` → `197,000 FCFA` *(et non `fmtXOF`, qui n'existe plus
 `teranga-nl` · `teranga-newsletter` · `teranga-consultations` ·
 `teranga-orders` · `teranga-profile` · `teranga-wishlist` · `teranga-cart`.
 
+## Performance (septembre 2026)
+- **Zéro CDN au chargement** : GSAP 3.12.5, ScrollTrigger et Lenis 1.1.13 dans
+  `assets/vendor/` ; polices Bodoni Moda + Hanken Grotesk (variables, latin) dans
+  `assets/fonts/` avec `@font-face` en tête de `app.css`. PAS de preload des
+  polices : sur réseau lent il volait la bande passante du CSS (+0,25 s).
+- **Icônes** : plus de police bootstrap-icons (130 Ko). Les 15 icônes utilisées
+  sont des SVG en masque CSS (`.bi-xxx { --bi: url(...) }` dans `app.css`).
+  Nouvelle icône = copier son SVG depuis bootstrap-icons et ajouter une règle.
+- **Images en WebP** (−50 %), originaux JPEG conservés à côté. `build_data.py`
+  convertit les noms via `webp()`. Toute nouvelle photo : la convertir en WebP.
+- **Hero** : `srcset` 800/1280/1920. En portrait la photo est recadrée sur la
+  hauteur (~1,8 × la hauteur d'écran) → `sizes="(max-aspect-ratio: 1/1) 180svh, 100vw"`.
+  Photos 2 à 5 en `data-src`, chargées après `load` ou au 1er défilement (`home.js`).
+- **Rideau d'intro** : une fois par session (`sessionStorage teranga-intro`),
+  0,35–0,7 s. Classe `intro-seen` posée dans le `<head>` pour éviter le flash.
+- `main { min-height: 100svh }` + `#pd/#checkout/#cartView:empty` : hauteur
+  réservée au contenu rendu en JS (sinon le pied de page saute, CLS 0,5–0,8).
+- `ScrollTrigger.config({ ignoreMobileResize: true })` : pas d'à-coup du hero
+  épinglé quand la barre de Safari bouge. Lenis `lerp 0.12`. Marquee en pause hors écran.
+- Pré-rendu au survol (`<script type="speculationrules">`, Chrome/Edge).
+
 ## Parcours d'achat (panier ≠ commande)
 - **Panier** (`assets/js/cart.js`) : tiroir + `panier.html`. AUCUNE saisie client.
   Stockage `teranga-cart` = `[{ id, ml, qty }]` seulement ; nom, image et prix

@@ -4,7 +4,7 @@
     "pays": "France",
     "annee": 2009,
     "phrase": "Des formules courtes, des sillages longs.",
-    "logo": "img/maisons/maison-francis-kurkdjian.jpg",
+    "logo": "img/maisons/maison-francis-kurkdjian.webp",
     "logo2": null,
     "on_order": false
   },
@@ -13,7 +13,7 @@
     "pays": "France",
     "annee": 2009,
     "phrase": "Les ambres du XVIIIe siècle, relus aujourd'hui.",
-    "logo": "img/maisons/parfums-de-marly.jpg",
+    "logo": "img/maisons/parfums-de-marly.webp",
     "logo2": null,
     "on_order": false
   },
@@ -22,7 +22,7 @@
     "pays": "Oman",
     "annee": 1983,
     "phrase": "Les encens de Mascate.",
-    "logo": "img/maisons/amouage.jpg",
+    "logo": "img/maisons/amouage.webp",
     "logo2": null,
     "on_order": false
   },
@@ -31,7 +31,7 @@
     "pays": "Italie",
     "annee": 2007,
     "phrase": "Turin, le miel et le tabac.",
-    "logo": "img/maisons/xerjoff.jpg",
+    "logo": "img/maisons/xerjoff.webp",
     "logo2": null,
     "on_order": false
   },
@@ -40,7 +40,7 @@
     "pays": "Turquie",
     "annee": 2012,
     "phrase": "Istanbul, en extraits concentrés.",
-    "logo": "img/maisons/nishane.jpg",
+    "logo": "img/maisons/nishane.webp",
     "logo2": null,
     "on_order": false
   },
@@ -49,7 +49,7 @@
     "pays": "France",
     "annee": 2015,
     "phrase": "Des matières choisies pour leur effet sur la peau.",
-    "logo": "img/maisons/initio.jpg",
+    "logo": "img/maisons/initio.webp",
     "logo2": null,
     "on_order": false
   },
@@ -58,7 +58,7 @@
     "pays": "Suède",
     "annee": 2006,
     "phrase": "Stockholm, des souvenirs mis en flacon.",
-    "logo": "img/maisons/byredo.jpg",
+    "logo": "img/maisons/byredo.webp",
     "logo2": null,
     "on_order": false
   },
@@ -67,7 +67,7 @@
     "pays": "France",
     "annee": 1961,
     "phrase": "34, boulevard Saint-Germain.",
-    "logo": "img/maisons/diptyque.jpg",
+    "logo": "img/maisons/diptyque.webp",
     "logo2": null,
     "on_order": false
   },
@@ -76,7 +76,7 @@
     "pays": "Royaume-Uni",
     "annee": 1760,
     "phrase": "Une maison familiale depuis le XVIIIe siècle.",
-    "logo": "img/maisons/creed.jpg",
+    "logo": "img/maisons/creed.webp",
     "logo2": null,
     "on_order": false
   },
@@ -94,7 +94,7 @@
     "pays": "États-Unis",
     "annee": 2006,
     "phrase": "L'oud rendu lisible pour l'Occident.",
-    "logo": "img/maisons/tom-ford.jpg",
+    "logo": "img/maisons/tom-ford.webp",
     "logo2": null,
     "on_order": false
   },
@@ -103,7 +103,7 @@
     "pays": "France",
     "annee": 1947,
     "phrase": "L'avenue Montaigne.",
-    "logo": "img/maisons/dior.jpg",
+    "logo": "img/maisons/dior.webp",
     "logo2": null,
     "on_order": false
   },
@@ -112,7 +112,7 @@
     "pays": "France",
     "annee": 1921,
     "phrase": "Le bois et le bleu.",
-    "logo": "img/maisons/chanel.jpg",
+    "logo": "img/maisons/chanel.webp",
     "logo2": null,
     "on_order": false
   },
@@ -121,7 +121,7 @@
     "pays": "France",
     "annee": 1828,
     "phrase": "Deux siècles de vanille.",
-    "logo": "img/maisons/guerlain.jpg",
+    "logo": "img/maisons/guerlain.webp",
     "logo2": null,
     "on_order": false
   },
@@ -130,7 +130,7 @@
     "pays": "France",
     "annee": 1837,
     "phrase": "Le faubourg Saint-Honoré.",
-    "logo": "img/maisons/hermes.jpg",
+    "logo": "img/maisons/hermes.webp",
     "logo2": null,
     "on_order": false
   },
@@ -139,7 +139,7 @@
     "pays": "France",
     "annee": 1961,
     "phrase": "La lavande, le monogramme.",
-    "logo": "img/maisons/saint-laurent.jpg",
+    "logo": "img/maisons/saint-laurent.webp",
     "logo2": null,
     "on_order": false
   },
@@ -148,7 +148,7 @@
     "pays": "Italie",
     "annee": 1978,
     "phrase": "La Méduse et le poivre.",
-    "logo": "img/maisons/versace.jpg",
+    "logo": "img/maisons/versace.webp",
     "logo2": null,
     "on_order": false
   },
@@ -157,7 +157,7 @@
     "pays": "Italie",
     "annee": 1981,
     "phrase": "Milan, le rhum et la châtaigne.",
-    "logo": "img/maisons/emporio-armani.jpg",
+    "logo": "img/maisons/emporio-armani.webp",
     "logo2": null,
     "on_order": false
   },
@@ -166,7 +166,7 @@
     "pays": "Émirats arabes unis",
     "annee": 1980,
     "phrase": "L'Orient qui se porte tous les jours.",
-    "logo": "img/maisons/lattafa-pride.jpg",
+    "logo": "img/maisons/lattafa-pride.webp",
     "logo2": null,
     "on_order": false
   },
@@ -175,7 +175,7 @@
     "pays": "Émirats arabes unis",
     "annee": 1970,
     "phrase": "L'ambre et l'oud depuis 1970.",
-    "logo": "img/maisons/al-haramain.jpg",
+    "logo": "img/maisons/al-haramain.webp",
     "logo2": null,
     "on_order": false
   },
@@ -184,7 +184,7 @@
     "pays": "Émirats arabes unis",
     "annee": 1979,
     "phrase": "La fraîcheur du Golfe.",
-    "logo": "img/maisons/rasasi.jpg",
+    "logo": "img/maisons/rasasi.webp",
     "logo2": null,
     "on_order": false
   },
@@ -193,7 +193,7 @@
     "pays": "Émirats arabes unis",
     "annee": 2015,
     "phrase": "La projection à petit prix.",
-    "logo": "img/maisons/armaf.jpg",
+    "logo": "img/maisons/armaf.webp",
     "logo2": null,
     "on_order": false
   },
@@ -202,7 +202,7 @@
     "pays": "France",
     "annee": 2000,
     "phrase": "L'éditeur de parfums.",
-    "logo": "img/maisons/frederic-malle.jpg",
+    "logo": "img/maisons/frederic-malle.webp",
     "logo2": null,
     "on_order": true
   },
@@ -211,7 +211,7 @@
     "pays": "France",
     "annee": 1957,
     "phrase": "L'avenue George-V.",
-    "logo": "img/maisons/givenchy.jpg",
+    "logo": "img/maisons/givenchy.webp",
     "logo2": null,
     "on_order": true
   },
@@ -220,7 +220,7 @@
     "pays": "Arabie saoudite",
     "annee": 1982,
     "phrase": "La maison de l'oud de Riyad.",
-    "logo": "img/maisons/arabian-oud.jpg",
+    "logo": "img/maisons/arabian-oud.webp",
     "logo2": null,
     "on_order": true
   }

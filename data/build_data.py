@@ -7,7 +7,11 @@ et assets/js/data.js (données embarquées : le site marche en file:// comme en 
 Relancer après toute modification :  python data/build_data.py
 Prix : EUR x 656, arrondis à 500 FCFA (indicatifs, à caler sur vos tarifs).
 """
-import json, os, io
+import json, os, io, re
+
+# Les photos sont servies en WebP (converties depuis les originaux JPEG).
+def webp(f):
+    return re.sub(r"\.(jpe?g|png)$", ".webp", f) if f else f
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -20,7 +24,7 @@ def P(id, name, maison, year, perfumer, gender, family, famille, conc, top, hear
         "notes": {"top": top, "heart": heart, "base": base},
         "sizes": [{"ml": ml, "price_xof": px} for ml, px in sizes],
         "sillage": sillage, "longevity": longevity,
-        "images": ["img/produits/" + f for f in images],
+        "images": ["img/produits/" + webp(f) for f in images],
         "description": desc, "featured": featured,
     }
 
@@ -234,8 +238,8 @@ PARFUMS = [
 
 def M(name, pays, annee, phrase, logo=None, logo2=None, on_order=False):
     return {"name": name, "pays": pays, "annee": annee, "phrase": phrase,
-            "logo": ("img/maisons/" + logo) if logo else None,
-            "logo2": ("img/maisons/" + logo2) if logo2 else None,
+            "logo": ("img/maisons/" + webp(logo)) if logo else None,
+            "logo2": ("img/maisons/" + webp(logo2)) if logo2 else None,
             "on_order": on_order}
 
 MAISONS = [
@@ -269,17 +273,17 @@ MAISONS = [
 
 ARTICLES = [
   {"id": "oud-langage-dakar", "kicker": "Matières", "title": "L'oud, ce langage que Dakar comprend",
-   "date": "2026-09-02", "reading": 6, "image": "img/produits/alharamain-amber-oud-dubai-night.jpg",
+   "date": "2026-09-02", "reading": 6, "image": "img/produits/alharamain-amber-oud-dubai-night.webp",
    "alt": "Flacon Amber Oud d'Al Haramain posé sur des copeaux de bois d'oud, fumée et safran",
    "excerpt": "Du bois d'agar brûlé dans les maisons de Dakar aux extraits contemporains : un même mot, plusieurs dialectes.",
-   "inline": {"image": "img/HERO-SECTION/calligraphie-oud.jpg", "alt": "Calligraphie arabe dorée : « parfum d'oud »",
+   "inline": {"image": "img/HERO-SECTION/calligraphie-oud.webp", "alt": "Calligraphie arabe dorée : « parfum d'oud »",
               "caption": "عطر العود — « parfum d'oud », en calligraphie arabe."},
    "body": [
      "À Dakar, l'oud n'a pas attendu les maisons occidentales. On le brûlait en copeaux pour les baptêmes, les mariages, la prière du vendredi. Le mot désigne d'abord un bois : l'aquilaria, infecté par un champignon, qui fabrique une résine sombre pour se défendre.",
      "Les parfumeurs l'ont ensuite apprivoisé. Tom Ford le polit à la cardamome dans Oud Wood. Initio le laisse brut, safrané, dans Oud for Greatness. Lattafa le rend accessible avec Bade'e Al Oud, à moins de vingt mille francs.",
      "Notre conseil : commencez par un oud « habillé », puis allez vers les versions plus brutes. Le nez s'habitue vite, et l'on revient rarement en arrière."]},
   {"id": "garde-robe-olfactive", "kicker": "Le Rituel", "title": "Construire sa garde-robe olfactive",
-   "date": "2026-08-18", "reading": 5, "image": "img/produits/lattafa-fakhar.jpg",
+   "date": "2026-08-18", "reading": 5, "image": "img/produits/lattafa-fakhar.webp",
    "alt": "Quatre flacons Fakhar de Lattafa sur des socles orange",
    "excerpt": "Un parfum de jour, un parfum de soir, une signature. Trois flacons suffisent si on les choisit bien.",
    "body": [
@@ -287,7 +291,7 @@ ARTICLES = [
      "Le jour appelle les agrumes, le vétiver, les notes marines. Le soir, l'ambre, le tabac, l'oud. La signature, elle, se trouve à l'essai, sur la peau, jamais sur une mouillette.",
      "Venez les composer avec nous en boutique : vingt minutes et trois essais valent mieux que toutes les descriptions."]},
   {"id": "sillage-chaleur", "kicker": "Conseils", "title": "Tenir le sillage sous la chaleur",
-   "date": "2026-07-30", "reading": 4, "image": "img/HERO-SECTION/flacon-serpent-or.jpg",
+   "date": "2026-07-30", "reading": 4, "image": "img/HERO-SECTION/flacon-serpent-or.webp",
    "alt": "Flacon doré entouré d'un serpent en métal, devant son étui blanc texturé",
    "excerpt": "Sous le climat de Dakar, un parfum projette plus fort et s'évapore plus vite. Quatre gestes pour le faire durer.",
    "body": [
@@ -295,7 +299,7 @@ ARTICLES = [
      "Appliquez sur une peau hydratée, sans parfum dans la crème : le gras retient les molécules. Visez les points chauds, cou et creux des coudes, sans frotter.",
      "Une vaporisation sur les vêtements prolonge le sillage d'une demi-journée. Et gardez vos flacons loin de la voiture et du soleil : la lumière abîme le jus en quelques semaines."]},
   {"id": "rose-mille-visages", "kicker": "Matières", "title": "La rose et ses mille visages",
-   "date": "2026-07-08", "reading": 7, "image": "img/produits/pdm-delina-exclusif-2.jpg",
+   "date": "2026-07-08", "reading": 7, "image": "img/produits/pdm-delina-exclusif-2.webp",
    "alt": "Flacon rose Delina Exclusif de Parfums de Marly entouré de diamants",
    "excerpt": "Litchi chez Delina, oud chez Oud Satin Mood, fleur principale chez Amethyst : trois roses que tout oppose.",
    "body": [

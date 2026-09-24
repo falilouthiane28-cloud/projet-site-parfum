@@ -19,6 +19,24 @@
   var n = slides.length;
   function pad(k) { return (k < 10 ? '0' : '') + k; }
 
+  /* Photos 2 à 5 : chargées après l'affichage de la page (ou au premier
+     défilement), pour que la première photo ait toute la bande passante. */
+  var hydrated = false;
+  function hydrateSlides() {
+    if (hydrated || !hs) return; hydrated = true;
+    hs.querySelectorAll('img[data-src]').forEach(function (img) {
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src'); img.removeAttribute('data-srcset');
+    });
+  }
+  if (hs) {
+    var later = function () { (window.requestIdleCallback || setTimeout)(hydrateSlides, { timeout: 1200 }); };
+    if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+    addEventListener('scroll', hydrateSlides, { once: true, passive: true });
+    addEventListener('touchstart', hydrateSlides, { once: true, passive: true });
+  }
+
   var shown = -1;
   function paintCount(i) {
     if (i === shown) return;
@@ -84,7 +102,7 @@
 
     // entrée du premier temps, une fois l'écran de chargement parti
     var first = partsOf(slides[0]);
-    var t0 = document.getElementById('loader') ? 1.25 : 0.15;
+    var t0 = document.getElementById('loader') ? 0.75 : 0.1;
     var intro = gsap.timeline({ delay: t0 });
     var cta = hs.querySelector('.hs__cta');
     intro.from(slides[0].querySelector('img'), { scale: 1.06, duration: 2.2, ease: 'expo.out' }, 0)

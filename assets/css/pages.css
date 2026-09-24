@@ -159,6 +159,9 @@
   .order__thumbs { display: flex; gap: 6px; margin-top: 8px; }
   .order__thumbs img { width: 44px; height: 44px; object-fit: cover; border-radius: 4px; background: var(--white); }
 
+  /* Contenu rendu en JS : la place est réservée pour que rien ne saute */
+  #pd:empty, #checkout:empty, #cartView:empty { min-height: 100svh; }
+
   /* ---------- Parcours d'achat : repère d'étapes ---------- */
   .flow-steps { display: flex; flex-wrap: wrap; row-gap: 6px; gap: clamp(14px, 3vw, 32px); margin: 0 0 clamp(18px, 3vw, 28px); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-30); counter-reset: none; }
   .flow-steps li { display: flex; align-items: center; gap: 10px; }

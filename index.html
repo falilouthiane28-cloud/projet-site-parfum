@@ -7,17 +7,14 @@
 <meta name="description" content="Parfumerie de niche et de prestige à Dakar : Maison Francis Kurkdjian, Tom Ford, Creed, Parfums de Marly, Byredo, Lattafa… Prix en FCFA, livraison au Sénégal et dans la CEDEAO.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"></noscript>
-<link rel="preload" as="image" href="img/HERO-IMG/hero-01-nuit-rouge.jpg" fetchpriority="high">
+<noscript></noscript>
+<link rel="preload" as="image" href="img/HERO-IMG/hero-01-nuit-rouge.webp" imagesrcset="img/HERO-IMG/hero-01-nuit-rouge-800.webp 800w, img/HERO-IMG/hero-01-nuit-rouge-1280.webp 1280w, img/HERO-IMG/hero-01-nuit-rouge.webp 1920w" imagesizes="(max-aspect-ratio: 1/1) 180svh, 100vw" fetchpriority="high">
+<script>try{if(sessionStorage.getItem('teranga-intro'))document.documentElement.classList.add('intro-seen')}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/app.css">
 <link rel="stylesheet" href="assets/css/home.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script defer src="assets/vendor/gsap.min.js"></script>
+<script defer src="assets/vendor/ScrollTrigger.min.js"></script>
+<script defer src="assets/vendor/lenis.min.js"></script>
 <script defer src="assets/js/config.js"></script>
 <script defer src="assets/js/data.js"></script>
 <script defer src="assets/js/core.js"></script>
@@ -27,6 +24,7 @@
 <script defer src="assets/js/cart.js"></script>
 <script defer src="assets/js/motion.js"></script>
 <script defer src="assets/js/home.js"></script>
+<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[target=_blank], [rel~=nofollow]"}}]},"eagerness":"moderate"}]}</script>
 </head>
 <body data-page="home">
 <a class="skip" href="#main">Aller au contenu</a>
@@ -38,31 +36,31 @@
   <!-- 4.1 Hero : séquence d'images pilotée au scroll -->
   <section class="hs" data-hero data-chamber="Entrée" aria-label="Cinq images de la boutique">
     <div class="hs__slide">
-      <img src="img/HERO-IMG/hero-01-nuit-rouge.jpg" alt="Flacon sombre posé sur un socle rouge, contre une roche noire, dans une lame de lumière rouge" width="1920" height="1072" fetchpriority="high" decoding="async">
+      <img src="img/HERO-IMG/hero-01-nuit-rouge.webp" srcset="img/HERO-IMG/hero-01-nuit-rouge-800.webp 800w, img/HERO-IMG/hero-01-nuit-rouge-1280.webp 1280w, img/HERO-IMG/hero-01-nuit-rouge.webp 1920w" sizes="(max-aspect-ratio: 1/1) 180svh, 100vw" alt="Flacon sombre posé sur un socle rouge, contre une roche noire, dans une lame de lumière rouge" width="1920" height="1072" fetchpriority="high" decoding="async">
       <div class="hs__cap"><span class="eyebrow">Le salon</span>
         <h2 class="hs__name" data-words><a href="boutique.html">Almadies, Dakar</a></h2>
         <p class="hs__line" data-words>Quarante et un parfums, choisis un par un.</p></div>
     </div>
     <div class="hs__slide">
-      <img src="img/HERO-IMG/hero-02-marly-althair.jpg" alt="Flacon Parfums de Marly posé sur un plateau de cannelle, cardamome et vanille, face au couchant" width="1920" height="1072" decoding="async">
+      <img data-src="img/HERO-IMG/hero-02-marly-althair.webp" data-srcset="img/HERO-IMG/hero-02-marly-althair-800.webp 800w, img/HERO-IMG/hero-02-marly-althair-1280.webp 1280w, img/HERO-IMG/hero-02-marly-althair.webp 1920w" sizes="(max-aspect-ratio: 1/1) 180svh, 100vw" alt="Flacon Parfums de Marly posé sur un plateau de cannelle, cardamome et vanille, face au couchant" width="1920" height="1072" fetchpriority="low" decoding="async">
       <div class="hs__cap"><span class="eyebrow">Parfums de Marly</span>
         <h2 class="hs__name" data-words><a href="boutique.html?maison=Parfums%20de%20Marly">Althaïr</a></h2>
         <p class="hs__line" data-words>La cannelle et la vanille, au couchant.</p></div>
     </div>
     <div class="hs__slide">
-      <img src="img/HERO-IMG/hero-03-versace-eros.jpg" alt="Flacon Versace Eros turquoise entouré de menthe, pomme verte, citron vert et gousses de vanille" width="1920" height="1072" decoding="async">
+      <img data-src="img/HERO-IMG/hero-03-versace-eros.webp" data-srcset="img/HERO-IMG/hero-03-versace-eros-800.webp 800w, img/HERO-IMG/hero-03-versace-eros-1280.webp 1280w, img/HERO-IMG/hero-03-versace-eros.webp 1920w" sizes="(max-aspect-ratio: 1/1) 180svh, 100vw" alt="Flacon Versace Eros turquoise entouré de menthe, pomme verte, citron vert et gousses de vanille" width="1920" height="1072" fetchpriority="low" decoding="async">
       <div class="hs__cap"><span class="eyebrow">Versace</span>
         <h2 class="hs__name" data-words><a href="boutique.html?maison=Versace">Eros</a></h2>
         <p class="hs__line" data-words>La menthe, la pomme verte, la vanille.</p></div>
     </div>
     <div class="hs__slide" data-subject="center">
-      <img src="img/HERO-IMG/hero-05-armaf-club-de-nuit.jpg" alt="Flacon Club de Nuit Urban Man Elixir d'Armaf posé sur une pierre, entre deux blocs de roche, sous un ciel gris" width="1920" height="1072" loading="lazy" decoding="async">
+      <img data-src="img/HERO-IMG/hero-05-armaf-club-de-nuit.webp" data-srcset="img/HERO-IMG/hero-05-armaf-club-de-nuit-800.webp 800w, img/HERO-IMG/hero-05-armaf-club-de-nuit-1280.webp 1280w, img/HERO-IMG/hero-05-armaf-club-de-nuit.webp 1920w" sizes="(max-aspect-ratio: 1/1) 180svh, 100vw" alt="Flacon Club de Nuit Urban Man Elixir d'Armaf posé sur une pierre, entre deux blocs de roche, sous un ciel gris" width="1920" height="1072" fetchpriority="low" decoding="async">
       <div class="hs__cap"><span class="eyebrow">Armaf</span>
         <h2 class="hs__name" data-words><a href="parfum.html?id=armaf-cdn-urban-man-elixir">Club de Nuit</a></h2>
         <p class="hs__line" data-words>La bergamote, le poivre noir, l'ambroxan.</p></div>
     </div>
     <div class="hs__slide" data-subject="center">
-      <img src="img/HERO-IMG/hero-04-armani-stronger.jpg" alt="Flacon Emporio Armani Stronger With You posé sur des éclats de caramel aux noix de pécan" width="1920" height="1072" loading="lazy" decoding="async">
+      <img data-src="img/HERO-IMG/hero-04-armani-stronger.webp" data-srcset="img/HERO-IMG/hero-04-armani-stronger-800.webp 800w, img/HERO-IMG/hero-04-armani-stronger-1280.webp 1280w, img/HERO-IMG/hero-04-armani-stronger.webp 1920w" sizes="(max-aspect-ratio: 1/1) 180svh, 100vw" alt="Flacon Emporio Armani Stronger With You posé sur des éclats de caramel aux noix de pécan" width="1920" height="1072" fetchpriority="low" decoding="async">
       <div class="hs__cap"><span class="eyebrow">Emporio Armani</span>
         <h2 class="hs__name" data-words><a href="boutique.html?maison=Emporio%20Armani">Stronger With You</a></h2>
         <p class="hs__line" data-words>Le caramel, la pécan, la châtaigne.</p></div>
@@ -107,7 +105,7 @@
 
   <!-- 4.6 Le Rituel -->
   <section class="ritual" data-chamber="Le Rituel" aria-labelledby="t-ritual">
-    <div class="ritual__bg" aria-hidden="true"><img src="img/HERO-SECTION/monogramme-nuit.jpg" alt="" width="1200" height="1500" loading="lazy" decoding="async"></div>
+    <div class="ritual__bg" aria-hidden="true"><img src="img/HERO-SECTION/monogramme-nuit.webp" alt="" width="1200" height="1500" loading="lazy" decoding="async"></div>
     <div class="wrap">
       <h2 class="ritual__line" id="t-ritual" data-split>Trouvez votre signature olfactive en 6 questions.</h2>
       <a class="btn btn--light" href="rituel.html">Commencer le rituel <span aria-hidden="true">→</span></a>
@@ -127,7 +125,7 @@
 
   <!-- 4.8 La boutique -->
   <section class="visit" data-chamber="Boutique" aria-labelledby="t-visit">
-    <div class="visit__bg" aria-hidden="true"><img src="img/HERO-SECTION/lattafa-asad-roches.jpg" alt="" width="1920" height="1072" loading="lazy" decoding="async"></div>
+    <div class="visit__bg" aria-hidden="true"><img src="img/HERO-SECTION/lattafa-asad-roches.webp" alt="" width="1920" height="1072" loading="lazy" decoding="async"></div>
     <div class="visit__card">
       <p class="eyebrow">La boutique</p>
       <h2 id="t-visit">Almadies, Dakar</h2>

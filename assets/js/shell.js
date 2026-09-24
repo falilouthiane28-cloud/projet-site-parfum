@@ -121,8 +121,26 @@
   var loader = document.getElementById('loader');
   if (loader) {
     loader.innerHTML = T.mark();
-    var done = function () { loader.classList.add('is-done'); setTimeout(function () { loader.remove(); }, 600); };
-    if (T.reduced) done(); else setTimeout(done, 1500);
+    /* Rideau d'intro : une seule fois par session, levé dès que la première
+       photo et les polices sont prêtes (0,35 s mini, 0,7 s maxi). Revenir à
+       l'accueil ne remet plus d'attente. */
+    var seen = false;
+    try { seen = sessionStorage.getItem('teranga-intro') === '1'; sessionStorage.setItem('teranga-intro', '1'); } catch (e) {}
+    var finished = false;
+    var done = function () {
+      if (finished) return; finished = true;
+      loader.classList.add('is-done'); setTimeout(function () { loader.remove(); }, 600);
+    };
+    if (T.reduced || seen) { loader.remove(); loader = null; }
+    else {
+      var t0 = performance.now();
+      var img = document.querySelector('.hs__slide img');
+      Promise.all([
+        document.fonts && document.fonts.ready ? document.fonts.ready : null,
+        img && img.decode ? img.decode().catch(function () {}) : null
+      ]).then(function () { setTimeout(done, Math.max(0, 350 - (performance.now() - t0))); });
+      setTimeout(done, 700);
+    }
   }
 
   /* ---------- Navigateur-labyrinthe : plan de sol, un carré par chambre ---------- */

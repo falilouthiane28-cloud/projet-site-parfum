@@ -15,10 +15,13 @@
   }
   gsap.registerPlugin(ST);
   T.motion.on = true;
+  // iPhone : la barre d'adresse qui apparaît/disparaît ne relance plus un
+  // recalcul complet (à-coups du hero épinglé pendant le défilement).
+  ST.config({ ignoreMobileResize: true });
 
   /* ---------- Lenis (pointeur fin uniquement) ---------- */
   if (window.Lenis && matchMedia('(pointer: fine)').matches) {
-    var lenis = new window.Lenis({ lerp: 0.08, smoothWheel: true });
+    var lenis = new window.Lenis({ lerp: 0.12, smoothWheel: true });
     lenis.on('scroll', ST.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -158,8 +161,11 @@
         var dy = scrollY - lastY; lastY = scrollY;
         if (dy) { dir = dy > 0 ? -1 : 1; boost = Math.min(6, boost + Math.abs(dy) * 0.02); }
       }, { passive: true });
+      // Hors écran : aucune image calculée pour rien
+      var visible = true;
+      if (window.IntersectionObserver) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(m);
       gsap.ticker.add(function (t, dt) {
-        if (paused) return;
+        if (paused || !visible) return;
         boost *= 0.94;
         x += dir * (0.04 + boost * 0.05) * dt;
         if (x <= -half) x += half; else if (x > 0) x -= half;
@@ -197,6 +203,8 @@
   };
   T.motion.refresh();
   addEventListener('load', function () { ST.refresh(); });
+  // Les polices changent la hauteur des titres : on remesure une fois prêtes.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ST.refresh(); });
   // Retour sur l'onglet : on remesure, l'horloge repart d'un état sain.
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) { ST.refresh(); rescue(); }
