@@ -184,8 +184,14 @@ Format prix : `T.fmt(n)` → `197,000 FCFA` *(et non `fmtXOF`, qui n'existe plus
 - **Hero** : `srcset` 800/1280/1920. En portrait la photo est recadrée sur la
   hauteur (~1,8 × la hauteur d'écran) → `sizes="(max-aspect-ratio: 1/1) 180svh, 100vw"`.
   Photos 2 à 5 en `data-src`, chargées après `load` ou au 1er défilement (`home.js`).
-- **Écran de chargement** (accueil, à chaque visite) : 1,4 s mini (dessin du logo),
-  attend la 1re photo + les polices, 2,4 s maxi. `shell.js` émet `loader:done` ;
+- **Écran de chargement** (accueil, à chaque visite, y compris en mouvement
+  réduit) : le logo SVG est EN DUR dans `index.html` (visible avant les scripts).
+  Durées comptées depuis l'arrivée (`performance.now()`) : 1,6 s mini, attend la
+  1re photo + les polices, 3 s maxi.
+- **Bouton du hero sur mobile** : `--cta-b: max(104px, 13svh + safe-area)`. Sur iPhone
+  récent la barre d'outils FLOTTE sur le bas de la page (Safari, WhatsApp) : ne
+  jamais coller un élément important au bas de l'écran.
+- **Cache** : CSS/JS appelés avec `?v=AAAAMMJJx` — changer la valeur à chaque mise en ligne. `shell.js` émet `loader:done` ;
   l'entrée du hero (`home.js`) démarre sur cet événement.
 - **Lenis + CSS** : le bloc CSS officiel de Lenis est en tête de `app.css`. NE PAS
   le retirer : sans lui, `html { scroll-behavior: smooth }` faisait suivre la

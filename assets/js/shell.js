@@ -127,13 +127,15 @@
 
   /* ---------- Écran de chargement (accueil) ---------- */
   /* Affiché à chaque arrivée sur l'accueil (le tracé du monogramme dure
-     1,4 s). Mouvement réduit : retiré immédiatement. */
+     1,6 s). Mouvement réduit : logo fixe, même durée. */
   var loader = document.getElementById('loader');
   if (loader) {
-    loader.innerHTML = T.mark();
-    /* Écran de chargement à chaque visite de l'accueil : il reste au moins
-       1,4 s (le temps que le logo se dessine) et attend que la première photo et
-       les polices soient prêtes, sans jamais dépasser 2,4 s. */
+    if (!loader.querySelector('svg')) loader.innerHTML = T.mark();
+    /* Écran de chargement à chaque visite de l'accueil. Le logo est dans le
+       HTML : il se dessine dès le premier affichage. Les durées se comptent
+       depuis l'arrivée sur la page (performance.now()) : au moins 1,6 s (le
+       logo a fini de se dessiner), on attend la 1re photo et les polices, et
+       jamais plus de 3 s. Mouvement réduit : logo fixe, même durée mini. */
     var finished = false;
     var done = function () {
       if (finished) return; finished = true;
@@ -142,16 +144,12 @@
       // le rideau commence à se lever : l'entrée du hero part avec lui
       setTimeout(function () { document.dispatchEvent(new CustomEvent('loader:done')); }, 150);
     };
-    if (T.reduced) done();
-    else {
-      var t0 = performance.now();
-      var img = document.querySelector('.hs__slide img');
-      Promise.all([
-        document.fonts && document.fonts.ready ? document.fonts.ready : null,
-        img && img.decode ? img.decode().catch(function () {}) : null
-      ]).then(function () { setTimeout(done, Math.max(0, 1400 - (performance.now() - t0))); });
-      setTimeout(done, 2400);
-    }
+    var img = document.querySelector('.hs__slide img');
+    Promise.all([
+      document.fonts && document.fonts.ready ? document.fonts.ready : null,
+      img && img.decode ? img.decode().catch(function () {}) : null
+    ]).then(function () { setTimeout(done, Math.max(0, 1600 - performance.now())); });
+    setTimeout(done, Math.max(0, 3000 - performance.now()));
   }
 
   /* ---------- Navigateur-labyrinthe : plan de sol, un carré par chambre ---------- */

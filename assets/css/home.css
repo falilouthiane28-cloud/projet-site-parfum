@@ -50,9 +50,9 @@
        se fond dans le noir du hero ; la légende se pose sur ce noir. */
     .hs__slide[data-subject="center"] img {
       object-position: 50% 50%;
-      /* 230 px = légende (~140 px) + sa marge basse (96 px) : le flacon garde
-         toujours de l'air au-dessus du texte, même sur un petit téléphone. */
-      height: min(78%, calc(100% - 270px));
+      /* La photo s'arrête au-dessus de la légende + du bouton (position du
+         bouton + ~250 px de texte) : le flacon ne passe jamais sous le texte. */
+      height: min(78%, calc(100% - var(--cta-b) - 250px));
       -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
               mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
     }
@@ -97,8 +97,11 @@
   .hs__cta:active { transform: scale(0.97); }
   .hs__cta:focus-visible { outline: 2px solid var(--paper); outline-offset: 4px; }
   @media (max-width: 640px) {
-    /* Au-dessus de la barre de Safari / de l'indicateur d'accueil iOS */
-    .hs { --cta-b: calc(20px + env(safe-area-inset-bottom)); --cta-h: 52px; }
+    /* Sur iPhone récent (Safari, navigateurs intégrés à WhatsApp/Instagram), la
+       barre d'outils FLOTTE par-dessus le bas de la page : tout ce qui y est
+       collé passe dessous. Le bouton est donc posé nettement plus haut, pour
+       être visible dès l'arrivée, sans défiler. */
+    .hs { --cta-b: max(104px, calc(13svh + env(safe-area-inset-bottom))); --cta-h: 52px; }
     .hs__cta { padding: 0 10px 0 20px; gap: 10px; }
   }
   @media (max-width: 380px) { .hs__cta { font-size: 11px; letter-spacing: 0.12em; padding: 0 6px 0 16px; gap: 6px; } }
