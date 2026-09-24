@@ -1,10 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect x="1" y="1" width="62" height="62" rx="17" fill="#0F2447"/>
-  <path d="M32 23 C 25 23, 18 28.5, 18 35 C 18 41.5, 25 47, 32 47 C 39 47, 46 41.5, 46 35 C 46 28.5, 39 23, 32 23 Z"
-        fill="none" stroke="#D1C2A7" stroke-width="2"/>
-  <path d="M32 24 C 31.5 20, 32.5 17, 34 14.5" fill="none" stroke="#D1C2A7" stroke-width="2" stroke-linecap="round"/>
-  <path d="M34 15 C 37.5 13, 42 14, 41 17 C 40 20, 35.5 19, 34 15 Z" fill="#D1C2A7"/>
-  <text x="32" y="39" text-anchor="middle"
-        font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="500" font-size="24"
-        fill="#D1C2A7">g</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="20" fill="#FAFAF7"/>
+  <g transform="translate(24 16) scale(0.8)">
+    <g fill="#0A0A0A">
+      <rect x="30" y="0" width="40" height="8"/>
+      <rect x="35" y="13" width="9" height="8"/>
+      <rect x="56" y="13" width="9" height="8"/>
+    </g>
+    <g fill="none" stroke="#0A0A0A" stroke-width="8" stroke-linecap="square">
+      <path d="M3.5 110 V29.5 H96.5 V70.5"/>
+      <path d="M19.5 44.5 H80.5 V62.5 H19.5"/>
+      <path d="M19.5 53.5 H66"/>
+      <path d="M19.5 72 V110"/>
+      <rect x="40.5" y="70.5" width="56" height="36"/>
+    </g>
+  </g>
 </svg>

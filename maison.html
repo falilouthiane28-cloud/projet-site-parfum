@@ -1,52 +1,140 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>La Maison — Teranga · Dakar</title>
-<meta name="description" content="L'histoire de Teranga, salon olfactif de luxe fondé à Dakar. Notre vision : le pont entre haute parfumerie mondiale et art de vivre sénégalais." />
-<meta name="theme-color" content="#0A0A0A" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" /></noscript>
-<link rel="stylesheet" href="assets/css/app.css" /><link rel="stylesheet" href="assets/css/pages.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Maison — Teranga, parfumerie à Dakar</title>
+<meta name="description" content="L'histoire de Teranga, salon olfactif fondé aux Almadies, à Dakar : le nom, le choix des maisons, la tenue sous notre climat, le temps du conseil.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"></noscript>
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
-<script defer src="assets/js/shell.js"></script><script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/data.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/api.js"></script>
+<script defer src="assets/js/shell.js"></script>
+<script defer src="assets/js/product.js"></script>
+<script defer src="assets/js/cart.js"></script>
+<script defer src="assets/js/motion.js"></script>
 </head>
-<body>
+<body data-page="maison">
 <a class="skip" href="#main">Aller au contenu</a>
 <main id="main">
-  <section class="page-hero" data-theme="dark">
-    <div class="wrap"><span class="eyebrow">La Maison</span><h1>Fondée à Dakar</h1>
-      <p>Un salon olfactif né d'une conviction : la clientèle sénégalaise mérite les plus grands parfums du monde — et sait les reconnaître.</p></div>
+  <header class="page-head wrap" data-chamber="La Maison">
+    <p class="eyebrow">La Maison</p>
+    <h1 class="mt-2" data-split>Fondée à Dakar</h1>
+    <p>Un salon olfactif né d'une conviction : la clientèle sénégalaise mérite les plus grands parfums du monde — et sait les reconnaître.</p>
+  </header>
+
+  <section class="wrap" data-chamber="Le nom" aria-labelledby="t-nom">
+    <article class="chapter">
+      <figure class="chapter__media" data-clip>
+        <img src="img/HERO-SECTION/flacon-violet.jpg" alt="Flacon violet à monture ciselée, sous une arche rose, entre des branches d'eucalyptus" width="736" height="1104" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow">Chapitre un</p>
+        <h2 id="t-nom" data-split>Le nom dit ce que nous faisons</h2>
+        <p class="muted">Teranga — « l'hospitalité » en wolof — porte dans son nom ce que nous offrons : un accueil, un temps, une écoute. Nous ne vendons pas des flacons à la sauvette.</p>
+        <p class="muted">On entre, on s'assoit, on sent. Un parfum se choisit sur la peau, jamais sur une mouillette tendue à la hâte.</p>
+      </div>
+    </article>
   </section>
 
-  <section class="section"><div class="wrap grid12" style="align-items:center">
-    <div style="grid-column:2/7" data-reveal>
-      <span class="eyebrow">Notre vision</span>
-      <p class="lead mt-4"><em>Un pont entre les grandes maisons et une clientèle de connaisseurs.</em></p>
-      <p class="muted mt-4">Teranga — « l'hospitalité » en wolof — porte dans son nom ce que nous offrons : un accueil, un temps, une écoute. Nous ne vendons pas des flacons à la sauvette. Nous prenons le temps du nez, de la peau, du souvenir.</p>
-      <p class="muted mt-3">De la haute niche européenne aux ouds d'Orient chers à notre région, chaque référence est choisie pour son authenticité et sa tenue sous notre climat.</p>
-    </div>
-    <figure style="grid-column:8/13" data-clip><img src="img/197b69741386991b2074e00f7b2794cc.jpg" alt="Ambiance de la maison Teranga" width="600" height="750" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover" /></figure>
-  </div></section>
+  <section class="wrap" data-chamber="Le choix" aria-labelledby="t-choix">
+    <article class="chapter">
+      <figure class="chapter__media is-pack" data-clip>
+        <img src="img/HERO-SECTION/flacon-ambre-blanc.jpg" alt="Flacon ambré et son coffret doré, photographiés sur fond blanc" width="1200" height="1200" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow">Chapitre deux</p>
+        <h2 id="t-choix" data-split>Chaque référence est vérifiée</h2>
+        <p class="muted">Chaque parfum provient de circuits officiels. Ni contrefaçon, ni décant douteux : le flacon d'origine, son coffret, son lot.</p>
+        <p class="muted">Une maison entre en rayon pour un parfum précis, pas pour son nom. C'est pourquoi le catalogue reste court.</p>
+        <a class="link-u mt-3" href="maisons.html">Voir les maisons en rayon <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+  </section>
 
-  <section class="section" data-theme="dark" style="background:var(--color-onyx);color:var(--color-cream)"><div class="wrap">
-    <div class="grid12" style="gap:var(--sp-5)">
-      <div style="grid-column:1/5" data-reveal><h4 class="h-serif" style="font-size:24px;text-transform:uppercase">Authenticité garantie</h4><p class="muted mt-3">Chaque parfum provient de circuits officiels. Ni contrefaçon, ni décant douteux — l'original, toujours.</p></div>
-      <div style="grid-column:5/9" data-reveal><h4 class="h-serif" style="font-size:24px;text-transform:uppercase">Conseil sur mesure</h4><p class="muted mt-3">Un temps d'écoute pour composer votre garde-robe olfactive, en boutique ou à distance.</p></div>
-      <div style="grid-column:9/13" data-reveal><h4 class="h-serif" style="font-size:24px;text-transform:uppercase">Livraison CEDEAO</h4><p class="muted mt-3">Dakar en 24–48h, l'espace CEDEAO sous quelques jours, emballage soigné.</p></div>
-    </div>
-  </div></section>
+  <section class="wrap" data-chamber="Le pont" aria-labelledby="t-pont">
+    <article class="chapter">
+      <figure class="chapter__media" data-clip>
+        <img src="img/HERO-SECTION/flacon-clous-rome.jpg" alt="Flacon noir clouté devant une ville italienne éclairée la nuit, dans la fumée" width="1193" height="1600" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow">Chapitre trois</p>
+        <h2 id="t-pont" data-split>Un pont entre deux traditions</h2>
+        <p class="muted">De la haute niche européenne aux ouds d'Orient chers à notre région, nous tenons les deux bouts d'une même histoire.</p>
+        <p class="muted">Ici, l'oud n'a pas attendu les maisons occidentales : on le brûlait en copeaux pour les baptêmes et les mariages. Nos clients connaissent la matière avant d'en connaître la marque.</p>
+      </div>
+    </article>
+  </section>
 
-  <section class="section center"><div class="wrap">
-    <p class="lead" data-reveal style="max-width:32ch;margin-inline:auto">« Pour cette clientèle, la beauté <em>est</em> la conversion. »</p>
-    <a class="btn mt-5" href="contact.html">Prendre rendez-vous</a>
-  </div></section>
+  <section class="wrap" data-chamber="Le climat" aria-labelledby="t-climat">
+    <article class="chapter">
+      <figure class="chapter__media" data-clip>
+        <img src="img/HERO-SECTION/flacon-eros-orage.jpg" alt="Flacon bleu profond devant un ciel d'orage traversé par un éclair" width="736" height="1104" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow">Chapitre quatre</p>
+        <h2 id="t-climat" data-split>Tenir sous notre chaleur</h2>
+        <p class="muted">La chaleur de Dakar amplifie un parfum pendant une heure, puis l'épuise. Une eau de toilette qui tient un après-midi en Europe s'efface ici avant midi.</p>
+        <p class="muted">Nous privilégions les extraits et les eaux de parfum, et nous le disons franchement quand une référence ne tiendra pas sous notre climat.</p>
+        <a class="link-u mt-3" href="journal.html?a=sillage-chaleur">Lire « Tenir le sillage sous la chaleur » <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap" data-chamber="Le temps" aria-labelledby="t-temps">
+    <article class="chapter">
+      <figure class="chapter__media" data-clip>
+        <img src="img/HERO-SECTION/flacon-bois-flotte.jpg" alt="Flacon prune posé sur un bois flotté fendu, sur fond aubergine" width="736" height="1104" loading="lazy" decoding="async">
+      </figure>
+      <div>
+        <p class="eyebrow">Chapitre cinq</p>
+        <h2 id="t-temps" data-split>Vingt minutes valent mille mots</h2>
+        <p class="muted">Trois essais sur la peau, un café, une heure d'attente : c'est le seul protocole qui dise la vérité sur un parfum.</p>
+        <p class="muted">En boutique aux Almadies, ou à distance par téléphone quand vous êtes ailleurs dans la CEDEAO.</p>
+        <a class="btn btn--ghost mt-4" href="contact.html">Prendre rendez-vous</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="engagements" data-theme="dark" data-chamber="Engagements" aria-labelledby="t-eng" style="background:var(--ink);color:var(--paper)">
+    <div class="wrap">
+      <p class="eyebrow">Nos engagements</p>
+      <h2 class="title mt-2" id="t-eng" data-split>Trois promesses tenues</h2>
+      <div class="pledges mt-5">
+        <div>
+          <h3>Authenticité</h3>
+          <p>Circuits officiels uniquement. Flacon d'origine, coffret, lot. Reprise immédiate au moindre doute.</p>
+        </div>
+        <div>
+          <h3>Livraison CEDEAO</h3>
+          <p>Dakar en 24–48 h, le Sénégal sous quatre jours, l'espace CEDEAO sous dix. Emballage soigné, suivi par WhatsApp.</p>
+        </div>
+        <div>
+          <h3>Conseil sur mesure</h3>
+          <p>Un temps d'écoute pour composer votre garde-robe olfactive, en boutique ou à distance. Sans achat obligé.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section center" data-chamber="Visite">
+    <div class="wrap">
+      <p class="lead" style="max-width:34ch;margin-inline:auto">Route des Almadies, du lundi au samedi, de 10 h à 20 h.</p>
+      <a class="btn mt-5" href="contact.html">Réserver une consultation privée</a>
+    </div>
+  </section>
 </main>
 </body>
 </html>

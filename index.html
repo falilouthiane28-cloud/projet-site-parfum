@@ -1,155 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Teranga — Maison de Parfum · Dakar</title>
-<meta name="description" content="Parfumerie de niche et de prestige à Dakar. Une maison qui choisit le parfum avec le sérieux d'une galerie — Kurkdjian, Amouage, Byredo, Le Labo, Xerjoff et les grands noms de l'Orient." />
-<meta name="theme-color" content="#0A0A0A" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" /></noscript>
-<link rel="stylesheet" href="assets/css/app.css" />
-<link rel="stylesheet" href="assets/css/home.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teranga — Parfumerie de niche et de prestige à Dakar</title>
+<meta name="description" content="Parfumerie de niche et de prestige à Dakar : Maison Francis Kurkdjian, Tom Ford, Creed, Parfums de Marly, Byredo, Lattafa… Prix en FCFA, livraison au Sénégal et dans la CEDEAO.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"></noscript>
+<link rel="preload" as="image" href="img/HERO-IMG/hero-01-nuit-rouge.jpg" fetchpriority="high">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/home.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/data.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/api.js"></script>
 <script defer src="assets/js/shell.js"></script>
+<script defer src="assets/js/product.js"></script>
+<script defer src="assets/js/cart.js"></script>
 <script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/home.js"></script>
 </head>
-
-<body>
+<body data-page="home">
 <a class="skip" href="#main">Aller au contenu</a>
-
-<div class="loader" id="loader" role="status" aria-label="Chargement">
-  <svg viewBox="0 0 60 72" aria-hidden="true">
-    <rect x="20" y="2" width="20" height="7" />
-    <path d="M8 19 H52 V70 H8 Z" />
-    <path d="M18 30 H44 M18 40 H36 V52 M28 52 H44 V62 H18" />
-  </svg>
-</div>
+<div class="loader" id="loader" aria-hidden="true"></div>
 
 <main id="main">
+  <h1 class="visually-hidden">Teranga, parfumerie de niche et de prestige à Dakar</h1>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" data-theme="dark" data-hero data-chamber="Entrée" id="top">
-    <div class="hero__inner">
-      <span class="eyebrow">Parfumerie — Dakar</span>
-      <h1 class="display" data-split="char">La mémoire<br />d'un désir.</h1>
-      <div class="hero__foot">
-        <a class="link-u" href="boutique.html">Parcourir la boutique <span class="arrow">&rarr;</span></a>
-        <a class="link-u" href="contact.html">Prendre rendez-vous <span class="arrow">&rarr;</span></a>
-      </div>
+  <!-- 4.1 Hero : séquence d'images pilotée au scroll -->
+  <section class="hs" data-hero data-chamber="Entrée" aria-label="Cinq images de la boutique">
+    <div class="hs__slide">
+      <img src="img/HERO-IMG/hero-01-nuit-rouge.jpg" alt="Flacon sombre posé sur un socle rouge, contre une roche noire, dans une lame de lumière rouge" width="1920" height="1072" fetchpriority="high" decoding="async">
+      <div class="hs__cap"><span class="eyebrow">Le salon</span>
+        <h2 class="hs__name" data-words><a href="boutique.html">Almadies, Dakar</a></h2>
+        <p class="hs__line" data-words>Quarante et un parfums, choisis un par un.</p></div>
     </div>
-    <div class="scroll-cue" aria-hidden="true"><span>Défiler</span><span class="line"></span></div>
+    <div class="hs__slide">
+      <img src="img/HERO-IMG/hero-02-marly-althair.jpg" alt="Flacon Parfums de Marly posé sur un plateau de cannelle, cardamome et vanille, face au couchant" width="1920" height="1072" decoding="async">
+      <div class="hs__cap"><span class="eyebrow">Parfums de Marly</span>
+        <h2 class="hs__name" data-words><a href="boutique.html?maison=Parfums%20de%20Marly">Althaïr</a></h2>
+        <p class="hs__line" data-words>La cannelle et la vanille, au couchant.</p></div>
+    </div>
+    <div class="hs__slide">
+      <img src="img/HERO-IMG/hero-03-versace-eros.jpg" alt="Flacon Versace Eros turquoise entouré de menthe, pomme verte, citron vert et gousses de vanille" width="1920" height="1072" decoding="async">
+      <div class="hs__cap"><span class="eyebrow">Versace</span>
+        <h2 class="hs__name" data-words><a href="boutique.html?maison=Versace">Eros</a></h2>
+        <p class="hs__line" data-words>La menthe, la pomme verte, la vanille.</p></div>
+    </div>
+    <div class="hs__slide" data-subject="center">
+      <img src="img/HERO-IMG/hero-05-armaf-club-de-nuit.jpg" alt="Flacon Club de Nuit Urban Man Elixir d'Armaf posé sur une pierre, entre deux blocs de roche, sous un ciel gris" width="1920" height="1072" loading="lazy" decoding="async">
+      <div class="hs__cap"><span class="eyebrow">Armaf</span>
+        <h2 class="hs__name" data-words><a href="parfum.html?id=armaf-cdn-urban-man-elixir">Club de Nuit</a></h2>
+        <p class="hs__line" data-words>La bergamote, le poivre noir, l'ambroxan.</p></div>
+    </div>
+    <div class="hs__slide" data-subject="center">
+      <img src="img/HERO-IMG/hero-04-armani-stronger.jpg" alt="Flacon Emporio Armani Stronger With You posé sur des éclats de caramel aux noix de pécan" width="1920" height="1072" loading="lazy" decoding="async">
+      <div class="hs__cap"><span class="eyebrow">Emporio Armani</span>
+        <h2 class="hs__name" data-words><a href="boutique.html?maison=Emporio%20Armani">Stronger With You</a></h2>
+        <p class="hs__line" data-words>Le caramel, la pécan, la châtaigne.</p></div>
+    </div>
+    <div class="hs__ui" aria-hidden="true"><span data-count>01 / 05</span><span class="hs__bar"><i></i></span></div>
+    <div class="hs__cue" aria-hidden="true">Défiler<span class="l"></span></div>
   </section>
 
-  <!-- ============ THÈSE (une seule phrase) ============ -->
-  <section class="section thesis cv" data-chamber="Thèse">
-    <div class="wrap">
-      <p class="thesis__line" data-split="word">Un parfum n'est pas un produit. C'est une décision que l'on porte sur la peau.</p>
-    </div>
-  </section>
+  <!-- 4.2 Bandeau de marque -->
+  <div class="brandbar"><strong>Teranga</strong><span>Parfumerie de niche et de prestige, Almadies, Dakar</span></div>
 
-  <!-- ============ SÉLECTION ============ -->
-  <section class="section featured cv" data-chamber="Sélection">
+  <!-- 4.3 Sélection -->
+  <section class="section" data-chamber="Sélection" aria-labelledby="t-selection">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow" data-reveal>La sélection</span>
-        <h2 class="h-serif" data-reveal>Huit pièces, ce mois-ci.</h2>
+        <div><p class="eyebrow">La sélection</p><h2 class="title mt-2" id="t-selection" data-split>Huit flacons, ce mois-ci</h2></div>
+        <a class="link-u" href="boutique.html">Toute la boutique <span aria-hidden="true">→</span></a>
       </div>
-      <div class="bento mt-5" id="featuredGrid"></div>
-      <div class="mt-5"><a class="btn btn--ghost" href="boutique.html">Toute la boutique</a></div>
+      <div class="bento" id="featured"></div>
     </div>
   </section>
 
-  <!-- ============ PYRAMIDE TYPOGRAPHIQUE ============ -->
-  <section class="section pyramide" data-theme="dark" data-chamber="Pyramide" aria-label="La pyramide olfactive">
-    <div class="wrap grid12">
-      <div class="pyr-type" role="tablist" aria-label="Strates olfactives">
-        <button class="pyr-line" role="tab" data-layer="top" aria-selected="false">Tête</button>
-        <button class="pyr-line" role="tab" data-layer="heart" aria-selected="true">Cœur</button>
-        <button class="pyr-line" role="tab" data-layer="base" aria-selected="false">Fond</button>
-      </div>
-      <div class="pyramide__info">
-        <span class="eyebrow" data-reveal>Lire un parfum dans le temps</span>
-        <div class="pyr-panel" id="pyrPanel" role="tabpanel" aria-live="polite"></div>
-      </div>
-    </div>
+  <!-- 4.4 Maisons -->
+  <section data-chamber="Maisons" aria-label="Les maisons en boutique">
+    <div class="marquee" data-marquee><div class="marquee__track" id="maisonsTrack"></div></div>
   </section>
 
-  <!-- ============ MUR DES MAISONS ============ -->
-  <section class="section maisons-wall cv" data-chamber="Maisons">
+  <!-- 4.5 Nouveautés -->
+  <section class="section" data-chamber="Nouveautés" aria-labelledby="t-news">
     <div class="wrap">
-      <span class="eyebrow" data-reveal>Les maisons</span>
-      <p class="wall" id="maisonsWall" data-reveal></p>
-    </div>
-  </section>
-
-  <!-- ============ NOTE SUR LE CHOIX ============ -->
-  <section class="section note cv" data-chamber="Le choix">
-    <div class="wrap">
-      <div class="note__col">
-        <span class="eyebrow" data-reveal>Une note sur le choix</span>
-        <p class="mt-4" data-reveal>Nous ne tenons pas tout. Un grand magasin le fait déjà, mieux que nous ne le ferions. Ici, chaque flacon entre pour une raison : une matière tenue jusqu'au bout, un accord qui dit quelque chose, une maison qui travaille sans raccourci. Le reste attend dehors. Ce que vous trouvez sur cette page a été senti, discuté, parfois refusé deux fois avant d'y figurer. C'est notre seul argument, et il nous suffit.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ RITUEL ============ -->
-  <section class="section ritual" data-theme="dark" data-chamber="Le Rituel">
-    <div class="wrap">
-      <p class="ritual__line" data-split="word">Six questions, et l'on vous propose trois flacons faits pour vous.</p>
-      <a class="link-u mt-5" href="rituel.html" style="font-size:14px">Commencer le rituel <span class="arrow">&rarr;</span></a>
-    </div>
-  </section>
-
-  <!-- ============ JOURNAL ============ -->
-  <section class="section journal cv" data-chamber="Journal">
-    <div class="wrap">
-      <div class="sec-head sec-head--row">
-        <div><span class="eyebrow" data-reveal>Le journal</span><h2 class="h-serif" data-reveal>Lectures.</h2></div>
-        <a class="link-u" href="journal.html" data-reveal>Tout le journal <span class="arrow">&rarr;</span></a>
-      </div>
-      <div class="journal-grid mt-5" id="journalGrid"></div>
-    </div>
-  </section>
-
-  <!-- ============ BOUTIQUE PHYSIQUE ============ -->
-  <section class="store" data-theme="dark" data-chamber="Boutique" aria-label="La boutique à Dakar">
-    <div class="store__bg" aria-hidden="true"><img src="img/197b69741386991b2074e00f7b2794cc.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async" /></div>
-    <div class="store__overlay">
-      <span class="eyebrow">La boutique</span>
-      <h2 class="mt-3">Almadies,<br />Dakar.</h2>
-      <p class="store__meta">Route des Almadies · Dakar, Sénégal<br />Lundi – Samedi · 10h – 20h</p>
-      <a class="btn btn--ghost mt-4" href="contact.html">Prendre rendez-vous</a>
-    </div>
-  </section>
-
-  <!-- ============ LA LETTRE ============ -->
-  <section class="section newsletter cv" data-chamber="La Lettre">
-    <div class="wrap">
-      <span class="eyebrow" data-reveal>La lettre</span>
-      <p class="lead mt-3" data-reveal>Nos éditions confidentielles et nos rendez-vous privés. Rien d'autre.</p>
-      <form class="mt-5" id="nlForm" novalidate>
-        <div class="nl-field">
-          <label class="visually-hidden" for="nlEmail">Adresse e-mail</label>
-          <input type="email" id="nlEmail" name="email" placeholder="votre@email.com" required autocomplete="email" />
-          <button class="nl-arrow" type="submit" aria-label="S'inscrire"><i class="bi bi-arrow-right"></i></button>
+      <div class="sec-head">
+        <div><p class="eyebrow">Nouveautés</p><h2 class="title mt-2" id="t-news" data-split>Arrivés à Dakar</h2></div>
+        <div class="rail-nav">
+          <button type="button" data-rail-prev aria-label="Parfums précédents"><i class="bi bi-arrow-left" aria-hidden="true"></i></button>
+          <button type="button" data-rail-next aria-label="Parfums suivants"><i class="bi bi-arrow-right" aria-hidden="true"></i></button>
         </div>
-        <p class="err mt-3" id="nlErr" aria-live="polite"></p>
-      </form>
-      <div class="nl-success" id="nlSuccess" aria-live="polite">
-        <p class="mt-3">C'est noté. Votre première lettre arrive bientôt.</p>
       </div>
+    </div>
+    <div class="rail-wrap"><div class="rail" id="rail" aria-label="Nouveautés, défilement horizontal"></div></div>
+  </section>
+
+  <!-- 4.6 Le Rituel -->
+  <section class="ritual" data-chamber="Le Rituel" aria-labelledby="t-ritual">
+    <div class="ritual__bg" aria-hidden="true"><img src="img/HERO-SECTION/monogramme-nuit.jpg" alt="" width="1200" height="1500" loading="lazy" decoding="async"></div>
+    <div class="wrap">
+      <h2 class="ritual__line" id="t-ritual" data-split>Trouvez votre signature olfactive en 6 questions.</h2>
+      <a class="btn btn--light" href="rituel.html">Commencer le rituel <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-</main>
+  <!-- 4.7 Journal -->
+  <section class="section" data-chamber="Journal" aria-labelledby="t-journal">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Le journal</p><h2 class="title mt-2" id="t-journal" data-split>Lectures</h2></div>
+        <a class="link-u" href="journal.html">Tout le journal <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="journal-grid" id="journal"></div>
+    </div>
+  </section>
 
-<script type="module" src="assets/js/home.js"></script>
+  <!-- 4.8 La boutique -->
+  <section class="visit" data-chamber="Boutique" aria-labelledby="t-visit">
+    <div class="visit__bg" aria-hidden="true"><img src="img/HERO-SECTION/lattafa-asad-roches.jpg" alt="" width="1920" height="1072" loading="lazy" decoding="async"></div>
+    <div class="visit__card">
+      <p class="eyebrow">La boutique</p>
+      <h2 id="t-visit">Almadies, Dakar</h2>
+      <p>Route des Almadies · Lundi – samedi, 10 h – 20 h<br>Essais sur la peau, conseil, emballage cadeau.</p>
+      <a class="btn btn--light mt-4" href="contact.html">Réserver une consultation privée</a>
+    </div>
+  </section>
+
+  <!-- 4.9 Lettre -->
+  <section class="section letter" data-chamber="La lettre" aria-labelledby="t-letter">
+    <div class="wrap">
+      <p class="eyebrow">La lettre</p>
+      <h2 class="letter__line mt-3" id="t-letter">Recevez nos éditions confidentielles.</h2>
+      <form id="letterForm" novalidate>
+        <div class="field">
+          <label for="letterEmail">Adresse e-mail</label>
+          <input id="letterEmail" type="email" name="email" autocomplete="email" placeholder="nom@domaine.sn" required aria-describedby="letterErr">
+          <span class="err" id="letterErr"></span>
+        </div>
+        <button class="letter__submit" type="submit" aria-label="S'inscrire à la lettre"><i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+      </form>
+    </div>
+  </section>
+</main>
 </body>
 </html>

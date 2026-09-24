@@ -1,25 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Gana monogram">
-  <!-- Deep navy badge -->
-  <rect x="2" y="2" width="124" height="124" rx="34" fill="#0F2447"/>
-  <rect x="2" y="2" width="124" height="124" rx="34" fill="none" stroke="#1E3A6E" stroke-width="1.2"/>
-
-  <!-- Pumpkin body (champagne outline) -->
-  <path d="M64 46
-           C 50 46, 36 57, 36 70
-           C 36 83, 50 94, 64 94
-           C 78 94, 92 83, 92 70
-           C 92 57, 78 46, 64 46 Z"
-        fill="none" stroke="#D1C2A7" stroke-width="2.4"/>
-
-  <!-- Stem -->
-  <path d="M64 48 C 63 40, 65 34, 68 29" fill="none" stroke="#D1C2A7" stroke-width="2.4" stroke-linecap="round"/>
-
-  <!-- Leaf / droplet -->
-  <path d="M68 30 C 75 26, 84 28, 82 34 C 80 40, 71 38, 68 30 Z" fill="#D1C2A7"/>
-
-  <!-- Lowercase g monogram -->
-  <text x="64" y="78" text-anchor="middle"
-        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
-        font-style="italic" font-weight="500" font-size="46"
-        fill="#D1C2A7">g</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110" role="img" aria-label="Teranga">
+  <title>Teranga</title>
+  <g fill="#0A0A0A">
+    <rect x="30" y="0" width="40" height="8"/>
+    <rect x="35" y="13" width="9" height="8"/>
+    <rect x="56" y="13" width="9" height="8"/>
+  </g>
+  <g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linecap="square">
+    <path d="M3.5 110 V29.5 H96.5 V70.5"/>
+    <path d="M19.5 44.5 H80.5 V62.5 H19.5"/>
+    <path d="M19.5 53.5 H66"/>
+    <path d="M19.5 72 V110"/>
+    <rect x="40.5" y="70.5" width="56" height="36"/>
+  </g>
 </svg>

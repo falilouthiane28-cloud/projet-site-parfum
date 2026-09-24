@@ -1,22 +1,67 @@
 [
   {
-    "id": "oud-langage-dakar", "kicker": "Matières", "title": "L'oud, ce langage que Dakar comprend",
-    "date": "2026-08-12", "reading": 6, "image": "img/Tom Ford Oud Wood.jpg",
-    "excerpt": "De la résine d'agar aux flacons contemporains : comment le bois le plus précieux du monde dialogue avec une clientèle sénégalaise qui le connaît de longue date."
+    "id": "oud-langage-dakar",
+    "kicker": "Matières",
+    "title": "L'oud, ce langage que Dakar comprend",
+    "date": "2026-09-02",
+    "reading": 6,
+    "image": "img/produits/alharamain-amber-oud-dubai-night.jpg",
+    "alt": "Flacon Amber Oud d'Al Haramain posé sur des copeaux de bois d'oud, fumée et safran",
+    "excerpt": "Du bois d'agar brûlé dans les maisons de Dakar aux extraits contemporains : un même mot, plusieurs dialectes.",
+    "inline": {
+      "image": "img/HERO-SECTION/calligraphie-oud.jpg",
+      "alt": "Calligraphie arabe dorée : « parfum d'oud »",
+      "caption": "عطر العود — « parfum d'oud », en calligraphie arabe."
+    },
+    "body": [
+      "À Dakar, l'oud n'a pas attendu les maisons occidentales. On le brûlait en copeaux pour les baptêmes, les mariages, la prière du vendredi. Le mot désigne d'abord un bois : l'aquilaria, infecté par un champignon, qui fabrique une résine sombre pour se défendre.",
+      "Les parfumeurs l'ont ensuite apprivoisé. Tom Ford le polit à la cardamome dans Oud Wood. Initio le laisse brut, safrané, dans Oud for Greatness. Lattafa le rend accessible avec Bade'e Al Oud, à moins de vingt mille francs.",
+      "Notre conseil : commencez par un oud « habillé », puis allez vers les versions plus brutes. Le nez s'habitue vite, et l'on revient rarement en arrière."
+    ]
   },
   {
-    "id": "construire-garde-robe", "kicker": "Le Rituel", "title": "Construire sa garde-robe olfactive",
-    "date": "2026-07-28", "reading": 5, "image": "img/197b69741386991b2074e00f7b2794cc.jpg",
-    "excerpt": "Un parfum de jour, un parfum de nuit, une signature. Trois flacons suffisent — encore faut-il choisir les bons. Notre méthode en trois gestes."
+    "id": "garde-robe-olfactive",
+    "kicker": "Le Rituel",
+    "title": "Construire sa garde-robe olfactive",
+    "date": "2026-08-18",
+    "reading": 5,
+    "image": "img/produits/lattafa-fakhar.jpg",
+    "alt": "Quatre flacons Fakhar de Lattafa sur des socles orange",
+    "excerpt": "Un parfum de jour, un parfum de soir, une signature. Trois flacons suffisent si on les choisit bien.",
+    "body": [
+      "Trois flacons couvrent une année : un parfum de jour, net et discret ; un parfum de soir, plus dense ; et une signature, celle vers laquelle la main revient sans réfléchir.",
+      "Le jour appelle les agrumes, le vétiver, les notes marines. Le soir, l'ambre, le tabac, l'oud. La signature, elle, se trouve à l'essai, sur la peau, jamais sur une mouillette.",
+      "Venez les composer avec nous en boutique : vingt minutes et trois essais valent mieux que toutes les descriptions."
+    ]
   },
   {
-    "id": "sillage-chaleur", "kicker": "Conseils", "title": "Tenir le sillage sous la chaleur",
-    "date": "2026-07-05", "reading": 4, "image": "img/Lattafa Asad Luxury Fragrance _ woody Arabic notes.jpg",
-    "excerpt": "Concentrations, points d'application, conservation : porter un extrait sous le climat de Dakar demande quelques gestes précis. Voici lesquels."
+    "id": "sillage-chaleur",
+    "kicker": "Conseils",
+    "title": "Tenir le sillage sous la chaleur",
+    "date": "2026-07-30",
+    "reading": 4,
+    "image": "img/HERO-SECTION/flacon-serpent-or.jpg",
+    "alt": "Flacon doré entouré d'un serpent en métal, devant son étui blanc texturé",
+    "excerpt": "Sous le climat de Dakar, un parfum projette plus fort et s'évapore plus vite. Quatre gestes pour le faire durer.",
+    "body": [
+      "La chaleur amplifie un parfum pendant la première heure, puis l'épuise. Un extrait ou une eau de parfum résistent mieux qu'une eau de toilette.",
+      "Appliquez sur une peau hydratée, sans parfum dans la crème : le gras retient les molécules. Visez les points chauds, cou et creux des coudes, sans frotter.",
+      "Une vaporisation sur les vêtements prolonge le sillage d'une demi-journée. Et gardez vos flacons loin de la voiture et du soleil : la lumière abîme le jus en quelques semaines."
+    ]
   },
   {
-    "id": "rose-mille-visages", "kicker": "Matières", "title": "La rose et ses mille visages",
-    "date": "2026-06-18", "reading": 7, "image": "img/placeholder-flacon.svg",
-    "excerpt": "Confiturée, poivrée, métallique ou orientale : la rose n'est jamais une seule fleur. Petit atlas d'une matière caméléon."
+    "id": "rose-mille-visages",
+    "kicker": "Matières",
+    "title": "La rose et ses mille visages",
+    "date": "2026-07-08",
+    "reading": 7,
+    "image": "img/produits/pdm-delina-exclusif-2.jpg",
+    "alt": "Flacon rose Delina Exclusif de Parfums de Marly entouré de diamants",
+    "excerpt": "Litchi chez Delina, oud chez Oud Satin Mood, fleur principale chez Amethyst : trois roses que tout oppose.",
+    "body": [
+      "La rose contient plusieurs centaines de molécules. Chaque parfumeur en éclaire une partie, et le résultat change du tout au tout.",
+      "Chez Parfums de Marly, Delina Exclusif l'associe au litchi et à l'encens. Chez Maison Francis Kurkdjian, Oud Satin Mood la pose sur un oud vanillé. Chez Lattafa, Bade'e Al Oud Amethyst la met devant l'oud au lieu de derrière.",
+      "Essayez-les côte à côte en boutique : après ce test, on ne dit plus « je n'aime pas la rose »."
+    ]
   }
 ]

@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Le Rituel — Teranga · Dakar</title>
-<meta name="description" content="Six questions pour trouver votre signature olfactive. Un parcours guidé qui vous recommande les parfums faits pour vous." />
-<meta name="theme-color" content="#0A0A0A" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" /></noscript>
-<link rel="stylesheet" href="assets/css/app.css" /><link rel="stylesheet" href="assets/css/pages.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Rituel — Votre signature en 6 questions · Teranga</title>
+<meta name="description" content="Six questions sur vos moments, vos souvenirs et vos matières préférées. Nous proposons trois parfums de la boutique faits pour vous.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"></noscript>
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
-<script defer src="assets/js/shell.js"></script><script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/data.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/api.js"></script>
+<script defer src="assets/js/shell.js"></script>
+<script defer src="assets/js/product.js"></script>
+<script defer src="assets/js/cart.js"></script>
+<script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/pages/rituel.js"></script>
 </head>
-<body>
-<a class="skip" href="#main">Aller au contenu</a>
+<body data-page="rituel">
+<a class="skip" href="#quiz">Aller au questionnaire</a>
 <main id="main">
-  <section class="page-hero" data-theme="dark">
-    <div class="wrap"><span class="eyebrow">Le Rituel</span><h1>Votre signature en six questions</h1>
-      <p>Répondez d'instinct. À la fin, trois flacons choisis pour vous.</p></div>
+  <header class="page-head wrap">
+    <p class="eyebrow">Le Rituel</p>
+    <h1 class="mt-2">Six questions, trois flacons</h1>
+    <p>Répondez sans réfléchir trop longtemps. Nous croisons vos réponses avec les notes de chaque parfum en rayon.</p>
+  </header>
+  <section class="wrap" aria-label="Questionnaire olfactif">
+    <div class="quiz" id="quiz"></div>
   </section>
-  <section class="section"><div class="wrap">
-    <div class="quiz" id="quiz">
-      <div class="quiz__progress" aria-hidden="true"><i id="progressBar" style="width:0%"></i></div>
-      <div id="quizStage" aria-live="polite"></div>
-    </div>
-  </div></section>
 </main>
-<script type="module" src="assets/js/pages/rituel.js"></script>
 </body>
 </html>

@@ -1,74 +1,140 @@
-/* compte.js — Espace client local (sans mot de passe). Profil, commandes, désirs. */
+/* compte.js — Espace client : commandes, liste de désirs, coordonnées.
+   Tout passe par T.api, donc localStorage aujourd'hui et Supabase le jour
+   où config.js reçoit ses clés — sans toucher à cette page. */
 (function () {
   'use strict';
-  var fmt = (window.TERANGA && window.TERANGA.fmtXOF) || function (n) { return n + ' FCFA'; };
+  var T = window.TERANGA;
   var view = document.getElementById('accountView');
-  var tab = 'orders';
+  if (!view) return;
 
-  function getUser() { try { return JSON.parse(localStorage.getItem('teranga-user') || 'null'); } catch (e) { return null; } }
-  function setUser(u) { try { localStorage.setItem('teranga-user', JSON.stringify(u)); } catch (e) {} }
-  function getOrders() { try { return JSON.parse(localStorage.getItem('teranga-orders') || '[]'); } catch (e) { return []; } }
-  function getWish() { try { return JSON.parse(localStorage.getItem('teranga-wishlist') || '[]'); } catch (e) { return []; } }
+  var TABS = [
+    ['commandes', 'Commandes'],
+    ['envies', 'Liste de désirs'],
+    ['profil', 'Coordonnées']
+  ];
+  function fromHash() {
+    var h = (location.hash || '').replace('#', '');
+    return TABS.some(function (t) { return t[0] === h; }) ? h : 'commandes';
+  }
+  var tab = fromHash();
 
-  function renderAuth() {
-    view.innerHTML =
-      '<div class="auth-box" data-reveal>' +
-        '<p class="muted">Identifiez-vous pour retrouver vos commandes et votre liste de désirs. Aucun mot de passe : votre espace reste sur cet appareil.</p>' +
-        '<form class="form-grid mt-4" id="authForm" novalidate>' +
-          '<div class="field"><label for="aName">Nom</label><input id="aName" required autocomplete="name" /></div>' +
-          '<div class="field"><label for="aEmail">E-mail</label><input id="aEmail" type="email" required autocomplete="email" /><span class="err" id="aErr"></span></div>' +
-          '<button class="btn" type="submit">Accéder à mon espace</button>' +
-        '</form></div>';
-    document.getElementById('authForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var n = document.getElementById('aName').value.trim(), em = document.getElementById('aEmail').value.trim();
-      if (!n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { document.getElementById('aErr').textContent = 'Nom et e-mail valides requis.'; return; }
-      setUser({ name: n, email: em });
-      renderDash();
-    });
-    if (window.TERANGA && window.TERANGA.motionRefresh) window.TERANGA.motionRefresh();
+  function date(iso) {
+    var d = new Date(iso);
+    return isNaN(d) ? '' : d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  function renderDash() {
-    var u = getUser();
-    var tabs = [['orders', 'Commandes'], ['wishlist', 'Liste de désirs'], ['profile', 'Profil']];
-    var body = '';
-    if (tab === 'orders') {
-      var orders = getOrders();
-      body = orders.length ? orders.map(function (o) {
-        return '<article class="maison-card" style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">' +
-          '<strong style="font-family:var(--font-serif);font-size:18px">' + o.id + '</strong>' +
-          '<span class="chip" aria-pressed="false" style="pointer-events:none">' + o.status + '</span></div>' +
-          '<p class="muted" style="margin-top:8px">' + new Date(o.at).toLocaleDateString('fr-FR') + ' · ' + o.mode + ' · ' + o.items.reduce(function (s, i) { return s + i.qty; }, 0) + ' article(s)</p>' +
-          '<p class="price" style="margin-top:8px">' + fmt(o.total) + '</p></article>';
-      }).join('') : '<p class="empty-state">Aucune commande pour l\'instant. <a class="link-u" href="boutique.html">Explorer la boutique</a></p>';
-    } else if (tab === 'wishlist') {
-      var w = getWish();
-      body = w.length ? '<div class="catalog">' + w.map(function (i) {
-        return '<article class="p-card"><a class="p-card__media" href="parfum.html?id=' + i.id + '"><img src="' + i.img + '" alt="' + i.name + '" width="480" height="600" /></a>' +
-          '<div class="p-card__body"><span class="p-card__maison">' + (i.maison || '') + '</span><h3 class="p-card__name">' + i.name + '</h3></div></article>';
-      }).join('') + '</div>' : '<p class="empty-state">Votre liste de désirs est vide.</p>';
-    } else {
-      body = '<div class="auth-box"><div class="field"><label>Nom</label><input value="' + u.name + '" id="pName" /></div>' +
-        '<div class="field mt-3"><label>E-mail</label><input value="' + u.email + '" id="pEmail" /></div>' +
-        '<div style="display:flex;gap:12px;margin-top:24px"><button class="btn" id="saveProfile">Enregistrer</button>' +
-        '<button class="btn btn--ghost" id="logout">Se déconnecter</button></div></div>';
+  /* ---------- Commandes ---------- */
+  function ordersHTML() {
+    var list = T.api.localOrders();
+    if (!list.length) {
+      return '<div class="empty"><p>Aucune commande pour le moment.</p>' +
+        '<a class="btn" href="boutique.html">Voir la boutique</a></div>';
+    }
+    return list.map(function (o) {
+      var n = (o.items || []).reduce(function (s, i) { return s + i.qty; }, 0);
+      var thumbs = (o.items || []).slice(0, 5).map(function (i) {
+        return '<img src="' + T.esc(i.image) + '" alt="" width="44" height="44" loading="lazy">';
+      }).join('');
+      var ville = o.delivery && o.delivery.ville ? ' · ' + T.esc(o.delivery.ville) : '';
+      return '<article class="order">' +
+        '<div><p class="order__ref">' + T.esc(o.id) + '</p>' +
+          '<p class="order__meta">' + date(o.at) + ' · ' + n + ' article' + (n > 1 ? 's' : '') + ville + '</p>' +
+          '<div class="order__thumbs">' + thumbs + '</div></div>' +
+        '<div style="text-align:right">' +
+          '<p class="price">' + T.fmt(o.total) + '</p>' +
+          '<p class="order__meta">' + T.esc(o.status || 'En attente') + '</p></div>' +
+      '</article>';
+    }).join('');
+  }
+
+  /* ---------- Liste de désirs ---------- */
+  function wishHTML() {
+    var items = T.api.wishlist.all().map(T.byId).filter(Boolean);
+    if (!items.length) {
+      return '<div class="empty"><p>Votre liste de désirs est vide. Le cœur, sur une carte, la remplit.</p>' +
+        '<a class="btn" href="boutique.html">Voir la boutique</a></div>';
+    }
+    return '<div class="catalog" style="padding-top:0">' + items.map(function (p) { return T.card(p); }).join('') + '</div>';
+  }
+
+  /* ---------- Coordonnées ---------- */
+  function profileHTML(profile) {
+    return '<form class="form-grid" id="profileForm" novalidate style="max-width:560px">' +
+      '<div class="form-row">' +
+        '<div class="field"><label for="pName">Nom complet</label>' +
+          '<input id="pName" name="full_name" autocomplete="name" value="' + T.esc(profile.full_name || '') + '"></div>' +
+        '<div class="field"><label for="pPhone">Téléphone</label>' +
+          '<input id="pPhone" name="phone" type="tel" autocomplete="tel" value="' + T.esc(profile.phone || '') + '"></div>' +
+      '</div>' +
+      '<div class="field"><label for="pAddr">Adresse de livraison</label>' +
+        '<input id="pAddr" name="address" autocomplete="street-address" placeholder="Quartier, rue, repère" value="' + T.esc(profile.address || '') + '"></div>' +
+      '<div style="display:flex;gap:12px;flex-wrap:wrap">' +
+        '<button class="btn" type="submit">Enregistrer</button>' +
+        '<button class="btn btn--ghost" type="button" id="wipe">Effacer mes données</button>' +
+      '</div>' +
+      '<p class="form-msg" id="profileMsg" role="status" aria-live="polite"></p>' +
+      '<p class="muted" style="font-size:13px">Ces coordonnées pré-remplissent le formulaire de commande. Elles ne quittent pas cet appareil.</p>' +
+    '</form>';
+  }
+
+  /* ---------- Rendu ---------- */
+  function render(profile) {
+    var body = tab === 'commandes' ? ordersHTML()
+      : tab === 'envies' ? wishHTML()
+      : profileHTML(profile);
+
+    view.innerHTML =
+      '<div class="tabs" role="tablist" aria-label="Sections du compte">' +
+        TABS.map(function (t) {
+          return '<button class="tab" type="button" role="tab" id="tab-' + t[0] + '" data-tab="' + t[0] + '" ' +
+            'aria-selected="' + (t[0] === tab) + '" aria-controls="panel-compte" ' +
+            'tabindex="' + (t[0] === tab ? '0' : '-1') + '">' + t[1] + '</button>';
+        }).join('') +
+      '</div>' +
+      '<div id="panel-compte" role="tabpanel" aria-labelledby="tab-' + tab + '">' + body + '</div>';
+
+    view.querySelectorAll('[data-tab]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        tab = b.dataset.tab;
+        history.replaceState(null, '', '#' + tab);
+        render(profile);
+        view.querySelector('[data-tab="' + tab + '"]').focus();
+      });
+    });
+
+    var pf = document.getElementById('profileForm');
+    if (pf) {
+      pf.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var next = {
+          full_name: pf.elements.full_name.value.trim(),
+          phone: pf.elements.phone.value.trim(),
+          address: pf.elements.address.value.trim()
+        };
+        T.api.saveProfile(next).then(function () {
+          profile = next;
+          var m = document.getElementById('profileMsg');
+          m.className = 'form-msg is-ok';
+          m.textContent = 'Coordonnées enregistrées.';
+        });
+      });
+      document.getElementById('wipe').addEventListener('click', function () {
+        T.api.saveProfile({ full_name: '', phone: '', address: '' }).then(function () {
+          profile = { full_name: '', phone: '', address: '' };
+          render(profile);
+          T.toast('Vos coordonnées sont effacées.');
+        });
+      });
     }
 
-    view.innerHTML =
-      '<p class="muted">Bonjour, <strong>' + u.name + '</strong>.</p>' +
-      '<div class="account-tabs" role="tablist">' + tabs.map(function (t) {
-        return '<button class="account-tab" role="tab" data-tab="' + t[0] + '" aria-selected="' + (t[0] === tab) + '">' + t[1] + '</button>';
-      }).join('') + '</div>' +
-      '<div role="tabpanel">' + body + '</div>';
-
-    view.querySelectorAll('.account-tab').forEach(function (b) { b.addEventListener('click', function () { tab = b.dataset.tab; renderDash(); }); });
-    var sp = document.getElementById('saveProfile');
-    if (sp) sp.addEventListener('click', function () { setUser({ name: document.getElementById('pName').value.trim(), email: document.getElementById('pEmail').value.trim() }); renderDash(); });
-    var lo = document.getElementById('logout');
-    if (lo) lo.addEventListener('click', function () { try { localStorage.removeItem('teranga-user'); } catch (e) {} tab = 'orders'; renderAuth(); });
+    T.motion.refresh();
   }
 
-  function boot() { getUser() ? renderDash() : renderAuth(); }
-  boot();
+  addEventListener('hashchange', function () {
+    var next = fromHash();
+    if (next !== tab) { tab = next; T.api.getProfile().then(render); }
+  });
+  document.addEventListener('wishlist:change', function () { if (tab === 'envies') T.api.getProfile().then(render); });
+
+  T.api.getProfile().then(render);
 })();

@@ -1,5 +1,7 @@
 # Design Plan — Maison monochrome, Dakar
 
+> **Note du 2026-09-23.** Ce document date d’avant la mise en œuvre. La décision typographique a ensuite été revue : le site tourne sur **Bodoni Moda** (display) + **Hanken Grotesk** (corps) — l’« alternative si serif souhaité » envisagée plus bas a été retenue. Space Grotesk et Space Mono ne sont chargés par aucune page. Le reste du plan (monochrome, trait de 2 px, labyrinthe) est appliqué tel quel.
+
 > Plan avant code (brief §5). Direction : monochrome strict, discipline, une seule signature structurelle tirée du logo-labyrinthe.
 
 ## Palette (verrouillée — 6 valeurs, zéro couleur)

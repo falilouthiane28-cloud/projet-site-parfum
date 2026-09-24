@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Gana monogram">
+  <!-- Deep navy badge -->
+  <rect x="2" y="2" width="124" height="124" rx="34" fill="#0F2447"/>
+  <rect x="2" y="2" width="124" height="124" rx="34" fill="none" stroke="#1E3A6E" stroke-width="1.2"/>
+
+  <!-- Pumpkin body (champagne outline) -->
+  <path d="M64 46
+           C 50 46, 36 57, 36 70
+           C 36 83, 50 94, 64 94
+           C 78 94, 92 83, 92 70
+           C 92 57, 78 46, 64 46 Z"
+        fill="none" stroke="#D1C2A7" stroke-width="2.4"/>
+
+  <!-- Stem -->
+  <path d="M64 48 C 63 40, 65 34, 68 29" fill="none" stroke="#D1C2A7" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Leaf / droplet -->
+  <path d="M68 30 C 75 26, 84 28, 82 34 C 80 40, 71 38, 68 30 Z" fill="#D1C2A7"/>
+
+  <!-- Lowercase g monogram -->
+  <text x="64" y="78" text-anchor="middle"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic" font-weight="500" font-size="46"
+        fill="#D1C2A7">g</text>
+</svg>

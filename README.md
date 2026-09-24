@@ -26,7 +26,7 @@ Ouvrez simplement `index.html` en double-clic. Aucune dépendance HTTP, aucun CO
 - **Monochrome** : 6 gris uniquement (`--ink #0A0A0A`, `--paper #FAFAF7`, `--gray-90/60/30/15/08/03`). Hiérarchie par contraste, échelle, espace, poids — **jamais par couleur**.
 - **Couleur = images uniquement** : 44 photos produits + 25 logos + 7 ambianceshots en couleur pleine. Zéro filtre grayscale, zéro desaturation, zéro B&W — toutes les images existent, zéro placeholder.
 - **Trait du logo** : `--stroke: 2px` unité de base pour toutes les règles, bordures, cadres (angles droits, zéro rayon).
-- **Typographie** : Space Grotesk (display, capitale) + Hanken Grotesk (corps, 300–600) + Space Mono (metadata/prix). Google Fonts (production-ready).
+- **Typographie** : Bodoni Moda (display, serif haute parfumerie) + Hanken Grotesk (corps, 300–600). Google Fonts (production-ready).
 - **Signature unique — Navigateur-Labyrinthe** : plan de sol 44×44px fixed left (angles droits); marqueur carré avance au scroll et mark section courante. Le logo est un labyrinthe, un parfum est un chemin.
 - **Voix** : casse phrase, verbes exacts, aucun mot « marketing » usé (découvrir, expérience, élégant…).
 
@@ -36,7 +36,7 @@ Ouvrez simplement `index.html` en double-clic. Aucune dépendance HTTP, aucun CO
 |---|---|---|
 | **Accueil** | `/index.html` | Hero 7 slides scrubbed, sélection bento, maisons, quiz, journal, newsletter, visite |
 | **Boutique** | `/boutique.html` | Grille 41 parfums, filtres (genre/famille/maison/prix), tri 5 modes, URL-synced |
-| **Parfum** | `/parfum.html?id=` | Fiche détail, galerie sticky, notes, tailles, panier, wishlist, similaires |
+| **Parfum** | `/parfum.html?id=` | Page dédiée (jamais une modale) : galerie sticky, pyramide, sillage/tenue, tailles, panier, wishlist, similaires |
 | **Maisons** | `/maisons.html` | Annuaire 25 maisons, en-rayon + commande-spéciale |
 | **Rituel** | `/rituel.html` | Quiz 6 questions → profil + 3 produits recommandés |
 | **Journal** | `/journal.html?a=` | Articles (liste ou détail), héros, corps, drop-cap, média inline |
@@ -61,7 +61,7 @@ assets/
     data.js         (35KB, généré) — window.TERANGA_DATA (parfums, maisons, articles), fallback fetch
     core.js         (100 lignes) — T.fmt (FCFA), T.esc (XSS), T.ls (localStorage safe), T.toast, T.trapFocus
     api.js          (200 lignes) — T.api.saveOrder, .saveNewsletter, .auth.*, .wishlist.*, localStorage-first
-    product.js      (400 lignes) — T.card (affiche carte), T.detail (fiche), T.related, quick-view, deep linking
+    product.js      (150 lignes) — T.card (la carte EST un lien), T.detail, T.related, liste de désirs
     cart.js         (500+ lignes) — panier (add/remove/qty), drawer, checkout form, validation, confirmation
     motion.js       (200 lignes) — Lenis init, GSAP plugins, splitTitles, batchCards, clips, marquees
     shell.js        (300 lignes) — header/menu/footer/loader/labyrinthe injectés sur 10 pages
@@ -86,7 +86,8 @@ data/
 img/
   produits/         (44 images) — flacons couleur, 3:4 ratio
   maisons/          (25 images) — logos (ou fallback photo de flacon)
-  ambiance/         (7 images) — lifestyle, éditorial, couleur pleine
+  HERO-IMG/         (4 images 1920px) — séquence du hero, originaux 2K dans _archive/img/hero-2k/
+  HERO-SECTION/     (9 images) — ambiance, chapitres de La Maison, médias du journal
   _archive/         (10 fichiers) — doublons, placeholder, maquettes (conservés)
 
 *.html (10 pages)
@@ -116,7 +117,7 @@ docs/
 ## UX Avancée
 
 - ✅ **Panier persistant** : localStorage cross-tab (storage event listener).
-- ✅ **Deep linking** : `?parfum=id` → quick-view modal, `history.pushState`, popstate close.
+- ✅ **Page produit dédiée** : `parfum.html?id=…` ; les anciens liens `?parfum=id` y sont redirigés.
 - ✅ **Wishlist** : toggle [data-wish], aria-pressed, événement cart:change.
 - ✅ **Sticky filters** (boutique), **sticky gallery** (parfum), **sticky drawer** (panier).
 - ✅ **Focus trap** (menu/modal/drawer), **keyboard escape**, **scroll lock stacked**.
@@ -128,7 +129,7 @@ docs/
 
 - ✅ **44 images produits** : couleur pleine, ratio 3:4, lazy-loading + dimensions déclarées.
 - ✅ **25 logos maisons** : contraste monochrome, ou fallback à photo de flacon si manquant.
-- ✅ **7 shots ambiance** : lifestyle, éditorial, couleur vivante.
+- ✅ **9 images d’ambiance** (`img/HERO-SECTION/`) + **4 images de hero** (`img/HERO-IMG/`), toutes en couleur.
 - ✅ **Zéro orphelins** : chaque produit/article a son image, zéro placeholder, zéro broken links.
 - ✅ **Zéro grayscale** : vérifié via grep, toutes les images en couleur native.
 
@@ -168,7 +169,7 @@ docs/
 ```javascript
 {
   id, title, kicker, date, reading (min), excerpt,
-  image ("img/ambiance/..."), alt,
+  image ("img/produits/..." ou "img/HERO-SECTION/..."), alt,
   body: ["paragraphe 1", ...],
   inline: { image, alt, caption }
 }

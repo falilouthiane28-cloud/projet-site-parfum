@@ -1,22 +1,227 @@
 [
-  { "name": "Maison Francis Kurkdjian", "pays": "France", "phrase": "L'absolu, sobrement.", "annee": 2009 },
-  { "name": "Amouage", "pays": "Oman", "phrase": "Le luxe d'Orient, sans compromis.", "annee": 1983 },
-  { "name": "Xerjoff", "pays": "Italie", "phrase": "L'orfèvrerie olfactive de Turin.", "annee": 2007 },
-  { "name": "Roja Parfums", "pays": "Royaume-Uni", "phrase": "L'extrême du raffinement britannique.", "annee": 2011 },
-  { "name": "Parfums de Marly", "pays": "France", "phrase": "L'élégance équestre de Versailles.", "annee": 2009 },
-  { "name": "Nishane", "pays": "Turquie", "phrase": "L'artisanat d'Istanbul.", "annee": 2012 },
-  { "name": "Initio", "pays": "France", "phrase": "La parfumerie des sens.", "annee": 2015 },
-  { "name": "Byredo", "pays": "Suède", "phrase": "L'épure scandinave et ses souvenirs.", "annee": 2006 },
-  { "name": "Le Labo", "pays": "États-Unis", "phrase": "Le laboratoire, à la main.", "annee": 2006 },
-  { "name": "Diptyque", "pays": "France", "phrase": "Le récit d'artisan, depuis 1961.", "annee": 1961 },
-  { "name": "Frédéric Malle", "pays": "France", "phrase": "L'éditeur de parfums.", "annee": 2000 },
-  { "name": "Dior", "pays": "France", "phrase": "La couture faite parfum.", "annee": 1947 },
-  { "name": "Chanel", "pays": "France", "phrase": "L'intemporel, toujours.", "annee": 1921 },
-  { "name": "Guerlain", "pays": "France", "phrase": "Deux siècles de savoir-faire.", "annee": 1828 },
-  { "name": "Tom Ford", "pays": "États-Unis", "phrase": "Le glamour sans détour.", "annee": 2006 },
-  { "name": "Yves Saint Laurent", "pays": "France", "phrase": "L'audace en flacon.", "annee": 1961 },
-  { "name": "Creed", "pays": "Royaume-Uni", "phrase": "La maison des rois.", "annee": 1760 },
-  { "name": "Lattafa", "pays": "Émirats arabes unis", "phrase": "L'Orient accessible.", "annee": 1980 },
-  { "name": "Al Haramain", "pays": "Émirats arabes unis", "phrase": "L'ambre et l'oud, depuis 1970.", "annee": 1970 },
-  { "name": "Rasasi", "pays": "Émirats arabes unis", "phrase": "Le sillage du Golfe.", "annee": 1979 }
+  {
+    "name": "Maison Francis Kurkdjian",
+    "pays": "France",
+    "annee": 2009,
+    "phrase": "Des formules courtes, des sillages longs.",
+    "logo": "img/maisons/maison-francis-kurkdjian.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Parfums de Marly",
+    "pays": "France",
+    "annee": 2009,
+    "phrase": "Les ambres du XVIIIe siècle, relus aujourd'hui.",
+    "logo": "img/maisons/parfums-de-marly.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Amouage",
+    "pays": "Oman",
+    "annee": 1983,
+    "phrase": "Les encens de Mascate.",
+    "logo": "img/maisons/amouage.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Xerjoff",
+    "pays": "Italie",
+    "annee": 2007,
+    "phrase": "Turin, le miel et le tabac.",
+    "logo": "img/maisons/xerjoff.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Nishane",
+    "pays": "Turquie",
+    "annee": 2012,
+    "phrase": "Istanbul, en extraits concentrés.",
+    "logo": "img/maisons/nishane.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Initio",
+    "pays": "France",
+    "annee": 2015,
+    "phrase": "Des matières choisies pour leur effet sur la peau.",
+    "logo": "img/maisons/initio.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Byredo",
+    "pays": "Suède",
+    "annee": 2006,
+    "phrase": "Stockholm, des souvenirs mis en flacon.",
+    "logo": "img/maisons/byredo.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Diptyque",
+    "pays": "France",
+    "annee": 1961,
+    "phrase": "34, boulevard Saint-Germain.",
+    "logo": "img/maisons/diptyque.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Creed",
+    "pays": "Royaume-Uni",
+    "annee": 1760,
+    "phrase": "Une maison familiale depuis le XVIIIe siècle.",
+    "logo": "img/maisons/creed.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Roja Parfums",
+    "pays": "Royaume-Uni",
+    "annee": 2011,
+    "phrase": "Londres, des formules longues.",
+    "logo": null,
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Tom Ford",
+    "pays": "États-Unis",
+    "annee": 2006,
+    "phrase": "L'oud rendu lisible pour l'Occident.",
+    "logo": "img/maisons/tom-ford.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Dior",
+    "pays": "France",
+    "annee": 1947,
+    "phrase": "L'avenue Montaigne.",
+    "logo": "img/maisons/dior.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Chanel",
+    "pays": "France",
+    "annee": 1921,
+    "phrase": "Le bois et le bleu.",
+    "logo": "img/maisons/chanel.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Guerlain",
+    "pays": "France",
+    "annee": 1828,
+    "phrase": "Deux siècles de vanille.",
+    "logo": "img/maisons/guerlain.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Hermès",
+    "pays": "France",
+    "annee": 1837,
+    "phrase": "Le faubourg Saint-Honoré.",
+    "logo": "img/maisons/hermes.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Yves Saint Laurent",
+    "pays": "France",
+    "annee": 1961,
+    "phrase": "La lavande, le monogramme.",
+    "logo": "img/maisons/saint-laurent.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Versace",
+    "pays": "Italie",
+    "annee": 1978,
+    "phrase": "La Méduse et le poivre.",
+    "logo": "img/maisons/versace.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Emporio Armani",
+    "pays": "Italie",
+    "annee": 1981,
+    "phrase": "Milan, le rhum et la châtaigne.",
+    "logo": "img/maisons/emporio-armani.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Lattafa",
+    "pays": "Émirats arabes unis",
+    "annee": 1980,
+    "phrase": "L'Orient qui se porte tous les jours.",
+    "logo": "img/maisons/lattafa-pride.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Al Haramain",
+    "pays": "Émirats arabes unis",
+    "annee": 1970,
+    "phrase": "L'ambre et l'oud depuis 1970.",
+    "logo": "img/maisons/al-haramain.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Rasasi",
+    "pays": "Émirats arabes unis",
+    "annee": 1979,
+    "phrase": "La fraîcheur du Golfe.",
+    "logo": "img/maisons/rasasi.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Armaf",
+    "pays": "Émirats arabes unis",
+    "annee": 2015,
+    "phrase": "La projection à petit prix.",
+    "logo": "img/maisons/armaf.jpg",
+    "logo2": null,
+    "on_order": false
+  },
+  {
+    "name": "Frédéric Malle",
+    "pays": "France",
+    "annee": 2000,
+    "phrase": "L'éditeur de parfums.",
+    "logo": "img/maisons/frederic-malle.jpg",
+    "logo2": null,
+    "on_order": true
+  },
+  {
+    "name": "Givenchy",
+    "pays": "France",
+    "annee": 1957,
+    "phrase": "L'avenue George-V.",
+    "logo": "img/maisons/givenchy.jpg",
+    "logo2": null,
+    "on_order": true
+  },
+  {
+    "name": "Arabian Oud",
+    "pays": "Arabie saoudite",
+    "annee": 1982,
+    "phrase": "La maison de l'oud de Riyad.",
+    "logo": "img/maisons/arabian-oud.jpg",
+    "logo2": null,
+    "on_order": true
+  }
 ]

@@ -1,98 +1,104 @@
-/* boutique.js — Catalogue filtrable / triable, hydraté depuis parfums.json */
-var fmt = (window.TERANGA && window.TERANGA.fmtXOF) || function (n) { return n + ' FCFA'; };
+/* boutique.js — Catalogue : pastilles Genre / Famille / Maison, prix max, tri.
+   L'état des filtres est reflété dans l'URL (lien partageable). */
+(function () {
+  'use strict';
+  var T = window.TERANGA;
+  var GENRES = [['homme', 'Homme'], ['femme', 'Femme'], ['mixte', 'Mixte']];
+  var FAMILLES = ['Boisé', 'Oriental', 'Floral', 'Frais', 'Gourmand', 'Chypré'];
+  var prices = T.products.map(T.priceFrom);
+  var PMIN = Math.floor(Math.min.apply(null, prices) / 500) * 500;
+  var PMAX = Math.ceil(Math.max.apply(null, prices) / 500) * 500;
 
-var state = { family: 'all', maison: 'all', sort: 'featured' };
-var PARFUMS = [];
-var COLLECTIONS = [];
+  var q = new URLSearchParams(location.search);
+  var state = {
+    genre: q.get('genre') || '',
+    famille: q.get('famille') || '',
+    maison: q.get('maison') && T.maison(q.get('maison')) ? q.get('maison') : '',
+    prix: Math.min(PMAX, +q.get('prix') || PMAX),
+    tri: q.get('tri') || 'selection'
+  };
 
-function priceFrom(p) { return Math.min.apply(null, p.sizes.map(function (s) { return s.price_xof; })); }
+  var row = document.getElementById('pillRow');
+  var grid = document.getElementById('catalog');
+  var range = document.getElementById('price');
+  var out = document.getElementById('priceOut');
+  var sort = document.getElementById('sort');
+  range.min = PMIN; range.max = PMAX; range.value = state.prix;
+  sort.value = state.tri;
 
-function card(p) {
-  var out = p.stock ? '' : '<span class="p-card__out">Épuisé</span>';
-  return '<article class="p-card brackets" data-family="' + p.family + '" data-maison="' + p.maison + '">' +
-    '<a class="p-card__media" href="parfum.html?id=' + p.id + '" aria-label="' + p.name + '">' + out +
-      '<img src="' + p.image + '" alt="Flacon ' + p.name + ' — ' + p.maison + '" loading="lazy" decoding="async" width="480" height="600" /></a>' +
-    '<div class="p-card__body">' +
-      '<span class="p-card__maison">' + p.maison + '</span>' +
-      '<h3 class="p-card__name"><a href="parfum.html?id=' + p.id + '">' + p.name + '</a></h3>' +
-      '<p class="p-card__note">' + p.family + ' · ' + p.notes.heart.slice(0, 2).join(', ') + '</p>' +
-      '<div class="p-card__foot"><span class="price">' + fmt(priceFrom(p)) + '</span>' +
-        '<button class="link-u" data-add="' + p.id + '">Ajouter <span class="arrow">&rarr;</span></button></div>' +
-    '</div></article>';
-}
-
-function familyOf(p) { return p.family; }
-
-function render() {
-  var list = PARFUMS.filter(function (p) {
-    return (state.family === 'all' || p.family === state.family) &&
-           (state.maison === 'all' || p.maison === state.maison);
-  });
-  if (state.sort === 'price-asc') list.sort(function (a, b) { return priceFrom(a) - priceFrom(b); });
-  else if (state.sort === 'price-desc') list.sort(function (a, b) { return priceFrom(b) - priceFrom(a); });
-  else if (state.sort === 'name') list.sort(function (a, b) { return a.name.localeCompare(b.name); });
-  else list.sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0); });
-
-  var cat = document.getElementById('catalog');
-  cat.innerHTML = list.length ? list.map(card).join('') : '<p class="empty-state">Aucun parfum ne correspond à ces critères.</p>';
-  document.getElementById('resultCount').textContent = list.length + ' parfum' + (list.length > 1 ? 's' : '');
-
-  cat.querySelectorAll('[data-add]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var p = PARFUMS.find(function (x) { return x.id === b.dataset.add; });
-      if (p) window.TERANGA.cart.add({ id: p.id, name: p.name, maison: p.maison, price: priceFrom(p), ml: p.sizes[0].ml, img: p.image });
-    });
-  });
-  if (window.TERANGA && window.TERANGA.motionRefresh) window.TERANGA.motionRefresh();
-}
-
-function chips(containerId, values, key, allLabel) {
-  var c = document.getElementById(containerId);
-  var html = '<button class="chip" data-val="all" aria-pressed="true">' + allLabel + '</button>';
-  html += values.map(function (v) { return '<button class="chip" data-val="' + v + '" aria-pressed="false">' + v + '</button>'; }).join('');
-  c.innerHTML = html;
-  c.querySelectorAll('.chip').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      c.querySelectorAll('.chip').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
-      btn.setAttribute('aria-pressed', 'true');
-      state[key] = btn.dataset.val;
-      render();
-    });
-  });
-}
-
-async function main() {
-  try {
-    PARFUMS = await (await fetch('data/parfums.json')).json();
-    COLLECTIONS = await (await fetch('data/collections.json')).json();
-  } catch (e) {
-    document.getElementById('catalog').innerHTML = '<p class="empty-state">Lancez le site via un serveur local (voir README) pour charger le catalogue.</p>';
-    return;
+  function pill(group, val, label) {
+    var on = group === 'all' ? (!state.genre && !state.famille && !state.maison && state.prix >= PMAX) : state[group] === val;
+    return '<button class="pill" type="button" data-g="' + group + '" data-v="' + T.esc(val) + '" aria-pressed="' + on + '">' + label + '</button>';
+  }
+  function paintPills() {
+    row.innerHTML = pill('all', '', 'Tout') +
+      '<span class="filters__sep" aria-hidden="true"></span><span class="filters__label">Genre</span>' +
+      GENRES.map(function (g) { return pill('genre', g[0], g[1]); }).join('') +
+      '<span class="filters__sep" aria-hidden="true"></span><span class="filters__label">Famille</span>' +
+      FAMILLES.map(function (f) { return pill('famille', f, f); }).join('') +
+      (state.maison ? '<span class="filters__sep" aria-hidden="true"></span><button class="pill is-on" type="button" data-g="maison" data-v="" aria-label="Retirer le filtre ' + T.esc(state.maison) + '">' + T.esc(state.maison) + ' <i class="bi bi-x" aria-hidden="true"></i></button>' : '');
   }
 
-  var families = Array.from(new Set(PARFUMS.map(familyOf))).sort();
-  var maisons = Array.from(new Set(PARFUMS.map(function (p) { return p.maison; }))).sort();
-  chips('familyFilters', families, 'family', 'Toutes familles');
-  chips('maisonFilters', maisons, 'maison', 'Toutes maisons');
-
-  document.getElementById('sortSelect').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
-
-  // Filtre initial par collection (?collection=)
-  var coll = new URLSearchParams(location.search).get('collection');
-  if (coll) {
-    var c = COLLECTIONS.find(function (x) { return x.id === coll; });
-    if (c) {
-      var ids = PARFUMS.filter(function (p) { return p.collection === coll; });
-      PARFUMS = ids.length ? ids : PARFUMS;
-      document.querySelector('.page-hero h1').textContent = c.name;
-      document.getElementById('shopIntro').textContent = c.desc;
-      // recalcule les puces sur le sous-ensemble
-      families = Array.from(new Set(PARFUMS.map(familyOf))).sort();
-      maisons = Array.from(new Set(PARFUMS.map(function (p) { return p.maison; }))).sort();
-      chips('familyFilters', families, 'family', 'Toutes familles');
-      chips('maisonFilters', maisons, 'maison', 'Toutes maisons');
-    }
+  function list() {
+    var l = T.products.filter(function (p) {
+      return (!state.genre || p.gender === state.genre) &&
+        (!state.famille || p.famille === state.famille) &&
+        (!state.maison || p.maison === state.maison) &&
+        T.priceFrom(p) <= state.prix;
+    });
+    var by = {
+      'selection': function (a, b) { return (b.featured - a.featured) || a.maison.localeCompare(b.maison); },
+      'nouveautes': function (a, b) { return b.year - a.year; },
+      'prix-asc': function (a, b) { return T.priceFrom(a) - T.priceFrom(b); },
+      'prix-desc': function (a, b) { return T.priceFrom(b) - T.priceFrom(a); },
+      'nom': function (a, b) { return a.name.localeCompare(b.name, 'fr'); }
+    }[state.tri] || function () { return 0; };
+    return l.sort(by);
   }
+
+  function syncUrl() {
+    var u = new URLSearchParams();
+    if (state.genre) u.set('genre', state.genre);
+    if (state.famille) u.set('famille', state.famille);
+    if (state.maison) u.set('maison', state.maison);
+    if (state.prix < PMAX) u.set('prix', state.prix);
+    if (state.tri !== 'selection') u.set('tri', state.tri);
+    var p = new URLSearchParams(location.search).get('parfum');
+    if (p) u.set('parfum', p);
+    history.replaceState(history.state, '', 'boutique.html' + (u.toString() ? '?' + u : ''));
+  }
+
+  function render() {
+    var l = list();
+    out.textContent = state.prix >= PMAX ? 'Tous les prix' : 'Jusqu\'à ' + T.fmt(state.prix);
+    document.getElementById('count').textContent = l.length;
+    document.getElementById('countLabel').textContent = l.length > 1 ? 'parfums' : 'parfum';
+    document.getElementById('shopTitle').textContent = state.maison || 'Le catalogue';
+    var m = state.maison && T.maison(state.maison);
+    document.getElementById('shopIntro').textContent = m ? m.phrase + ' ' + T.productsOf(m.name).length + ' parfum' + (T.productsOf(m.name).length > 1 ? 's' : '') + ' en rayon.' : 'Tous les parfums en rayon à Dakar. Touchez un flacon pour lire sa pyramide, ses notes et son sillage.';
+    grid.innerHTML = l.length ? l.map(function (p) { return T.card(p); }).join('')
+      : '<div class="catalog-empty"><p>Aucun parfum ne correspond à ces critères. Essayez d\'élargir votre recherche.</p>' +
+        '<button class="btn btn--ghost" type="button" data-reset>Retirer tous les filtres</button></div>';
+    paintPills();
+    syncUrl();
+    T.motion.refresh();
+  }
+
+  row.addEventListener('click', function (e) {
+    var b = e.target.closest('.pill'); if (!b) return;
+    var g = b.dataset.g, v = b.dataset.v;
+    if (g === 'all') { state.genre = state.famille = state.maison = ''; state.prix = PMAX; range.value = PMAX; }
+    else state[g] = state[g] === v ? '' : v;
+    render();
+    var again = row.querySelector('[data-g="' + g + '"][data-v="' + v + '"]') || row.querySelector('[data-g="all"]');
+    if (again) again.focus({ preventScroll: true });
+  });
+  grid.addEventListener('click', function (e) {
+    if (!e.target.closest('[data-reset]')) return;
+    state.genre = state.famille = state.maison = ''; state.prix = PMAX; range.value = PMAX; render();
+  });
+  range.addEventListener('input', function () { state.prix = +range.value; render(); });
+  sort.addEventListener('change', function () { state.tri = sort.value; render(); });
+
   render();
-}
-main();
+})();

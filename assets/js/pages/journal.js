@@ -1,28 +1,50 @@
-/* journal.js — Liste d'articles (extraits développés en corps de lecture) */
-var BODIES = {
-  "oud-langage-dakar": ["L'oud n'est pas une mode à Dakar : c'est une mémoire. Bien avant que les maisons occidentales n'en fassent leur matière-signature, les foyers sénégalais brûlaient le bois d'agar lors des grandes occasions.", "De la résine sauvage à l'accord contemporain, l'oud a appris à se faire plus lisible — crémeux chez Tom Ford, safrané chez Initio, floral chez Maison Francis Kurkdjian. Autant de dialectes d'une même langue que notre clientèle comprend d'instinct.", "Notre conseil : commencez par un oud « habillé » (Oud Wood) avant d'aller vers les interprétations les plus brutes. Le nez s'éduque, le goût s'affirme."],
-  "construire-garde-robe": ["Trois flacons suffisent à couvrir une vie olfactive : un parfum de jour, discret et net ; un parfum de nuit, plus dense ; et une signature, celle qu'on porte quand on veut être reconnu.", "Le jour appelle la fraîcheur boisée ou florale ; la nuit, l'ambre, le tabac, l'oud. La signature, elle, ne se raisonne pas — c'est le flacon vers lequel votre main revient sans y penser.", "Venez les composer avec nous : une consultation privée en boutique vaut mille descriptions."],
-  "sillage-chaleur": ["Sous le climat de Dakar, la chaleur amplifie et accélère l'évaporation. Un même parfum y projette davantage, mais tient parfois moins longtemps.", "Privilégiez les extraits et eaux de parfum aux concentrations plus fragiles. Appliquez sur peau hydratée, aux points de pulsation, et gardez vos flacons à l'abri de la lumière et de la chaleur.", "Une brume légère sur les vêtements prolonge le sillage sans agresser la peau."],
-  "rose-mille-visages": ["La rose n'est jamais une seule fleur. Confiturée et sombre chez Frédéric Malle, poivrée et nue chez Le Labo, orientale et vanillée chez Maison Francis Kurkdjian.", "Sa richesse tient à ses centaines de molécules naturelles, que chaque parfumeur éclaire différemment. C'est la matière la plus universelle et pourtant la plus personnelle.", "Essayez trois roses côte à côte : vous ne les confondrez plus jamais."]
-};
+/* journal.js — Liste des articles, ou un article : journal.html?a=… */
+(function () {
+  'use strict';
+  var T = window.TERANGA;
+  var main = document.getElementById('main');
+  var list = T.articles.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  var id = new URLSearchParams(location.search).get('a');
+  var art = id && list.find(function (a) { return a.id === id; });
+  function date(a) { return new Date(a.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }); }
 
-async function main() {
-  var articles;
-  try { articles = await (await fetch('data/articles.json')).json(); }
-  catch (e) { document.getElementById('journalList').innerHTML = '<p class="empty-state">Lancez le site via un serveur local (voir README).</p>'; return; }
+  if (art) {
+    var i = list.indexOf(art), next = list[(i + 1) % list.length];
+    document.title = art.title + ' — Journal · Teranga';
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', art.excerpt);
+    main.innerHTML =
+      '<figure class="article-hero"><img src="' + T.esc(art.image) + '" alt="' + T.esc(art.alt) + '" width="1400" height="900" fetchpriority="high"></figure>' +
+      '<article class="article">' +
+        '<nav class="crumbs" aria-label="Fil d\'Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">/</span><a href="journal.html">Journal</a></nav>' +
+        '<p class="eyebrow">' + T.esc(art.kicker) + '</p>' +
+        '<h1>' + T.esc(art.title) + '</h1>' +
+        '<p class="article__meta">' + date(art) + ' · ' + art.reading + ' min de lecture</p>' +
+        '<div class="article__body">' + art.body.map(function (p, k) {
+          var html = '<p>' + T.esc(p) + '</p>';
+          if (k === 0 && art.inline) {
+            html += '<figure><img src="' + T.esc(art.inline.image) + '" alt="' + T.esc(art.inline.alt) + '" width="736" height="736" loading="lazy" decoding="async">' +
+              '<figcaption>' + T.esc(art.inline.caption) + '</figcaption></figure>';
+          }
+          return html;
+        }).join('') + '</div>' +
+        '<div class="article__next"><p class="eyebrow">Article suivant</p>' +
+          '<a class="link-u" href="journal.html?a=' + next.id + '" style="text-transform:none;font-family:var(--font-display);font-size:26px;letter-spacing:0">' + T.esc(next.title) + ' <span aria-hidden="true">→</span></a></div>' +
+      '</article>';
+    return;
+  }
 
-  document.getElementById('journalList').innerHTML = articles.map(function (a) {
-    var d = new Date(a.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-    var body = (BODIES[a.id] || [a.excerpt]).map(function (para) { return '<p>' + para + '</p>'; }).join('');
-    return '<article class="article" id="' + a.id + '" data-reveal>' +
-      '<p class="j-card__kicker">' + a.kicker + '</p>' +
-      '<h2>' + a.title + '</h2>' +
-      '<p class="article__meta">' + d + ' · ' + a.reading + ' min de lecture</p>' +
-      '<img src="' + a.image + '" alt="' + a.title + '" loading="lazy" width="760" height="428" />' +
-      '<div class="article__body">' + body + '</div></article>';
-  }).join('');
-
-  if (location.hash) { var t = document.querySelector(location.hash); if (t) t.scrollIntoView(); }
-  if (window.TERANGA && window.TERANGA.motionRefresh) window.TERANGA.motionRefresh();
-}
-main();
+  main.innerHTML =
+    '<header class="page-head wrap"><p class="eyebrow">Le journal</p><h1 class="mt-2">Lectures</h1>' +
+    '<p>Matières, conseils, culture du parfum. De courts textes pour affiner le nez.</p></header>' +
+    '<section class="wrap section--tight"><div class="j-list">' + list.map(function (a) {
+      return '<article class="j-row"><a class="j-row__media" href="journal.html?a=' + a.id + '" tabindex="-1" aria-hidden="true">' +
+        '<img src="' + T.esc(a.image) + '" alt="" width="900" height="720" loading="lazy" decoding="async"></a>' +
+        '<div><p class="eyebrow">' + T.esc(a.kicker) + '</p>' +
+        '<h2><a href="journal.html?a=' + a.id + '">' + T.esc(a.title) + '</a></h2>' +
+        '<p>' + T.esc(a.excerpt) + '</p>' +
+        '<p class="mt-3 muted" style="font-size:13px">' + date(a) + ' · ' + a.reading + ' min de lecture</p>' +
+        '<a class="link-u mt-2" href="journal.html?a=' + a.id + '">Lire l\'article <span aria-hidden="true">→</span></a></div></article>';
+    }).join('') + '</div></section>';
+  T.motion.refresh();
+})();

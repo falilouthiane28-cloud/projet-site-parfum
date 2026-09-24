@@ -1,161 +1,204 @@
 /* =========================================================================
-   motion.js — Mouvement partagé : Lenis + GSAP (reveals, split, marquee,
-   scroll horizontal épinglé, parallaxe, clip-path). Dégradation gracieuse.
-   Idempotent : window.TERANGA.motionRefresh() re-scanne le contenu injecté.
+   motion.js — Budget de mouvement : Lenis, titres mot à mot, cartes en batch,
+   images en clip-path, défilé des maisons. Rien sur le texte courant.
+   Sans GSAP ou en mouvement réduit : le site est complet et immobile.
    ========================================================================= */
 (function () {
   'use strict';
-
-  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var mobile = matchMedia('(max-width: 767px)').matches;
+  var T = window.TERANGA;
   var gsap = window.gsap, ST = window.ScrollTrigger;
-  window.TERANGA = window.TERANGA || {};
+  T.motion = { refresh: function () {}, on: false };
 
-  // Sans GSAP ou en reduced-motion : tout est visible, pas d'animation.
-  if (!gsap || !ST || reduced) {
-    var showAll = function () {
-      document.querySelectorAll('[data-reveal],[data-split],[data-clip]').forEach(function (el) {
-        el.style.opacity = '1'; el.style.transform = 'none'; el.style.clipPath = 'none';
-      });
-    };
-    showAll();
-    window.TERANGA.motionRefresh = showAll;
-    document.documentElement.classList.add('motion-off');
+  if (!gsap || !ST || T.reduced) {
+    document.documentElement.classList.add('no-motion');
     return;
   }
-
   gsap.registerPlugin(ST);
+  T.motion.on = true;
 
-  /* ---------- Lenis (smooth scroll) ---------- */
-  if (window.Lenis && !mobile && !window.TERANGA.lenis) {
+  /* ---------- Lenis (pointeur fin uniquement) ---------- */
+  if (window.Lenis && matchMedia('(pointer: fine)').matches) {
     var lenis = new window.Lenis({ lerp: 0.08, smoothWheel: true });
     lenis.on('scroll', ST.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
-    window.TERANGA.lenis = lenis;
-  }
-
-  /* ---------- Split text léger ---------- */
-  function splitText(el, mode) {
-    var text = el.textContent; el.textContent = ''; el.setAttribute('aria-label', text);
-    var units = mode === 'char' ? text.split('') : text.split(/(\s+)/);
-    var out = [];
-    units.forEach(function (u) {
-      if (/^\s+$/.test(u)) { el.appendChild(document.createTextNode(u)); return; }
-      var wrap = document.createElement('span');
-      wrap.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top;';
-      var inner = document.createElement('span');
-      inner.style.cssText = 'display:inline-block;will-change:transform;';
-      inner.textContent = u; inner.setAttribute('aria-hidden', 'true');
-      wrap.appendChild(inner); el.appendChild(wrap); out.push(inner);
+    T.lenis = lenis;
+    // ancres internes
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (a && a.getAttribute('href').length > 1) {
+        var t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -80 }); }
+      }
     });
-    return out;
   }
 
-  function doSplits(root) {
-    (root || document).querySelectorAll('[data-split]:not([data-split-done])').forEach(function (el) {
-      el.setAttribute('data-split-done', '');
-      var mode = el.dataset.split === 'char' ? 'char' : 'word';
-      var parts = splitText(el, mode);
-      gsap.set(parts, { yPercent: 110 });
-      var isHero = el.closest('[data-hero]');
-      gsap.to(parts, {
-        yPercent: 0, duration: mode === 'char' ? 1.2 : 1, ease: 'expo.out',
-        stagger: mode === 'char' ? 0.02 : 0.06, delay: isHero ? 0.4 : 0,
-        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+  function outsideModal(el) { return !el.closest('.drawer'); }
+
+  /* ---------- Titres de section : mot à mot ----------
+     Découpe seule (sans déclencheur) : c'est le bloc qui orchestre. */
+  function splitWords(el) {
+    if (el.hasAttribute('data-split-done')) return el.querySelectorAll('.sw');
+    el.setAttribute('data-split-done', '');
+    el.setAttribute('aria-label', el.textContent.trim());
+    el.innerHTML = el.textContent.trim().split(/\s+/).map(function (w) {
+      return '<span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.08em;margin-bottom:-0.08em" aria-hidden="true"><span class="sw" style="display:inline-block">' + T.esc(w) + '</span></span>';
+    }).join(' ');
+    var parts = el.querySelectorAll('.sw');
+    gsap.set(parts, { yPercent: 110 });
+    return parts;
+  }
+
+  /* ---------- Blocs de section : surtitre -> titre -> texte -> bouton ----------
+     Une seule chronologie par bloc pour que l'ordre de lecture soit tenu.
+     Le corps de texte se révèle par paragraphe, jamais lettre à lettre. */
+  var BLOCKS = '.sec-head, .page-head, .chapter > div, .visit__card, .ritual .wrap, .letter .wrap, .on-order > div, .quiz__result, .article__next';
+  var SKIP = '.p-card, .j-card, .m-card, .j-row, .pd, .drawer';
+
+  function blocks() {
+    document.querySelectorAll(BLOCKS).forEach(function (b) {
+      if (b.hasAttribute('data-blk') || !outsideModal(b) || b.closest(SKIP)) return;
+      b.setAttribute('data-blk', '');
+
+      var eyebrow = b.querySelector('.eyebrow');
+      var titleEl = b.querySelector('[data-split]');
+      var plainTitle = titleEl ? null : b.querySelector('h1, h2, h3');
+      var body = Array.prototype.filter.call(b.querySelectorAll('p, form, .specs, dl'), function (el) {
+        return el !== eyebrow && !el.closest(SKIP) && !el.querySelector('[data-split]');
       });
-      // Filet : si le tween traîne (onglet masqué → rAF throttlé), force la révélation.
-      if (isHero) setTimeout(function () { gsap.killTweensOf(parts); gsap.set(parts, { yPercent: 0 }); }, 2600);
-    });
-  }
+      var ctas = b.querySelectorAll('.btn, .link-u');
+      if (!eyebrow && !titleEl && !plainTitle && !body.length && !ctas.length) return;
 
-  /* ---------- Reveals directionnels (idempotent) ---------- */
-  function doReveals(root) {
-    (root || document).querySelectorAll('[data-reveal]:not([data-reveal-done])').forEach(function (el) {
-      el.setAttribute('data-reveal-done', '');
-      var dir = el.dataset.reveal;
-      var from = { opacity: 0, y: 60 };
-      if (dir === 'left') from = { opacity: 0, x: -50 };
-      else if (dir === 'right') from = { opacity: 0, x: 50 };
-      else if (dir === 'scale') from = { opacity: 0, scale: 0.94 };
-      gsap.fromTo(el, from, {
-        opacity: 1, x: 0, y: 0, scale: 1, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
+      var words = titleEl ? splitWords(titleEl) : null;
+      if (eyebrow) gsap.set(eyebrow, { y: 20, autoAlpha: 0 });
+      if (plainTitle) gsap.set(plainTitle, { y: 30, autoAlpha: 0 });
+      if (body.length) gsap.set(body, { y: 30, autoAlpha: 0 });
+      if (ctas.length) gsap.set(ctas, { y: 15, autoAlpha: 0 });
+
+      ST.create({
+        trigger: b, start: 'top 82%', once: true,
+        onEnter: function () {
+          var tl = gsap.timeline();
+          if (eyebrow) tl.to(eyebrow, { y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out' }, 0);
+          if (words) tl.to(words, { yPercent: 0, duration: 0.9, stagger: 0.04, ease: 'expo.out' }, 0.12);
+          if (plainTitle) tl.to(plainTitle, { y: 0, autoAlpha: 1, duration: 0.8, ease: 'expo.out' }, 0.1);
+          if (body.length) tl.to(body, { y: 0, autoAlpha: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out' }, 0.2);
+          if (ctas.length) tl.to(ctas, { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 0.4);
+        }
       });
     });
   }
 
-  /* ---------- Clip-path image reveal ---------- */
-  function doClips(root) {
-    (root || document).querySelectorAll('[data-clip]:not([data-clip-done])').forEach(function (el) {
+  /* Titres restés hors d'un bloc : même révélation, sans orchestration. */
+  function splitTitles() {
+    document.querySelectorAll('[data-split]:not([data-split-done])').forEach(function (el) {
+      if (!outsideModal(el)) return;
+      var parts = splitWords(el);
+      ST.create({
+        trigger: el, start: 'top 88%', once: true,
+        onEnter: function () { gsap.to(parts, { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.04 }); }
+      });
+    });
+  }
+
+  /* ---------- Cartes : révélation groupée ----------
+     `opacity` et NON `autoAlpha` : autoAlpha ajoute `visibility: hidden`, et
+     un navigateur ne télécharge pas une image `loading="lazy"` placée dans un
+     sous-arbre invisible. La carte se révélait alors sans sa photo — elle ne
+     l'avait jamais demandée. `.is-rv` rend la carte inerte à la souris tant
+     qu'elle est transparente (le déclencheur est à 92 % de la fenêtre : elle
+     est révélée avant d'être atteignable au clavier). */
+  var BATCH = '.p-card, .j-card, .m-card, .j-row';
+  function batchCards() {
+    var els = Array.prototype.filter.call(document.querySelectorAll(BATCH), function (el) {
+      return !el.hasAttribute('data-rv') && outsideModal(el);
+    });
+    if (!els.length) return;
+    els.forEach(function (el) { el.setAttribute('data-rv', ''); el.classList.add('is-rv'); });
+    gsap.set(els, { y: 50, opacity: 0 });
+    ST.batch(els, {
+      start: 'top 88%', once: true,
+      onEnter: function (b) {
+        gsap.to(b, {
+          y: 0, opacity: 1, duration: 0.7, ease: 'expo.out', stagger: 0.06,
+          overwrite: true, clearProps: 'transform',
+          onStart: function () { this.targets().forEach(function (el) { el.classList.remove('is-rv'); }); }
+        });
+      }
+    });
+  }
+
+  /* ---------- Images : clip-path ---------- */
+  function clips() {
+    document.querySelectorAll('[data-clip]:not([data-clip-done])').forEach(function (el) {
       el.setAttribute('data-clip-done', '');
-      gsap.fromTo(el, { clipPath: 'inset(100% 0 0 0)' }, {
-        clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'power4.out',
-        scrollTrigger: { trigger: el, start: 'top 82%' }
+      // L'image s'ouvre du centre vers les bords : plus court, moins lourd
+      // qu'un balayage plein cadre, et le sujet reste visible tout du long.
+      gsap.fromTo(el, { clipPath: 'inset(12% 0% 12% 0%)' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true }
       });
     });
   }
 
-  /* ---------- Parallaxe ---------- */
-  function doParallax() {
-    document.querySelectorAll('[data-parallax]:not([data-parallax-done])').forEach(function (el) {
-      el.setAttribute('data-parallax-done', '');
-      var amt = parseFloat(el.dataset.parallax) || 15;
-      gsap.to(el, { yPercent: amt, ease: 'none', scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
-  }
-
-  /* ---------- Hero media + ligne SVG ---------- */
-  function doHeroMedia() {
-    var hm = document.querySelector('[data-hero-media]:not([data-hm-done])');
-    if (hm) { hm.setAttribute('data-hm-done', ''); gsap.to(hm, { yPercent: 14, scale: 1.08, ease: 'none', scrollTrigger: { trigger: hm.closest('section'), start: 'top top', end: 'bottom top', scrub: true } }); }
-  }
-  function doDraw() {
-    document.querySelectorAll('[data-draw]:not([data-draw-done]) path').forEach(function (path) {
-      path.closest('[data-draw]').setAttribute('data-draw-done', '');
-      var len = path.getTotalLength(); path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
-      gsap.to(path, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: path.closest('[data-draw]'), start: 'top 80%', end: 'bottom 55%', scrub: true } });
-    });
-  }
-
-  /* ---------- Scroll horizontal épinglé ---------- */
-  var hscrollDone = false;
-  function doHScroll() {
-    if (hscrollDone || mobile) return;
-    var track = document.querySelector('[data-hscroll]');
-    if (!track || !track.children.length) return;
-    hscrollDone = true;
-    var getShift = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
-    gsap.to(track, {
-      x: function () { return -getShift(); }, ease: 'none',
-      scrollTrigger: { trigger: track.parentElement, start: 'top top', end: function () { return '+=' + getShift(); }, scrub: 1, pin: true, invalidateOnRefresh: true, anticipatePin: 1 }
-    });
-  }
-
-  /* ---------- Marquee infini ---------- */
-  function doMarquee() {
+  /* ---------- Défilé infini, suit le sens du scroll ---------- */
+  function marquees() {
     document.querySelectorAll('[data-marquee]:not([data-mq-done])').forEach(function (m) {
-      var inner = m.querySelector('.marquee-inner');
-      if (!inner || !inner.children.length) return;
+      var track = m.querySelector('.marquee__track');
+      if (!track || !track.children.length) return;
       m.setAttribute('data-mq-done', '');
-      inner.innerHTML += inner.innerHTML;
-      var w = inner.scrollWidth / 2, speed = 40, x = 0, paused = false, last = performance.now();
+      track.innerHTML += track.innerHTML;
+      track.querySelectorAll('a').forEach(function (a, i) { if (i >= track.children.length / 2) { a.setAttribute('tabindex', '-1'); a.setAttribute('aria-hidden', 'true'); } });
+      var half = track.scrollWidth / 2, x = 0, dir = -1, boost = 0, paused = false, lastY = scrollY;
       m.addEventListener('pointerenter', function () { paused = true; });
       m.addEventListener('pointerleave', function () { paused = false; });
-      (function tick(now) {
-        var dt = (now - last) / 1000; last = now;
-        if (!paused) { x -= speed * dt; if (x <= -w) x += w; inner.style.transform = 'translateX(' + x + 'px)'; }
-        requestAnimationFrame(tick);
-      })(last);
+      m.addEventListener('focusin', function () { paused = true; });
+      m.addEventListener('focusout', function () { paused = false; });
+      addEventListener('scroll', function () {
+        var dy = scrollY - lastY; lastY = scrollY;
+        if (dy) { dir = dy > 0 ? -1 : 1; boost = Math.min(6, boost + Math.abs(dy) * 0.02); }
+      }, { passive: true });
+      gsap.ticker.add(function (t, dt) {
+        if (paused) return;
+        boost *= 0.94;
+        x += dir * (0.04 + boost * 0.05) * dt;
+        if (x <= -half) x += half; else if (x > 0) x -= half;
+        track.style.transform = 'translate3d(' + x + 'px,0,0)';
+      });
     });
   }
 
-  function runStatic() { doSplits(); doReveals(); doClips(); doParallax(); doHeroMedia(); doDraw(); }
-  function refresh() { doSplits(); doReveals(); doClips(); doHScroll(); doMarquee(); ST.refresh(); }
+  /* ---------- Filet de sécurité ----------
+     Tout ce qui est révélé part d'une opacité nulle. Si l'horloge d'animation
+     ne tourne pas — onglet ouvert en arrière-plan, rendu suspendu — le contenu
+     déjà à l'écran resterait blanc. On rétablit alors l'état final : le site
+     doit être lisible même quand rien ne bouge. */
+  function rescue() {
+    var line = innerHeight * 0.95;
+    document.querySelectorAll('[data-blk], [data-rv], [data-clip-done]').forEach(function (el) {
+      if (el.hasAttribute('data-rescued')) return;
+      var r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > line) return;   // pas encore à l'écran : le scroll s'en chargera
+      el.setAttribute('data-rescued', '');
+      if (el.hasAttribute('data-clip-done')) gsap.set(el, { clipPath: 'inset(0% 0% 0% 0%)' });
+      if (el.hasAttribute('data-rv')) { gsap.set(el, { y: 0, opacity: 1 }); el.classList.remove('is-rv'); }
+      if (el.hasAttribute('data-blk')) {
+        gsap.set(el.querySelectorAll('.eyebrow, p, form, .specs, dl, .btn, .link-u, h1, h2, h3'), { y: 0, autoAlpha: 1 });
+        gsap.set(el.querySelectorAll('.sw'), { yPercent: 0 });
+      }
+    });
+  }
 
-  window.TERANGA.motionRefresh = refresh;
-
-  runStatic();
-  refresh();
+  T.motion.refresh = function () {
+    blocks(); splitTitles(); batchCards(); clips(); marquees();
+    ST.refresh();
+    clearTimeout(T.motion._net);
+    T.motion._net = setTimeout(rescue, 4000);
+  };
+  T.motion.refresh();
   addEventListener('load', function () { ST.refresh(); });
+  // Retour sur l'onglet : on remesure, l'horloge repart d'un état sain.
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) { ST.refresh(); rescue(); }
+  });
 })();

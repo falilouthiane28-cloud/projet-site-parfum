@@ -20,7 +20,7 @@ Voix : sobre, sensuelle, poétique, sûre d'elle. Jamais bruyante, jamais explic
 - **Couleurs UI** : noir/blanc uniquement. 6 gris (`--ink #0A0A0A`, `--paper #FAFAF7`, gray-90/60/30/15/08/03). **Zéro couleur** — pas d'or, pas d'accent, pas de dégradé. Hiérarchie par contraste, échelle, espace, poids, mouvement.
 - **Couleur images** : 44 produits + 25 logos + 7 ambianceshots en couleur pleine, natives. **Zéro grayscale**, zéro desaturation, zéro B&W. Toutes les images existent, aucun placeholder.
 - **Trait** : `--stroke: 2px` = unité du logo pour toute règle/bordure/cadre. Angles droits, zéro rayon.
-- **Typographie** : Space Grotesk (display, capitales, 600w) + Hanken Grotesk (corps, 300–600) + Space Mono (méta/prix, monospace). Google Fonts (CDN, production-ready).
+- **Typographie** : Bodoni Moda (display, serif haute parfumerie) + Hanken Grotesk (corps, 300–600). Google Fonts (CDN, production-ready). *(Space Grotesk / Space Mono — pistes d’une version antérieure — ne sont plus chargées.)*
 - **Signature unique** : le **Navigateur-Labyrinthe** (plan de sol 44×44px fixed left, marqueur carré au scroll mark section). Le logo est un labyrinthe, un parfum est un chemin.
 - **Interdits** : toute couleur UI, curseur custom, 3D réflexe, emojis, mots « marketing » usés (découvrir, expérience, élégant…), isométrie, glassmorphism.
 - **Mouvement** : dépensé une fois (philosophie Apple). Lenis smooth scroll (`lerp 0.08`), SplitText, Flip modals, drag-physics rails. **Jamais gratuit.** `prefers-reduced-motion` → tout 0.01ms ou caché.
@@ -32,7 +32,7 @@ Voix : sobre, sensuelle, poétique, sûre d'elle. Jamais bruyante, jamais explic
 |---|---|---|
 | Accueil | `/index.html` | ✅ Hero scrub, bento, maisons, rituel, journal, newsletter, visite |
 | Boutique | `/boutique.html` | ✅ 41 produits, filtres, tri, URL-sync |
-| Parfum | `/parfum.html?id=` | ✅ Fiche, galerie sticky, notes, panier, wishlist, similaires |
+| Parfum | `/parfum.html?id=` | ✅ Page dédiée (pas de modale) : galerie sticky, pyramide, sillage/tenue, panier, wishlist, similaires |
 | Maisons | `/maisons.html` | ✅ Annuaire 25, en-rayon + commande-spéciale |
 | Rituel | `/rituel.html` | ✅ Quiz 6 questions → profil + 3 produits |
 | Journal | `/journal.html?a=` | ✅ Articles (liste ou detail), héros, corps, média inline |
@@ -46,7 +46,7 @@ Voix : sobre, sensuelle, poétique, sûre d'elle. Jamais bruyante, jamais explic
 - **Animation** : GSAP 3.12 (ScrollTrigger, Flip) · Lenis 1.1.13 (smooth scroll) · Bootstrap Icons 1.11.3.
 - **Data** : JSON embedded (`window.TERANGA_DATA` in `assets/js/data.js`, 35KB).
 - **Persistance** : localStorage-first (cart, auth, wishlist), async Supabase (if keys present).
-- **Fonts** : Google Fonts (Space Grotesk, Hanken Grotesk, Space Mono).
+- **Fonts** : Google Fonts (Bodoni Moda, Hanken Grotesk).
 - **Pas** de framework JS, **pas** de framework CSS, **pas** de Vite, **pas** de npm à ce stade.
 
 ## Public & marché
@@ -69,7 +69,7 @@ Voix : sobre, sensuelle, poétique, sûre d'elle. Jamais bruyante, jamais explic
 ## Décisions structurantes (2026-09-23)
 1. **Monochrome strict + Couleur images** (2e brief `/apple-design`) — remplace la 1re version colorée/3D/3D.
 2. Signature **Navigateur-Labyrinthe** (géométrie, chambrettes, marqueur scroll).
-3. Typo **Space Grotesk** (grotesque équarri, angu, pas arrondie).
+3. Typo **Bodoni Moda** (serif à fort contraste, vocabulaire de la haute parfumerie) sur **Hanken Grotesk** pour le corps.
 4. **Vanilla no-build** : données embedées, localStorage-first persistance, prêt à brancher un back.
 5. **Architecture modulaire JS** : couche config/data/core/api/product/cart/motion/shell, scripts non-bundled.
 6. **Image-first design** : UI monochrome, images couleur (44 produits).

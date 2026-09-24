@@ -1,6 +1,6 @@
 # Avancement — TERANGA (monochrome)
 
-Dernière mise à jour : 2026-09-23 (v2 complète)
+Dernière mise à jour : 2026-09-23 (audit complet + corrections)
 
 ## Légende
 ✅ Fait & vérifié · 🟡 Partiel / placeholder · ⬜ À faire
@@ -12,20 +12,20 @@ Le site est passé d'une 1re version **or + flacon 3D + serif** à une direction
 ## Fondations (v2 Complète)
 - ✅ Design system monochrome (`app.css`, `home.css`, `pages.css`) : 6 gris, `--stroke: 2px`, accent contextuel (encre/papier), angles droits.
 - ✅ **CRITIQUE** : Zéro filtres grayscale sur les images (vérifié : 44 images en couleur pleine).
-- ✅ Fonts sur les 10 pages (Space Grotesk / Hanken Grotesk / Space Mono via Google Fonts).
+- ✅ Fonts identiques sur les 10 pages (Bodoni Moda / Hanken Grotesk via Google Fonts) — vérifié.
 - ✅ Chrome partagé (`shell.js`) : header, menu sticky, footer, loader, tiroir panier + **labyrinthe robuste**.
 - ✅ **Couche données embarquée** : `assets/js/data.js` + `window.TERANGA_DATA` (41 parfums, 25 maisons, 4 articles, tous images).
 - ✅ Utilitaires (`core.js`) : formatage FCFA, XSS prevention (`T.esc`), localStorage, focus trap, scroll lock.
 - ✅ API layer (`api.js`) : localStorage-first, async sync vers Supabase (clés vides = localStorage seul).
 - ✅ Config (`config.js`) : zones livraison (Dakar/Sénégal/CEDEAO/Pickup), WhatsApp, coordonnées, horaires.
 - ✅ Moteur mouvement (`motion.js`) : Lenis (lerp 0.08) + GSAP + ScrollTrigger + Flip, idempotent.
-- ✅ Composants produit (`product.js`) : `T.card()`, `T.detail()`, `T.related()`, quick-view avec deep linking.
+- ✅ Composants produit (`product.js`) : `T.card()` (la carte EST un lien), `T.detail()`, `T.related()`. Pas de modale.
 - ✅ Panier (`cart.js`) : 500+ lignes, localStorage, drawer sticky, checkout multi-étapes, validation tel/email/zone.
 
 ## Image Management (Résolu ✅)
 - ✅ **44 images produits** (img/produits/) — tailles M-XXL, couleur pleine.
 - ✅ **25 logos maisons** (img/maisons/) — contrastes monochrome, fallback à photo de flacon.
-- ✅ **7 images ambiance** (img/ambiance/) — lifestyle, éditorial, couleur.
+- ✅ **9 images d’ambiance** (img/HERO-SECTION/) + **4 images de hero** (img/HERO-IMG/) — couleur pleine.
 - ✅ **Zéro orphelins** : tout article/produit a son image, zéro placeholders, zéro broken links.
 - ✅ **10 fichiers en archives** (doublons MD5 + placeholder + watermark Adobe) → `_archive/img/`.
 
@@ -34,7 +34,7 @@ Le site est passé d'une 1re version **or + flacon 3D + serif** à une direction
 |---|---|---|
 | index | ✅ | Hero 7 slides (scrub scroll), bento featured, marquee maisons, rail nouveautés, rituel, journal, newsletter, visite, footer |
 | boutique | ✅ | 41 cartes, filtres genre/famille/maison/prix, tri 5 modes, URL-synced state, reset filtre |
-| parfum | ✅ | Fiche complète : galerie (sticky left), infos (droite), tailles/prix, panier, wishlist, pyramide notes, similaires |
+| parfum | ✅ | Page dédiée : galerie sticky + loupe au survol, tailles/prix, panier (✓ Ajouté), wishlist, pyramide, sillage/tenue, similaires, barre fixe mobile |
 | maisons | ✅ | Grille maisons en rayon (triées par count) + section commande spéciale (3×3 logos) |
 | rituel | ✅ | Quiz 6 questions, profil résultant, top 3 produits recommandés, transitions GSAP |
 | journal | ✅ | Liste articles (tri date desc) + article detail avec hero, body, drop cap, media inline |
@@ -62,7 +62,7 @@ Le site est passé d'une 1re version **or + flacon 3D + serif** à une direction
 - ✅ Delivery zone ETA (addBusinessDays, affichage sur confirmation).
 - ✅ Payment method conditional fields (sms/whatsapp/bank/card/wave/orange-money).
 - ✅ Wishlist (toggle via [data-wish], aria-pressed, événement cart:change).
-- ✅ Deep linking (`?parfum=id` → ouvre modal, history.pushState, popstate close).
+- ✅ Navigation produit : `parfum.html?id=…` ; les anciens `?parfum=id` sont redirigés.
 - ✅ Sticky filters (boutique), sticky gallery (parfum), sticky drawer (panier).
 - ✅ Focus trap (menu/modal/drawer), keyboard escape, scroll lock stacked.
 
@@ -71,6 +71,46 @@ Le site est passé d'une 1re version **or + flacon 3D + serif** à une direction
 - ✅ Chambrettes via `data-chamber` sur sections (Accueil, Boutique, Maisons, Rituel, Journal, Maison, Contact).
 - ✅ Voix sobre, sensorielle, poétique (mots bannis retirés).
 - ✅ Casse phrase cohérente (majuscule en début seulement).
+
+## Audit du 2026-09-23 — ce qui était faux et a été corrigé
+
+Ce fichier annonçait 10 pages complètes. Quatre ne l'étaient pas. Relevé honnête :
+
+| Constat annoncé | Réalité mesurée | Correctif |
+|---|---|---|
+| « 10 pages complètes » | maison, contact, panier, compte étaient en balisage v2 : polices Space Grotesk, classes absentes du CSS (`h-serif`, `grid12`, `page-hero`…), scripts manquants → `shell.js` plantait, donc ni en-tête ni pied de page | Les 4 pages réécrites en v3 ; `contact.js`, `panier.js`, `compte.js` réécrits sur `T.api` / `T.cart` |
+| « Zéro broken links » | 5 chemins cassés : `img/ambiance/` renommé en `img/HERO-SECTION/` (4 fichiers) + une photo supprimée du dépôt sur maison.html | Chemins recorrigés dans `index.html`, `data.js`, `articles.json` **et** `build_data.py` |
+| « 7 images ambiance (img/ambiance/) » | Le dossier n'existe pas ; c'est `img/HERO-SECTION/` (9 fichiers) | Documentation corrigée, 2 fichiers renommés en slugs lisibles |
+| « Space Grotesk / Space Mono » | Ces polices ne sont chargées par aucune page ; le site tourne sur Bodoni Moda + Hanken Grotesk | Documentation corrigée |
+| Fiche produit | `parfum.html` existait déjà et était complète, mais `product.js` interceptait tous les clics pour forcer une modale | Quick-view supprimée (≈115 lignes) ; la carte est un lien ; anciens `?parfum=` redirigés |
+
+Bugs de rendu trouvés en plus, invisibles à la lecture du code :
+- `.hs__cap { max-width: 15ch }` → 143 px : le nom du parfum se brisait mot par mot dans le hero.
+- `.page-head { padding: X 0 Y }` → annulait le retrait de `.wrap` : titres collés au bord sur 5 pages.
+- Entrée du hero et timeline scrubbée visaient les mêmes éléments → légende invisible.
+- Aucun filet si l'horloge d'animation ne tourne pas → contenu masqué définitivement.
+
+Détail des causes et des garde-fous : `memory.md`.
+
+## Hero (mis à jour le 2026-09-24)
+- Source : `img/HERO-IMG/` **exclusivement**, **5 images 2K** : nuit rouge, Althaïr,
+  Eros, Club de Nuit (Armaf), Stronger With You. Compteur 01/05.
+- Timeline : parallaxe dans le sens du volet, temps de repos réel (segment 2,8),
+  barre de progression continue, compteur qui bascule à mi-volet.
+- Essais écartés à la demande : vétiver, vanille, Sauvage (sources de ~735 px,
+  archivées dans `_archive/img/hero-2k/`).
+- Section « Almadies, Dakar » : `img/HERO-SECTION/lattafa-asad-roches.jpg`
+  (Lattafa Asad, 1920 px), texte ≥ 7,5:1, empilée en portrait.
+- Écran de chargement affiché à chaque arrivée sur l'accueil (il ne l'était
+  plus qu'une fois par session de navigateur).
+- (Historique) 4 images retenues sur 9 au 2026-09-23.
+- Les 5 autres sont écartées et restées dans le dossier : trois font ~735 px de
+  large (flou ×2,6 en plein écran), deux portent du texte incrusté
+  (« COCO EAU DE PARFUM », « NEW COLLECTION SOON / OREM IPSUM DOLOR »).
+  → Les remplacer par des versions HD suffit à les réintégrer.
+- Originaux 2752×1536 archivés dans `_archive/img/hero-2k/` ; le site sert des
+  versions 1920 px : **9,5 Mo → 950 Ko**.
+- Le compteur était déjà dynamique (`home.js`) : il affiche 01/04 à 04/04.
 
 ## Non fait (écarts assumés)
 - ⬜ Supabase backend (structure prête, juste clés manquantes).

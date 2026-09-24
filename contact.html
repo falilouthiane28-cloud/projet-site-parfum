@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Contact & Rendez-vous — Teranga · Dakar</title>
-<meta name="description" content="Contactez Teranga à Dakar (Almadies). Réservez une consultation olfactive privée, trouvez nos horaires et notre adresse." />
-<meta name="theme-color" content="#0A0A0A" />
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'" />
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" /></noscript>
-<link rel="stylesheet" href="assets/css/app.css" /><link rel="stylesheet" href="assets/css/pages.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Teranga, parfumerie à Dakar</title>
+<meta name="description" content="Contactez Teranga, aux Almadies à Dakar : adresse, horaires, téléphone et WhatsApp. Réservez une consultation olfactive privée.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Hanken+Grotesk:wght@300..600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"></noscript>
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/pages.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
-<script defer src="assets/js/shell.js"></script><script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/data.js"></script>
+<script defer src="assets/js/core.js"></script>
+<script defer src="assets/js/api.js"></script>
+<script defer src="assets/js/shell.js"></script>
+<script defer src="assets/js/product.js"></script>
+<script defer src="assets/js/cart.js"></script>
+<script defer src="assets/js/motion.js"></script>
+<script defer src="assets/js/pages/contact.js"></script>
 </head>
-<body>
-<a class="skip" href="#main">Aller au contenu</a>
+<body data-page="contact">
+<a class="skip" href="#contactForm">Aller au formulaire</a>
 <main id="main">
-  <section class="page-hero" data-theme="dark">
-    <div class="wrap"><span class="eyebrow">Contact</span><h1>Prenons le temps du nez</h1>
-      <p>Une question, une recherche précise, ou l'envie d'une consultation privée : écrivez-nous.</p></div>
-  </section>
+  <header class="page-head wrap" data-chamber="Contact">
+    <p class="eyebrow">Contact</p>
+    <h1 class="mt-2" data-split>Prenons le temps du nez</h1>
+    <p>Une question, une recherche précise, ou l'envie d'une consultation privée : écrivez-nous, nous répondons sous 24 heures.</p>
+  </header>
 
-  <section class="section"><div class="wrap"><div class="contact-grid">
-    <div data-reveal>
-      <h2 class="h-serif" style="font-size:28px">La boutique</h2>
-      <div class="info-list">
-        <div class="info"><h4>Adresse</h4><p>Route des Almadies<br />Dakar, Sénégal</p></div>
-        <div class="info"><h4>Horaires</h4><p>Lundi – Samedi · 10h – 20h<br />Dimanche · sur rendez-vous</p></div>
-        <div class="info"><h4>Téléphone / WhatsApp</h4><p><a class="link-u" href="https://wa.me/221000000000" rel="noopener">+221 33 000 00 00</a></p></div>
-        <div class="info"><h4>E-mail</h4><p><a class="link-u" href="mailto:bonjour@teranga.sn">bonjour@teranga.sn</a></p></div>
-      </div>
-      <div class="map-embed" role="img" aria-label="Plan stylisé du quartier des Almadies, Dakar">
-        <svg viewBox="0 0 600 380" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="600" height="380" fill="#EDEDED"/>
-          <g stroke="#C4C4C4" stroke-width="2" fill="none">
-            <path d="M0 120 H600 M0 240 H600 M150 0 V380 M380 0 V380"/>
-            <path d="M0 60 L200 200 L600 160" stroke="#0A0A0A" stroke-width="2" opacity=".5"/>
-          </g>
-          <rect x="292" y="182" width="16" height="16" fill="#0A0A0A"/>
-          <circle cx="300" cy="190" r="22" fill="none" stroke="#0A0A0A" stroke-width="2" opacity=".4"/>
-        </svg>
-      </div>
-      <p class="mt-3"><a class="link-u" href="https://www.openstreetmap.org/search?query=Almadies%20Dakar" rel="noopener" target="_blank">Ouvrir dans une carte <span class="arrow">&rarr;</span></a></p>
-    </div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <section aria-labelledby="t-boutique" data-chamber="La boutique">
+        <div class="sec-head" style="margin-bottom:0">
+          <div><p class="eyebrow">Nous trouver</p><h2 class="mt-2" id="t-boutique" data-split>La boutique</h2></div>
+        </div>
+        <dl class="info">
+          <div><dt>Adresse</dt><dd id="cAddress">Route des Almadies, Dakar</dd></div>
+          <div><dt>Horaires</dt><dd id="cHours">Lundi – samedi · 10 h – 20 h</dd><dd class="muted">Dimanche sur rendez-vous</dd></div>
+          <div><dt>Téléphone et WhatsApp</dt><dd><a class="link-u" id="cPhoneLink" href="#" rel="noopener">+221 33 000 00 00</a></dd></div>
+          <div><dt>Courriel</dt><dd><a class="link-u" id="cMailLink" href="#">bonjour@teranga.sn</a></dd></div>
+        </dl>
 
-    <div data-reveal="right">
-      <h2 class="h-serif" style="font-size:28px">Consultation privée</h2>
-      <p class="muted mt-2">Décrivez votre demande. Nous préparons une sélection avant votre venue.</p>
-      <form class="form-grid mt-4" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="field"><label for="cName">Nom complet</label><input id="cName" name="name" required autocomplete="name" /><span class="err" id="errName"></span></div>
-          <div class="field"><label for="cPhone">Téléphone</label><input id="cPhone" name="phone" type="tel" autocomplete="tel" /></div>
+        <div class="map" role="img" aria-label="Plan stylisé du quartier des Almadies, à Dakar, avec l'emplacement de la boutique">
+          <svg viewBox="0 0 600 340" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+            <rect width="600" height="340" fill="#EDEDED"/>
+            <g stroke="#C4C4C4" stroke-width="2" fill="none">
+              <path d="M0 108 H600 M0 226 H600 M152 0 V340 M386 0 V340"/>
+            </g>
+            <path d="M0 48 L206 186 L600 142" stroke="#A3A3A3" stroke-width="2" fill="none"/>
+            <path d="M0 300 Q200 268 600 292" stroke="#A3A3A3" stroke-width="2" fill="none"/>
+            <rect x="292" y="178" width="16" height="16" fill="#0A0A0A"/>
+            <rect x="278" y="164" width="44" height="44" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+          </svg>
         </div>
-        <div class="form-row">
-          <div class="field"><label for="cEmail">E-mail</label><input id="cEmail" name="email" type="email" required autocomplete="email" /><span class="err" id="errEmail"></span></div>
-          <div class="field"><label for="cDate">Date souhaitée</label><input id="cDate" name="date" type="date" /></div>
+        <p class="mt-3"><a class="link-u" href="https://www.openstreetmap.org/search?query=Almadies%20Dakar" rel="noopener" target="_blank">Ouvrir dans une carte <span aria-hidden="true">&rarr;</span></a></p>
+      </section>
+
+      <section aria-labelledby="t-rdv" data-chamber="Rendez-vous">
+        <div class="sec-head" style="margin-bottom:0">
+          <div><p class="eyebrow">Sur rendez-vous</p><h2 class="mt-2" id="t-rdv" data-split>Consultation privée</h2></div>
         </div>
-        <div class="field"><label for="cMsg">Votre demande</label><textarea id="cMsg" name="message" rows="4" placeholder="Un parfum recherché, un profil, une occasion..."></textarea></div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <button class="btn" type="submit">Envoyer la demande</button>
-          <a class="btn btn--ghost" id="waBtn" href="#" rel="noopener">Écrire sur WhatsApp</a>
-        </div>
-        <p class="err" id="formMsg" aria-live="polite"></p>
-      </form>
+        <p class="muted mt-3">Décrivez votre demande. Nous préparons une sélection avant votre venue, pour que la séance commence par des essais, pas par des questions.</p>
+
+        <form class="form-grid" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="cName">Nom complet</label>
+              <input id="cName" name="name" required autocomplete="name">
+              <span class="err" id="errName" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="cPhone">Téléphone</label>
+              <input id="cPhone" name="phone" type="tel" autocomplete="tel" placeholder="77 000 00 00">
+              <span class="err"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="cEmail">Adresse e-mail</label>
+              <input id="cEmail" name="email" type="email" required autocomplete="email" placeholder="nom@domaine.sn">
+              <span class="err" id="errEmail" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="cDate">Date souhaitée</label>
+              <input id="cDate" name="date" type="date">
+              <span class="err"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cMsg">Votre demande</label>
+            <textarea id="cMsg" name="message" rows="4" placeholder="Un parfum recherché, un profil, une occasion…"></textarea>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn" type="submit">Envoyer la demande</button>
+            <a class="btn btn--ghost" id="waBtn" href="#" rel="noopener">Écrire sur WhatsApp</a>
+          </div>
+          <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </div>
-  </div></div></section>
+  </div>
 </main>
-<script src="assets/js/pages/contact.js" defer></script>
 </body>
 </html>
