@@ -171,13 +171,29 @@ Format prix : `T.fmt(n)` → `197,000 FCFA` *(et non `fmtXOF`, qui n'existe plus
 `teranga-nl` · `teranga-newsletter` · `teranga-consultations` ·
 `teranga-orders` · `teranga-profile` · `teranga-wishlist` · `teranga-cart`.
 
+## Parcours d'achat (panier ≠ commande)
+- **Panier** (`assets/js/cart.js`) : tiroir + `panier.html`. AUCUNE saisie client.
+  Stockage `teranga-cart` = `[{ id, ml, qty }]` seulement ; nom, image et prix
+  sont relus dans le catalogue (jamais de prix faux ou NaN). Doublons fusionnés,
+  quantité bornée 1–10. API : `T.cart.add / addToCart / updateQuantity /
+  removeFromCart / clear / lines / count / calculateSubtotal / renderCart`.
+- **Commande** (`checkout.html` + `assets/js/pages/checkout.js`) : coordonnées →
+  livraison (zones de `config.delivery`) → paiement (`config.payments`) →
+  remarques → vérification → confirmation. Saisie gardée dans
+  `teranga-checkout-draft` (retour au panier sans rien perdre).
+- **Aucun paiement en ligne.** La commande est enregistrée (`T.api.saveOrder`)
+  puis transmise par un message WhatsApp pré-rempli vers `config.whatsapp` —
+  c'est ce message qui la fait arriver à la boutique. `gateway` dans
+  `config.payments` est prévu pour brancher un vrai prestataire plus tard.
+- Double envoi bloqué (drapeau `submitting` + bouton désactivé).
+
 ## Fiche produit
 - **Page dédiée `parfum.html?id=…`**, jamais une modale. La quick-view a été
   supprimée de `product.js` (≈115 lignes). Une carte produit EST un lien.
 - Les anciens liens `?parfum=ID` sont redirigés vers `parfum.html?id=ID`.
 
 ## À remplacer pour la prod
-- Numéro **WhatsApp** `221000000000` → dans `assets/js/config.js` **uniquement**
+- Numéro de la boutique `784277229` (WhatsApp `221784277229`) → défini dans `assets/js/config.js` **uniquement**
   (contact.js et cart.js le lisent depuis là).
 - **Prix FCFA** indicatifs (conversion EUR × 656 arrondie) → tarifs réels via
   `data/build_data.py`.

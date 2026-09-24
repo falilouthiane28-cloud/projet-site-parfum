@@ -9,13 +9,25 @@ window.TERANGA_CONFIG = {
   supabaseUrl: '',
   supabaseAnonKey: '',
 
-  /* Contact */
-  whatsapp: '221000000000',            // format international, sans « + » ni espaces
-  phoneDisplay: '+221 33 000 00 00',
+  /* Contact — numéro officiel de la boutique, utilisé PARTOUT (pied de page,
+     contact, WhatsApp, commande). Ne le recopiez nulle part ailleurs. */
+  phone: '784277229',                   // numéro national, 9 chiffres
+  whatsapp: '221784277229',             // format international, sans « + » ni espaces
+  phoneDisplay: '+221 78 427 72 29',
   email: 'bonjour@teranga.sn',
   address: 'Route des Almadies, Dakar',
   hours: 'Lundi – samedi · 10 h – 20 h',
   coords: [14.7417, -17.5086],          // boutique, pour la carte
+
+  /* Moyens de paiement proposés à la commande. Aucun paiement n'est encaissé
+     sur le site : le client choisit, la boutique confirme et envoie la
+     demande de paiement. `gateway` est prévu pour brancher plus tard un
+     vrai prestataire (null = aucun). */
+  payments: [
+    { id: 'wave', label: 'Wave', hint: 'Demande de paiement envoyée sur votre numéro', gateway: null },
+    { id: 'orange-money', label: 'Orange Money', hint: 'Demande de paiement envoyée sur votre numéro', gateway: null },
+    { id: 'livraison', label: 'Paiement à la livraison', pickupLabel: 'Paiement au retrait', hint: 'En espèces ou par Wave, à la réception', senegalOnly: true, gateway: null }
+  ],
 
   /* Livraison : frais en FCFA (null = sur devis) et délai en jours ouvrés */
   delivery: [

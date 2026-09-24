@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Panier — Teranga, parfumerie à Dakar</title>
-<meta name="description" content="Votre panier Teranga : vérifiez vos parfums, ajustez les quantités, puis passez commande.">
+<title>Commande — Teranga, parfumerie à Dakar</title>
+<meta name="description" content="Finalisez votre commande Teranga : coordonnées, livraison à Dakar, au Sénégal ou en retrait, moyen de paiement et confirmation.">
+<meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,27 +26,24 @@
 <script defer src="assets/js/product.js"></script>
 <script defer src="assets/js/cart.js"></script>
 <script defer src="assets/js/motion.js"></script>
-<script defer src="assets/js/pages/panier.js"></script>
+<script defer src="assets/js/pages/checkout.js"></script>
 </head>
-<body data-page="panier">
-<a class="skip" href="#cartView">Aller au panier</a>
+<body data-page="checkout">
+<a class="skip" href="#checkout">Aller à la commande</a>
 <main id="main" class="page-top">
   <div class="wrap">
     <nav class="crumbs" aria-label="Fil d'Ariane">
       <a href="index.html">Accueil</a><span aria-hidden="true">/</span>
-      <a href="boutique.html">Boutique</a><span aria-hidden="true">/</span>
-      <span aria-current="page">Panier</span>
+      <a href="panier.html">Panier</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Commande</span>
     </nav>
     <ol class="flow-steps" aria-label="Étapes de la commande">
-      <li aria-current="step"><span>1</span>Panier</li>
-      <li><span>2</span>Commande</li>
+      <li class="is-done"><a href="panier.html"><span>1</span>Panier</a></li>
+      <li aria-current="step"><span>2</span>Commande</li>
       <li><span>3</span>Confirmation</li>
     </ol>
-    <h1 class="title">Votre panier</h1>
-    <div class="cart-page">
-      <div class="cart-page__list" id="cartView" tabindex="-1"></div>
-      <aside class="cart-page__sum" id="cartSum" aria-label="Récapitulatif du panier" hidden></aside>
-    </div>
+    <h1 class="title">Finaliser la commande</h1>
+    <div id="checkout" class="checkout" tabindex="-1"></div>
   </div>
 </main>
 </body>

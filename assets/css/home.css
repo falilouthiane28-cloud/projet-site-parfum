@@ -32,7 +32,8 @@
   /* La largeur est en px/vw, jamais en `ch` : `ch` se calcule dans la police
      de CE bloc (17 px), pas dans celle du titre (~106 px) — la légende tombait
      alors dans une colonne de 143 px et le nom se brisait mot par mot. */
-  .hs__cap { position: absolute; left: var(--pad); right: var(--pad); bottom: clamp(72px, 12vh, 128px); z-index: 2; max-width: min(88vw, 860px); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55); }
+  .hs { --cta-b: clamp(28px, 5vh, 48px); --cta-h: 52px; }
+  .hs__cap { position: absolute; left: var(--pad); right: var(--pad); bottom: calc(var(--cta-b) + var(--cta-h) + clamp(24px, 4.5vh, 44px)); z-index: 2; max-width: min(88vw, 860px); text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55); }
   .hs__cap .wd { display: inline-block; white-space: nowrap; }
   /* Temps dont le flacon est au centre de la photo (Armaf, Armani).
      En paysage : l'image est ancrée à gauche — le recadrage se fait à droite,
@@ -51,7 +52,7 @@
       object-position: 50% 50%;
       /* 230 px = légende (~140 px) + sa marge basse (96 px) : le flacon garde
          toujours de l'air au-dessus du texte, même sur un petit téléphone. */
-      height: min(80%, calc(100% - 230px));
+      height: min(78%, calc(100% - 270px));
       -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
               mask-image: linear-gradient(180deg, #000 80%, transparent 100%);
     }
@@ -62,13 +63,39 @@
   .hs__line { margin-top: 16px; font-size: clamp(16px, 1.6vw, 20px); max-width: 30ch; opacity: 0.92; }
   .hs__cap a { display: inline-block; }
   .hs__cap .w { display: inline-block; }
-  .hs__ui { position: absolute; right: var(--pad); bottom: clamp(28px, 5vh, 48px); z-index: 3; display: flex; align-items: center; gap: 18px; font-size: 12px; letter-spacing: 0.16em; font-variant-numeric: tabular-nums; }
+  .hs__ui { position: absolute; right: var(--pad); bottom: var(--cta-b); min-height: var(--cta-h); z-index: 3; display: flex; align-items: center; gap: 18px; font-size: 12px; letter-spacing: 0.16em; font-variant-numeric: tabular-nums; }
   .hs__bar { width: 72px; height: 1px; background: rgba(250, 250, 247, 0.35); position: relative; overflow: hidden; }
   .hs__bar i { position: absolute; inset: 0; background: var(--paper); transform-origin: left; transform: scaleX(0.14); }
   .hs__cue { position: absolute; left: 50%; bottom: 22px; z-index: 3; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; }
   .hs__cue span.l { width: 1px; height: 40px; background: var(--paper); transform-origin: top; animation: cue 2.2s var(--ease-in-out) infinite; }
   @keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-  @media (max-width: 640px) { .hs__cue { display: none; } .hs__cap { bottom: 96px; } }
+  @media (max-width: 640px) { .hs__cue { display: none; } .hs { --cta-b: 24px; --cta-h: 48px; } .hs__bar { display: none; } }
+
+  /* Appel à l'action du hero : présent sur les cinq temps. Contour fin, puis
+     un voile papier qui monte du bas au survol — sans rupture de ton. */
+  .hs__cta {
+    position: absolute; left: var(--pad); bottom: var(--cta-b); z-index: 3;
+    display: inline-flex; align-items: center; gap: 14px; min-height: var(--cta-h); padding: 0 12px 0 26px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper);
+    border: 1px solid rgba(250, 250, 247, 0.7); background: rgba(10, 10, 10, 0.18);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    overflow: hidden; isolation: isolate;
+    transition: color 450ms var(--ease-out), border-color 450ms var(--ease-out), transform var(--t-micro) var(--ease-out);
+  }
+  .hs__cta::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; background: var(--paper);
+    transform: scaleY(0); transform-origin: bottom; transition: transform 450ms var(--ease-out);
+  }
+  .hs__cta-arrow { display: grid; place-items: center; width: 30px; height: 30px; font-size: 15px; transition: transform 450ms var(--ease-out); }
+  @media (hover: hover) {
+    .hs__cta:hover { color: var(--ink); border-color: var(--paper); }
+    .hs__cta:hover::before { transform: scaleY(1); }
+    .hs__cta:hover .hs__cta-arrow { transform: translateX(4px); }
+  }
+  .hs__cta:active { transform: scale(0.98); }
+  .hs__cta:focus-visible { outline: 1px solid var(--paper); outline-offset: 5px; }
+  @media (max-width: 420px) { .hs__cta { gap: 8px; padding: 0 8px 0 18px; font-size: 11px; letter-spacing: 0.12em; } }
+  @media (prefers-reduced-transparency: reduce) { .hs__cta { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(10, 10, 10, 0.55); } }
 
   /* ---------- 4.2 Bandeau de marque ---------- */
   .brandbar { border-top: 1px solid var(--gray-08); border-bottom: 1px solid var(--gray-08); padding: 22px var(--pad); text-align: center; }

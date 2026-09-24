@@ -74,7 +74,14 @@
         '<p class="pd__conc">' + T.esc(p.concentration) + ' · ' + T.genderLabel(p.gender) + '</p>' +
         '<p class="pd__price" data-price>' + T.fmt(p.sizes[0].price_xof) + '</p>' +
         sizes +
-        '<button class="btn btn--block" type="button" data-add>Ajouter au panier</button>' +
+        '<div class="pd__buy">' +
+          '<div class="qty" role="group" aria-label="Quantité">' +
+            '<button type="button" data-qty="-1" aria-label="Diminuer la quantité" disabled><i class="bi bi-dash" aria-hidden="true"></i></button>' +
+            '<output data-qty-val aria-live="polite">1</output>' +
+            '<button type="button" data-qty="1" aria-label="Augmenter la quantité"><i class="bi bi-plus" aria-hidden="true"></i></button>' +
+          '</div>' +
+          '<button class="btn" type="button" data-add>Ajouter au panier</button>' +
+        '</div>' +
         '<button class="link-u" type="button" data-wish="' + p.id + '" aria-pressed="' + on + '">' + wishIcon(on) +
           '<span data-wish-label>' + (on ? 'Dans ma liste de désirs' : 'Ajouter à ma liste de désirs') + '</span></button>' +
         '<p class="pd__desc">' + T.esc(p.description) + '</p>' +
@@ -98,7 +105,16 @@
   };
 
   T.bindDetail = function (root, p) {
-    var size = 0;
+    var size = 0, qty = 1;
+    var MAXQ = (T.cart && T.cart.MAX) || 10;
+    function paintQty() {
+      root.querySelectorAll('[data-qty-val]').forEach(function (o) { o.textContent = qty; });
+      root.querySelectorAll('[data-qty="-1"]').forEach(function (b) { b.disabled = qty <= 1; });
+      root.querySelectorAll('[data-qty="1"]').forEach(function (b) { b.disabled = qty >= MAXQ; });
+    }
+    root.querySelectorAll('[data-qty]').forEach(function (b) {
+      b.addEventListener('click', function () { qty = Math.min(MAXQ, Math.max(1, qty + (+b.dataset.qty))); paintQty(); });
+    });
     var mainImg = root.querySelector('.pd__main img');
     root.querySelectorAll('[data-size]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -116,7 +132,8 @@
     });
     root.querySelectorAll('[data-add]').forEach(function (b) {
       b.addEventListener('click', function () {
-        T.cart.add(p.id, p.sizes[size].ml, 1);
+        T.cart.add(p.id, p.sizes[size].ml, qty);
+        qty = 1; paintQty();
         // Confirmation brève sur le bouton lui-même, puis retour au libellé
         if (b.dataset.busy) return;
         var label = b.textContent;

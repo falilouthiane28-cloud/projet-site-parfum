@@ -177,7 +177,7 @@ docs/
 
 ## À remplacer pour la prod
 
-- **Numéro WhatsApp** : `221000000000` → votre vrai numéro (dans config.js, contact.js, cart.js).
+- **Numéro de la boutique** : `784277229` (WhatsApp `221784277229`), défini uniquement dans `assets/js/config.js`.
 - **Prix FCFA** : indicatifs (EUR × 656 arrondi) → tarifs réels via `build_data.py`.
 - **Images produit** : actuellement couleur, de qualité. Remplacer par visuels sous licence réelle si besoin.
 - **Supabase** : créer schema (orders, newsletter, consultations, profiles, wishlist), câbler clés dans config.js.

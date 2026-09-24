@@ -86,10 +86,12 @@
     var first = partsOf(slides[0]);
     var t0 = document.getElementById('loader') ? 1.25 : 0.15;
     var intro = gsap.timeline({ delay: t0 });
-    intro.from(slides[0].querySelector('img'), { scale: 1.1, duration: 2.2, ease: 'expo.out' }, 0)
+    var cta = hs.querySelector('.hs__cta');
+    intro.from(slides[0].querySelector('img'), { scale: 1.06, duration: 2.2, ease: 'expo.out' }, 0)
       .from(first.eyebrow, { y: 20, autoAlpha: 0, duration: 0.5, ease: 'power3.out' }, 0)
       .from(first.chars, { y: 60, autoAlpha: 0, duration: 1, stagger: 0.02, ease: 'expo.out' }, 0.15)
       .from(first.words, { y: 25, autoAlpha: 0, duration: 0.7, stagger: 0.03, ease: 'power3.out' }, 0.45);
+    if (cta) intro.from(cta, { y: 16, autoAlpha: 0, duration: 0.9, ease: 'power3.out', clearProps: 'transform' }, 0.75);
     // Filet : onglet ouvert en arrière-plan, l'horloge d'animation ne tourne
     // pas — on force alors l'état final plutôt que de laisser la légende vide.
     setTimeout(function () { if (intro.progress() < 1) intro.progress(1).pause(); }, (t0 + 3.5) * 1000);
