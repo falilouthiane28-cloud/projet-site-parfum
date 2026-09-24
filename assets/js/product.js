@@ -143,6 +143,13 @@
       });
     });
 
+    /* Barre d'achat fixe (mobile) : seulement quand le bouton principal n'est
+       plus à l'écran — sinon elle recouvrait le choix de la quantité. */
+    var sticky = root.querySelector('.pd__sticky'), buy = root.querySelector('.pd__buy');
+    if (sticky && buy && window.IntersectionObserver) {
+      new IntersectionObserver(function (e) { sticky.classList.toggle('is-on', !e[0].isIntersecting); }).observe(buy);
+    } else if (sticky) sticky.classList.add('is-on');
+
     /* Survol de la photo : loupe qui suit le curseur. Pointeur fin seulement —
        au doigt, le geste servirait à faire défiler la page. */
     var main = root.querySelector('.pd__main');

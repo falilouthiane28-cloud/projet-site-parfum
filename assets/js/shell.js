@@ -77,17 +77,27 @@
   menu.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); T.trapFocus(menu, e); });
 
   /* ---------- État de l'en-tête (au-dessus du hero photo / défilé) ---------- */
+  /* Une seule passe par image : toutes les lectures de mise en page d'abord,
+     puis les écritures, et seulement si l'état change. Auparavant chaque
+     événement de défilement alternait lecture/écriture (en-tête, labyrinthe),
+     forçant des recalculs de mise en page en série — à-coups sur PC. */
   var hero = document.querySelector('[data-hero]');
-  function onScroll() {
-    var overHero = false;
+  var state = { over: null, scrolled: null };
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var y = scrollY, overHero = false;
     if (hero) {
       var box = (hero.parentElement && hero.parentElement.classList.contains('pin-spacer')) ? hero.parentElement : hero;
       overHero = box.getBoundingClientRect().bottom > 64;
     }
-    header.classList.toggle('is-over-hero', overHero);
-    header.classList.toggle('is-scrolled', !overHero && scrollY > 8);
-    if (lab) lab.classList.toggle('is-on', !overHero);
+    var scrolled = !overHero && y > 8;
+    if (overHero !== state.over) { header.classList.toggle('is-over-hero', overHero); if (lab) lab.classList.toggle('is-on', !overHero); state.over = overHero; }
+    if (scrolled !== state.scrolled) { header.classList.toggle('is-scrolled', scrolled); state.scrolled = scrolled; }
+    if (labMove) labMove(y);
   }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  var labMove = null;
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll, { passive: true });
 
@@ -121,25 +131,26 @@
   var loader = document.getElementById('loader');
   if (loader) {
     loader.innerHTML = T.mark();
-    /* Rideau d'intro : une seule fois par session, levé dès que la première
-       photo et les polices sont prêtes (0,35 s mini, 0,7 s maxi). Revenir à
-       l'accueil ne remet plus d'attente. */
-    var seen = false;
-    try { seen = sessionStorage.getItem('teranga-intro') === '1'; sessionStorage.setItem('teranga-intro', '1'); } catch (e) {}
+    /* Écran de chargement à chaque visite de l'accueil : il reste au moins
+       1,4 s (le temps que le logo se dessine) et attend que la première photo et
+       les polices soient prêtes, sans jamais dépasser 2,4 s. */
     var finished = false;
     var done = function () {
       if (finished) return; finished = true;
       loader.classList.add('is-done'); setTimeout(function () { loader.remove(); }, 600);
+      T.loaderDone = true;
+      // le rideau commence à se lever : l'entrée du hero part avec lui
+      setTimeout(function () { document.dispatchEvent(new CustomEvent('loader:done')); }, 150);
     };
-    if (T.reduced || seen) { loader.remove(); loader = null; }
+    if (T.reduced) done();
     else {
       var t0 = performance.now();
       var img = document.querySelector('.hs__slide img');
       Promise.all([
         document.fonts && document.fonts.ready ? document.fonts.ready : null,
         img && img.decode ? img.decode().catch(function () {}) : null
-      ]).then(function () { setTimeout(done, Math.max(0, 350 - (performance.now() - t0))); });
-      setTimeout(done, 700);
+      ]).then(function () { setTimeout(done, Math.max(0, 1400 - (performance.now() - t0))); });
+      setTimeout(done, 2400);
     }
   }
 
@@ -166,16 +177,19 @@
       path.setAttribute('d', d);
       total = path.getTotalLength();
     };
-    var move = function () {
-      var max = document.documentElement.scrollHeight - innerHeight;
-      var p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    // Hauteur de page mise en cache : relire scrollHeight à chaque image forçait un recalcul
+    var max = 0;
+    var measure = function () { max = document.documentElement.scrollHeight - innerHeight; };
+    labMove = function (y) {
+      var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
       var pt = path.getPointAtLength(p * total);
       mark.setAttribute('x', (pt.x - 3.5).toFixed(1)); mark.setAttribute('y', (pt.y - 3.5).toFixed(1));
     };
-    build(); move();
-    addEventListener('scroll', move, { passive: true });
-    addEventListener('resize', function () { build(); move(); }, { passive: true });
+    build(); measure(); labMove(scrollY);
+    addEventListener('resize', function () { build(); measure(); onScroll(); }, { passive: true });
+    addEventListener('load', measure);
+    if (window.ResizeObserver) new ResizeObserver(function () { measure(); }).observe(document.body);
   }
 
-  onScroll();
+  update();
 })();

@@ -28,6 +28,8 @@
       if (img.dataset.srcset) img.srcset = img.dataset.srcset;
       img.src = img.dataset.src;
       img.removeAttribute('data-src'); img.removeAttribute('data-srcset');
+      // décodage anticipé : aucune photo ne se décode en plein défilement
+      if (img.decode) img.decode().catch(function () {});
     });
   }
   if (hs) {
@@ -102,8 +104,11 @@
 
     // entrée du premier temps, une fois l'écran de chargement parti
     var first = partsOf(slides[0]);
-    var t0 = document.getElementById('loader') ? 0.75 : 0.1;
-    var intro = gsap.timeline({ delay: t0 });
+    // L'entrée démarre quand l'écran de chargement se lève (événement de shell.js)
+    var hasLoader = !!document.getElementById('loader') && !T.loaderDone;
+    var intro = gsap.timeline({ paused: hasLoader, delay: hasLoader ? 0 : 0.15 });
+    var t0 = hasLoader ? 2.5 : 0.15;
+    if (hasLoader) document.addEventListener('loader:done', function () { intro.play(0); }, { once: true });
     var cta = hs.querySelector('.hs__cta');
     intro.from(slides[0].querySelector('img'), { scale: 1.06, duration: 2.2, ease: 'expo.out' }, 0)
       .from(first.eyebrow, { y: 20, autoAlpha: 0, duration: 0.5, ease: 'power3.out' }, 0)

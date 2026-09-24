@@ -184,13 +184,20 @@ Format prix : `T.fmt(n)` → `197,000 FCFA` *(et non `fmtXOF`, qui n'existe plus
 - **Hero** : `srcset` 800/1280/1920. En portrait la photo est recadrée sur la
   hauteur (~1,8 × la hauteur d'écran) → `sizes="(max-aspect-ratio: 1/1) 180svh, 100vw"`.
   Photos 2 à 5 en `data-src`, chargées après `load` ou au 1er défilement (`home.js`).
-- **Rideau d'intro** : une fois par session (`sessionStorage teranga-intro`),
-  0,35–0,7 s. Classe `intro-seen` posée dans le `<head>` pour éviter le flash.
+- **Écran de chargement** (accueil, à chaque visite) : 1,4 s mini (dessin du logo),
+  attend la 1re photo + les polices, 2,4 s maxi. `shell.js` émet `loader:done` ;
+  l'entrée du hero (`home.js`) démarre sur cet événement.
+- **Lenis + CSS** : le bloc CSS officiel de Lenis est en tête de `app.css`. NE PAS
+  le retirer : sans lui, `html { scroll-behavior: smooth }` faisait suivre la
+  molette ~9× trop lentement sur PC (accueil figé pendant le défilement).
+- **Défilement sans « layout thrashing »** : en-tête + labyrinthe mis à jour dans
+  UN seul `requestAnimationFrame` (lectures puis écritures), hauteur de page en cache.
+- Pas de `backdrop-filter` sur l'en-tête ni la barre de filtres (coûteux au scroll).
+- Préchargement (`prefetch`, pas `prerender`) de la page survolée.
 - `main { min-height: 100svh }` + `#pd/#checkout/#cartView:empty` : hauteur
   réservée au contenu rendu en JS (sinon le pied de page saute, CLS 0,5–0,8).
 - `ScrollTrigger.config({ ignoreMobileResize: true })` : pas d'à-coup du hero
   épinglé quand la barre de Safari bouge. Lenis `lerp 0.12`. Marquee en pause hors écran.
-- Pré-rendu au survol (`<script type="speculationrules">`, Chrome/Edge).
 
 ## Parcours d'achat (panier ≠ commande)
 - **Panier** (`assets/js/cart.js`) : tiroir + `panier.html`. AUCUNE saisie client.

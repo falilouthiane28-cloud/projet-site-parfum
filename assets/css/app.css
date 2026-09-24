@@ -6,6 +6,15 @@
    ========================================================================= */
 @layer reset, tokens, base, layout, components, utilities;
 
+/* Lenis (défilement amorti, PC) : CSS officiel de la bibliothèque. Sans lui,
+   `scroll-behavior: smooth` transformait chaque pas de Lenis en une animation
+   native relancée à chaque image — la page suivait la molette ~9× trop lentement. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 /* Polices auto-hébergées (sous-ensemble latin, variables) : plus de feuille
    Google Fonts bloquante ni d'aller-retour vers un autre domaine. */
 @font-face { font-family: 'Bodoni Moda'; font-style: normal; font-weight: 400 900; font-display: swap; src: url('../fonts/bodoni-moda-latin-opsz-normal.woff2') format('woff2'); }
@@ -187,9 +196,11 @@
     border-bottom: 1px solid transparent;
   }
   .site-header .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--space-4); }
+  /* Fond papier plein, sans flou d'arrière-plan : le flou était recalculé à
+     chaque image de défilement (coûteux sur PC) et virait au gris terne en
+     passant sur le pied de page noir. */
   .site-header.is-scrolled {
-    background: rgba(250, 250, 247, 0.86);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    background: var(--paper);
     border-bottom-color: var(--gray-08);
   }
   .site-header.is-over-hero { color: var(--paper); background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
@@ -238,7 +249,6 @@
   /* ---------- Chargement ---------- */
   .loader { position: fixed; inset: 0; z-index: 400; display: grid; place-items: center; background: var(--ink); transition: opacity 500ms var(--ease-out), visibility 0s 500ms; }
   .loader.is-done { opacity: 0; visibility: hidden; }
-  .intro-seen .loader { display: none; }
   .loader svg { width: 72px; }
   .loader .lg-stroke { fill: none; stroke: var(--paper); stroke-width: 7; stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 1.4s var(--ease-in-out) forwards; }
   .loader .lg-fill { fill: var(--paper); opacity: 0; animation: fade-in 0.4s 1s forwards; }
@@ -479,7 +489,9 @@
     .page-top .pd__gallery { top: 0; padding: 0; }
     .pd__main { aspect-ratio: 1 / 1; }
     .pd__thumbs { padding: 0 16px; }
-    .pd__sticky { display: flex; position: sticky; bottom: 0; z-index: 3; gap: 12px; align-items: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--paper); border-top: var(--line); }
+    .pd__sticky { display: flex; position: sticky; bottom: 0; z-index: 3; gap: 12px; align-items: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--paper); border-top: var(--line);
+                  transform: translateY(100%); visibility: hidden; transition: transform 350ms var(--ease-out), visibility 0s 350ms; }
+    .pd__sticky.is-on { transform: none; visibility: visible; transition: transform 350ms var(--ease-out), visibility 0s; }
     .pd__sticky .price { font-size: 16px; }
     .pd__sticky .btn { flex: 1; }
   }
