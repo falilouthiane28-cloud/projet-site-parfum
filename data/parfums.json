@@ -997,50 +997,6 @@
     "pack": true
   },
   {
-    "id": "roja-elixir",
-    "name": "Elixir",
-    "maison": "Roja Parfums",
-    "year": 2014,
-    "perfumer": "Roja Dove",
-    "gender": "femme",
-    "family": "Floral ambré",
-    "famille": "Floral",
-    "concentration": "Essence de Parfum",
-    "notes": {
-      "top": [
-        "Bergamote",
-        "Citron",
-        "Mandarine"
-      ],
-      "heart": [
-        "Rose",
-        "Jasmin",
-        "Muguet",
-        "Fleur d'oranger"
-      ],
-      "base": [
-        "Vanille",
-        "Fève tonka",
-        "Ambre",
-        "Bois de santal"
-      ]
-    },
-    "sizes": [
-      {
-        "ml": 100,
-        "price_xof": 259000
-      }
-    ],
-    "sillage": 4,
-    "longevity": 4.5,
-    "images": [
-      "img/produits/roja-elixir.webp"
-    ],
-    "description": "La rose et le jasmin montés sur une vanille ambrée. Un bouquet dense, pensé pour les grandes occasions.",
-    "featured": false,
-    "pack": true
-  },
-  {
     "id": "versace-eros-flame",
     "name": "Eros Flame",
     "maison": "Versace",

@@ -144,11 +144,12 @@ PARFUMS = [
     ["Pamplemousse", "Citron", "Bergamote", "Citron vert"], ["Genévrier", "Vétiver", "Pomme", "Cyprès"], ["Ambre gris", "Cuir", "Vanille", "Musc"],
     [(100, 193500)], 4, 4, ["roja-elysium.jpg"],
     "Quatre agrumes, puis le vétiver et le cyprès. Le frais le plus construit de la maison, avec un fond de cuir."),
-  P("roja-elixir", "Elixir", "Roja Parfums", 2014, "Roja Dove",
-    "femme", "Floral ambré", "Floral", "Essence de Parfum",
-    ["Bergamote", "Citron", "Mandarine"], ["Rose", "Jasmin", "Muguet", "Fleur d'oranger"], ["Vanille", "Fève tonka", "Ambre", "Bois de santal"],
-    [(100, 259000)], 4, 4.5, ["roja-elixir.jpg"],
-    "La rose et le jasmin montés sur une vanille ambrée. Un bouquet dense, pensé pour les grandes occasions."),
+# Roja Elixir : retiré tant qu'il n'y a pas de photo du flacon (l'image disponible est le couvercle de l'étui).
+  # P("roja-elixir", "Elixir", "Roja Parfums", 2014, "Roja Dove",
+  #   "femme", "Floral ambré", "Floral", "Essence de Parfum",
+  #   ["Bergamote", "Citron", "Mandarine"], ["Rose", "Jasmin", "Muguet", "Fleur d'oranger"], ["Vanille", "Fève tonka", "Ambre", "Bois de santal"],
+  #   [(100, 259000)], 4, 4.5, ["roja-elixir.jpg"],
+  #   "La rose et le jasmin montés sur une vanille ambrée. Un bouquet dense, pensé pour les grandes occasions."),
   P("versace-eros-flame", "Eros Flame", "Versace", 2018, "Olivier Pescheux",
     "homme", "Boisé épicé", "Boisé", "Eau de Parfum",
     ["Citron", "Poivre noir", "Chinotto", "Mandarine", "Romarin"], ["Poivre", "Géranium", "Rose"], ["Fève tonka", "Vanille", "Bois de santal", "Cèdre", "Patchouli"],
@@ -252,7 +253,7 @@ MAISONS = [
   M("Byredo", "Suède", 2006, "Stockholm, des souvenirs mis en flacon.", "byredo.jpg"),
   M("Diptyque", "France", 1961, "34, boulevard Saint-Germain.", "diptyque.jpg"),
   M("Creed", "Royaume-Uni", 1760, "Une maison familiale depuis le XVIIIe siècle.", "creed.jpg"),
-  M("Roja Parfums", "Royaume-Uni", 2011, "Londres, des formules longues."),
+  M("Roja Parfums", "Royaume-Uni", 2011, "Londres, des formules longues.", "roja-parfums.jpg"),
   M("Tom Ford", "États-Unis", 2006, "L'oud rendu lisible pour l'Occident.", "tom-ford.jpg"),
   M("Dior", "France", 1947, "L'avenue Montaigne.", "dior.jpg"),
   M("Chanel", "France", 1921, "Le bois et le bleu.", "chanel.jpg"),
@@ -337,7 +338,7 @@ KNOWN_PACKS = {
     "mfk-oud-satin-mood", "amouage-reflection-man", "pdm-layton",
     "pdm-delina-exclusif", "pdm-herod", "nishane-hacivat",
     "byredo-gypsy-water", "dior-sauvage-edp", "chanel-bleu-edp",
-    "lattafa-khamrah", "roja-elysium", "roja-elixir",
+    "lattafa-khamrah", "roja-elysium",
 }
 try:
     from PIL import Image
