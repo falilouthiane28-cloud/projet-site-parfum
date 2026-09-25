@@ -332,6 +332,13 @@ if orphans:
     raise SystemExit("Maisons sans fiche : %s" % orphans)
 
 # Packshot sur fond clair ? (coins quasi blancs) -> affiché en entier, sans recadrage
+# Produits connus comme packshots (fond blanc/clair) : conservés si PIL absent
+KNOWN_PACKS = {
+    "mfk-oud-satin-mood", "amouage-reflection-man", "pdm-layton",
+    "pdm-delina-exclusif", "pdm-herod", "nishane-hacivat",
+    "byredo-gypsy-water", "dior-sauvage-edp", "chanel-bleu-edp",
+    "lattafa-khamrah", "roja-elysium", "roja-elixir",
+}
 try:
     from PIL import Image
     def is_pack(path):
@@ -343,7 +350,7 @@ try:
         p["pack"] = is_pack(p["images"][0])
 except ImportError:
     for p in PARFUMS:
-        p["pack"] = False
+        p["pack"] = p["id"] in KNOWN_PACKS
 
 write_json("parfums.json", PARFUMS)
 write_json("maisons.json", MAISONS)
