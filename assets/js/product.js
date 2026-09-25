@@ -14,6 +14,11 @@
   }
   function wishIcon(on) { return '<i class="bi ' + (on ? 'bi-heart-fill' : 'bi-heart') + '" aria-hidden="true"></i>'; }
 
+  var IMG_FALLBACK = "data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 160%22%3E%3Crect width=%22120%22 height=%22160%22 fill=%22%23f0ebe3%22/%3E%3Cg fill=%22none%22 stroke=%22%23a89070%22 stroke-width=%222.5%22 stroke-linecap=%22round%22%3E%3Crect x=%2238%22 y=%2272%22 width=%2244%22 height=%2268%22 rx=%226%22/%3E%3Crect x=%2246%22 y=%2244%22 width=%2228%22 height=%2230%22 rx=%224%22/%3E%3Cline x1=%2260%22 y1=%2224%22 x2=%2260%22 y2=%2244%22/%3E%3Ccircle cx=%2260%22 cy=%2220%22 r=%225%22/%3E%3C/g%3E%3C/svg%3E";
+  function imgAttr(src, a, w, h, loading) {
+    return '<img src="' + T.esc(src) + '" alt="' + T.esc(a) + '" width="' + w + '" height="' + h + '" loading="' + loading + '" decoding="async" onerror="this.onerror=null;this.src=\'' + IMG_FALLBACK + '\'">';
+  }
+
   /* ---------- Carte ---------- */
   T.card = function (p, opts) {
     opts = opts || {};
@@ -21,7 +26,7 @@
     return '<article class="p-card' + (opts.row ? ' p-card--row' : '') + '" data-conc="' + T.esc(p.concentration) + '" data-id="' + p.id + '">' +
       '<a class="p-card__link" href="parfum.html?id=' + p.id + '">' +
         '<figure class="p-card__media' + (p.pack ? ' is-pack' : '') + '">' +
-          '<img src="' + T.esc(p.images[0]) + '" alt="' + T.esc(alt(p, 0)) + '" width="600" height="800" loading="' + (opts.eager ? 'eager' : 'lazy') + '" decoding="async">' +
+          imgAttr(p.images[0], alt(p, 0), 600, 800, opts.eager ? 'eager' : 'lazy') +
           '<span class="p-card__cta" aria-hidden="true">Voir le parfum</span>' +
         '</figure>' +
         '<div class="p-card__body">' +
@@ -64,7 +69,7 @@
 
     return '<div class="pd" data-pd="' + p.id + '">' +
       '<div class="pd__gallery">' +
-        '<figure class="pd__main' + (p.pack ? ' is-pack' : '') + '"><img src="' + T.esc(p.images[0]) + '" alt="' + T.esc(alt(p, 0)) + '" width="800" height="1000" decoding="async"></figure>' +
+        '<figure class="pd__main' + (p.pack ? ' is-pack' : '') + '">' + imgAttr(p.images[0], alt(p, 0), 800, 1000, 'eager') + '</figure>' +
         thumbs +
       '</div>' +
       '<div class="pd__info">' +
