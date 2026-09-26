@@ -203,4 +203,10 @@
   .letter .field { flex: 1; text-align: left; }
   .letter__submit { width: 52px; height: 52px; flex: none; display: grid; place-items: center; background: var(--ink); color: var(--paper); font-size: 20px; }
   .letter__done { margin-top: 28px; font-family: var(--font-display); font-size: 22px; }
+
+  /* CLS reservations for JS-rendered containers */
+  #featured:empty { min-height: 600px; }
+  #journal:empty { min-height: 400px; }
+  .marquee__track:empty { min-height: 56px; }
+  #rail:empty { min-height: 460px; }
 }

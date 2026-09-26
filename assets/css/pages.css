@@ -11,12 +11,12 @@
   .page-head h1 { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 500; letter-spacing: -0.03em; }
   .page-head p { margin-top: 16px; max-width: 56ch; color: var(--gray-50); }
   .crumbs { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-50); margin-bottom: 18px; }
-  .crumbs a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 2px; margin: -8px 0; }
+  .crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; margin: -8px 0; }
   .crumbs a:hover { color: var(--ink); }
 
   /* ---------- Boutique : barre de filtres collante ---------- */
   .filters { position: sticky; top: var(--header-h); z-index: 50; background: var(--paper); border-top: 1px solid var(--gray-08); border-bottom: 1px solid var(--gray-08); }
-  .filters__row { display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 12px var(--pad); }
+  .filters__row { display: flex; align-items: center; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 12px var(--pad); min-height: 52px; }
   .filters__row::-webkit-scrollbar { display: none; }
   /* Ligne défilante : un fondu à droite signale qu'il y a d'autres filtres */
   @media (max-width: 900px) {
@@ -170,6 +170,7 @@
 
   /* Contenu rendu en JS : la place est réservée pour que rien ne saute */
   #pd:empty, #checkout:empty, #cartView:empty { min-height: 100svh; }
+  #catalog:empty { min-height: 200svh; }
   #maisonsGrid:empty { min-height: 200svh; }
 
   /* ---------- Parcours d'achat : repère d'étapes ---------- */
